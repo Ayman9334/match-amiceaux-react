@@ -7,12 +7,11 @@ const PiedPage = () => {
                         <div className="row">
                             <div className="col-lg-5 col-md-5 col-sm-5">
                                 <div className="info">
-                                    <a className="logo" href="accueil.html">
-                                        <img
-                                            src="view/resources/img/logo-match.png"
-                                            alt="Matchs Amicaux"
-                                        />
-                                    </a>
+                                    <img
+                                        src="view/resources/img/logo-match.png"
+                                        alt="Matchs Amicaux"
+                                        className="mw-100"
+                                    />
                                     <p>
                                         Etablir une relation de confiance et de partenariat avec nos
                                         clients, est un préalable indispensable pour garantir la

@@ -1,26 +1,14 @@
-import { Link } from "react-router-dom"
-import LoginPopup from "./LoginPopup"
-import { useStateContext } from "../context/ContextProvider"
-import { useState } from "react"
-import axiosClient from "../api/axios-config"
+import { Link } from "react-router-dom";
+import LoginPopup from "./LoginPopup";
+import { useStateContext } from "../context/ContextProvider";
+import { useState } from "react";
+import Utilisateurmenu from "./utilisateurmenu";
 
 const NavigationBar = () => {
-    const { setUser, setToken, token } = useStateContext()
+    const { token } = useStateContext()
     const [auth] = useState(token ? true : false)
 
-    const onLogout = () => {
-        axiosClient.post('/auth/logout')
-            .then(() => {
-                setUser({})
-                setToken(null)
-                location.href = '/'
-            })
-            .catch(()=>{
-                setUser({})
-                setToken(null)
-                location.href = '/'
-            })
-    }
+
 
     return (
         <>
@@ -109,12 +97,17 @@ const NavigationBar = () => {
                         </div>
                         <div className="col-md-6">
                             <div className="searchbar text-right">
-                                <form action="#">
-                                    <input placeholder="Recherche..." type="text" required="" />
-                                    <button type="submit">
-                                        <i className="fa fa-search" />
-                                    </button>
-                                </form>
+                                {auth ? <Utilisateurmenu /> : <>
+                                    <Link className="m-3 ">créer un compte</Link>
+                                    <a
+                                        href="#"
+                                        data-toggle="modal"
+                                        data-target="#loginModal"
+                                        className="btn btn-success"
+                                    >
+                                        <span className="fa fa-user" /> Se Connecter
+                                    </a>
+                                </>}
                             </div>
                         </div>
                     </div>
@@ -122,7 +115,8 @@ const NavigationBar = () => {
             </section>
             {/* End Logo Area */}
 
-            <LoginPopup />
+            {!auth && <LoginPopup />}
+
 
 
             <section className="menu-area">
@@ -519,29 +513,12 @@ const NavigationBar = () => {
                                             RECHERCHER UN MATCH
                                         </Link>
                                     </li>
-                                    
-                                    {auth ? <>
+
+                                    {auth && <>
                                         <li className="list-inline-item">
                                             <Link to="/cree-match">CRÉER UN MATCH</Link>
                                         </li>
-                                        <li className="list-inline-item">
-                                            <a onClick={onLogout}>
-                                                <span className="fa fa-sign-out" /> SE DÉCONNECTER
-                                            </a>
-                                        </li>
-                                    </> : <>
-                                        <li className="list-inline-item">
-                                            <a
-                                                href="#"
-                                                data-toggle="modal"
-                                                data-target="#loginModal"
-                                            >
-                                                <span className="fa fa-user" /> COMPTE
-                                            </a>
-                                        </li>
                                     </>}
-
-
                                 </ul>
                             </div>
                         </div>

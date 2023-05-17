@@ -5,16 +5,22 @@ import Inscription from "./pages/Inscription";
 import Trouvmatch from "./pages/Trouvmatch";
 import Nopage from "./pages/Nopage";
 import CreeMatch from "./pages/CreeMatch";
+import { useStateContext } from "./context/ContextProvider";
 
 function App() {
+    const { token } = useStateContext();
+
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LayoutPrincipal />}>
                     <Route index element={<Acceuil />} />
-                    <Route path="/inscription" element={<Inscription />} />
                     <Route path="/trouve-match" element={<Trouvmatch />} />
-                    <Route path="/cree-match" element={<CreeMatch />} />
+                    {token ? <>
+                        <Route path="/cree-match" element={<CreeMatch />} />
+                    </> : <>
+                        <Route path="/inscription" element={<Inscription />} />
+                    </>}
                 </Route>
                 <Route path="*" element={<Nopage />} />
             </Routes>

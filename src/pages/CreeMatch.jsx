@@ -196,7 +196,7 @@ const CreeMatch = () => {
                                 />
                                 {(files.length > 0) &&
                                     <div className='images-affichage col-12 row'>
-                                        
+
                                         {files.map(
                                             (x, index) => <div key={index} className={(index === 0) ? 'col-12 premierimg imgctn' : 'col-4 dernierimgs imgctn'}>
                                                 <div className='bg-dark rounded m-1'>
