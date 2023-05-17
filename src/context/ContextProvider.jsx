@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import axiosClient from "../api/axios-config";
 
 const StateContext = createContext({
     currentUser: null,
@@ -13,6 +14,17 @@ export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
     const [notification, _setNotification] = useState('');
+
+    if (token) {
+        axiosClient.get('/check-token')
+            .catch(() => {
+                localStorage.removeItem('ACCESS_TOKEN');
+                location.reload();
+            })
+    }
+
+    
+
 
     const setToken = (token) => {
         _setToken(token)
