@@ -32,7 +32,7 @@ const Utilisateurmenu = () => {
         {
             label: <><span className="fa fa-users" /> Mon Club </>,
             command: () => {
-                navigate('/utilisateur/club')
+                navigate('/mon-club')
             }
         },
         {

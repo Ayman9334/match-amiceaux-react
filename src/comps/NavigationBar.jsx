@@ -87,7 +87,7 @@ const NavigationBar = () => {
                             <div className="logo">
                                 <Link to="/">
                                     <img
-                                        src="view/resources/img/logo-match.png"
+                                        src="/view/resources/img/logo-match.png"
                                         style={{ width: 242, marginTop: "-36px" }}
                                         alt=""
                                         className="img-fluid"
@@ -176,7 +176,7 @@ const NavigationBar = () => {
                                                         <div className="mg-item">
                                                             <div className="mg-img">
                                                                 <img
-                                                                    src="view/resources/img/template/popular-10.jpg"
+                                                                    src="/view/resources/img/template/popular-10.jpg"
                                                                     alt=""
                                                                 />
                                                                 <a href="#">
@@ -195,7 +195,7 @@ const NavigationBar = () => {
                                                         <div className="mg-item">
                                                             <div className="mg-img">
                                                                 <img
-                                                                    src="view/resources/img/template/popular-7.jpg"
+                                                                    src="/view/resources/img/template/popular-7.jpg"
                                                                     alt=""
                                                                 />
                                                                 <a href="#">
@@ -214,7 +214,7 @@ const NavigationBar = () => {
                                                         <div className="mg-item">
                                                             <div className="mg-img">
                                                                 <img
-                                                                    src="view/resources/img/template/popular-8.jpg"
+                                                                    src="/view/resources/img/template/popular-8.jpg"
                                                                     alt=""
                                                                 />
                                                                 <a href="#">
@@ -233,7 +233,7 @@ const NavigationBar = () => {
                                                         <div className="mg-item">
                                                             <div className="mg-img">
                                                                 <img
-                                                                    src="view/resources/img/template/popular-11.jpg"
+                                                                    src="/view/resources/img/template/popular-11.jpg"
                                                                     alt=""
                                                                 />
                                                                 <a href="#">
@@ -252,7 +252,7 @@ const NavigationBar = () => {
                                                         <div className="mg-item">
                                                             <div className="mg-img">
                                                                 <img
-                                                                    src="view/resources/img/template/popular-5.jpg"
+                                                                    src="/view/resources/img/template/popular-5.jpg"
                                                                     alt=""
                                                                 />
                                                                 <a href="#">
@@ -320,7 +320,7 @@ const NavigationBar = () => {
                                                             <div className="lat-img">
                                                                 <a href="#">
                                                                     <img
-                                                                        src="view/resources/img/template/lt-sm-6.jpg"
+                                                                        src="/view/resources/img/template/lt-sm-6.jpg"
                                                                         alt=""
                                                                     />
                                                                 </a>
@@ -336,7 +336,7 @@ const NavigationBar = () => {
                                                             <div className="lat-img">
                                                                 <a href="#">
                                                                     <img
-                                                                        src="view/resources/img/template/lt-sm-11.jpg"
+                                                                        src="/view/resources/img/template/lt-sm-11.jpg"
                                                                         alt=""
                                                                     />
                                                                 </a>
@@ -352,7 +352,7 @@ const NavigationBar = () => {
                                                             <div className="lat-img">
                                                                 <a href="#">
                                                                     <img
-                                                                        src="view/resources/img/template/lt-sm-9.jpg"
+                                                                        src="/view/resources/img/template/lt-sm-9.jpg"
                                                                         alt=""
                                                                     />
                                                                 </a>
@@ -375,7 +375,7 @@ const NavigationBar = () => {
                                                             <div className="pop-img">
                                                                 <a href="#">
                                                                     <img
-                                                                        src="view/resources/img/template/lt-sm-4.jpg"
+                                                                        src="/view/resources/img/template/lt-sm-4.jpg"
                                                                         alt=""
                                                                     />
                                                                 </a>
@@ -407,7 +407,7 @@ const NavigationBar = () => {
                                                             <div className="pop-img">
                                                                 <a href="#">
                                                                     <img
-                                                                        src="view/resources/img/template/lt-sm-7.jpg"
+                                                                        src="/view/resources/img/template/lt-sm-7.jpg"
                                                                         alt=""
                                                                     />
                                                                 </a>
@@ -439,7 +439,7 @@ const NavigationBar = () => {
                                                             <div className="pop-img">
                                                                 <a href="#">
                                                                     <img
-                                                                        src="view/resources/img/template/lt-sm-8.jpg"
+                                                                        src="/view/resources/img/template/lt-sm-8.jpg"
                                                                         alt=""
                                                                     />
                                                                 </a>
@@ -476,27 +476,27 @@ const NavigationBar = () => {
                                                         </div>
                                                         <div className="glry-box">
                                                             <img
-                                                                src="view/resources/img/template/lt-sm-1.jpg"
+                                                                src="/view/resources/img/template/lt-sm-1.jpg"
                                                                 alt=""
                                                             />
                                                             <img
-                                                                src="view/resources/img/template/lt-sm-2.jpg"
+                                                                src="/view/resources/img/template/lt-sm-2.jpg"
                                                                 alt=""
                                                             />
                                                             <img
-                                                                src="view/resources/img/template/lt-sm-3.jpg"
+                                                                src="/view/resources/img/template/lt-sm-3.jpg"
                                                                 alt=""
                                                             />
                                                             <img
-                                                                src="view/resources/img/template/lt-sm-5.jpg"
+                                                                src="/view/resources/img/template/lt-sm-5.jpg"
                                                                 alt=""
                                                             />
                                                             <img
-                                                                src="view/resources/img/template/lt-sm-10.jpg"
+                                                                src="/view/resources/img/template/lt-sm-10.jpg"
                                                                 alt=""
                                                             />
                                                             <img
-                                                                src="view/resources/img/template/lt-sm-12.jpg"
+                                                                src="/view/resources/img/template/lt-sm-12.jpg"
                                                                 alt=""
                                                             />
                                                         </div>
@@ -539,7 +539,7 @@ const NavigationBar = () => {
                             <div className="mobile-menu">
                                 <nav id="dropdown">
                                     <a href="accueil.html">
-                                        <img src="view/resources/img/logo-match.png" alt="" />
+                                        <img src="/view/resources/img/logo-match.png" alt="" />
                                     </a>
                                     <ul className="list-unstyled">
                                         <li>

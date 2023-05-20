@@ -8,7 +8,7 @@ const PiedPage = () => {
                             <div className="col-lg-5 col-md-5 col-sm-5">
                                 <div className="info">
                                     <img
-                                        src="view/resources/img/logo-match.png"
+                                        src="/view/resources/img/logo-match.png"
                                         alt="Matchs Amicaux"
                                         className="mw-100"
                                     />
@@ -76,23 +76,23 @@ const PiedPage = () => {
                                 <div className="col-lg-5 col-md-5 col-sm-5">
                                     <div className="payment">
                                         <img
-                                            src="view/resources/img/template/payment/visa.png"
+                                            src="/view/resources/img/template/payment/visa.png"
                                             alt="Visa"
                                         />
                                         <img
-                                            src="view/resources/img/template/payment/paypal.png"
+                                            src="/view/resources/img/template/payment/paypal.png"
                                             alt="PayPal"
                                         />
                                         <img
-                                            src="view/resources/img/template/payment/master.png"
+                                            src="/view/resources/img/template/payment/master.png"
                                             alt="Master Card"
                                         />
                                         <img
-                                            src="view/resources/img/template/payment/discover.png"
+                                            src="/view/resources/img/template/payment/discover.png"
                                             alt="Discover"
                                         />
                                         <img
-                                            src="view/resources/img/template/payment/amazon.png"
+                                            src="/view/resources/img/template/payment/amazon.png"
                                             alt="Amazon"
                                         />
                                     </div>
