@@ -2,12 +2,12 @@ function effectCommands() {
 	"use strict";
 
 	/***** Preloader *****/
-	// $(window).on('load', function () {
-	// 	$(".preloader .item-wrapper").delay(1000).animate({
-	// 		top: "-100%"
-	// 	}, 1000, "easeInQuart");
-	// 	$(".preloader").delay(1000).fadeOut(1000);
-	// });
+	$(window).on('load', function () {
+		$(".preloader .item-wrapper").delay(1000).animate({
+			top: "-100%"
+		}, 1000, "easeInQuart");
+		$(".preloader").delay(1000).fadeOut(1000);
+	});
 
 	/***** Mobile Menu *****/
 	$('nav#dropdown').meanmenu({

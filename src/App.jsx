@@ -26,8 +26,8 @@ function App() {
                     </> : <>
                         <Route path="/inscription" element={<Inscription />} />
                     </>}
+                    <Route path="*" element={<Nopage />} />
                 </Route>
-                <Route path="*" element={<Nopage />} />
             </Routes>
         </BrowserRouter>
     );
