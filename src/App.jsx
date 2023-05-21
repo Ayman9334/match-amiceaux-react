@@ -7,7 +7,7 @@ import Nopage from "./pages/Nopage";
 import CreeMatch from "./pages/CreeMatch";
 import { useStateContext } from "./context/ContextProvider";
 import { Toast } from 'primereact/toast';
-import MonClub from "./pages/MonClub";
+import Club from "./pages/Club";
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
                     <Route path="/trouve-match" element={<Trouvmatch />} />
                     {token ? <>
                         <Route path="/cree-match" element={<CreeMatch />} />
-                        <Route path="/mon-club" element={<MonClub />} />
+                        <Route path="/club" element={<Club />} />
                     </> : <>
                         <Route path="/inscription" element={<Inscription />} />
                     </>}

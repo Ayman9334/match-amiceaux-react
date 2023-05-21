@@ -1,5 +1,10 @@
+import { useEffect } from "react";
 import "../css/nopage.css";
+
 const Nopage = () => {
+    useEffect(() => {
+        window.effectCommands();
+    }, []);
     return (
         <div id="notfound">
             <div className="notfound">
