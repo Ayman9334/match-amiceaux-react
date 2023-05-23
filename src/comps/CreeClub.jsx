@@ -1,27 +1,29 @@
-import { Toast } from "bootstrap";
 import axiosClient from "../api/axios-config";
 import { useState } from "react";
-
+import React, { useRef } from 'react';
+import { useStateContext } from "../context/ContextProvider";
 
 
 
 const CreeClub = () => {
-    // const submitClub = (e) => {
-    //     e.preventDefault();
-    //     axiosClient
-    //         .post("/club", nomclub)
-    //         .then(({ data }) => {
-    //             console.log(data);
-    //             location.reload();
-    //         })
-    //         .catch(() => { (location.href = "/Oooops") });
-    // };
+    const submitClub = (e) => {
+        e.preventDefault();
+        axiosClient
+            .post("/club", nomclub)
+            .then(({ data }) => {
+                console.log(data);
+                location.reload();
+                showSuccess()
+            })
+            .catch(() => { (location.href = "/Oooops") });
 
-    // const [nomclub, setNomClub] = useState()
-    // const setInfoClub = (e) =>
-    //     setNomClub({
-    //         [e.target.name]: e.target.value,
-    //     });
+    };
+
+    const [nomclub, setNomClub] = useState()
+    const setInfoClub = (e) =>
+        setNomClub({
+            [e.target.name]: e.target.value,
+        });
 
         const submitInvitation = (e) => {
             e.preventDefault();
@@ -37,6 +39,12 @@ const CreeClub = () => {
 
         const [code, setCode] = useState()
         console.log(code)
+
+        const { notification } = useStateContext();
+
+        const showSuccess = () => {
+            notification.current.show({severity:'success', summary: 'Success', detail:'Message Content', life: 3000});
+        }
     
 
     return (
@@ -50,13 +58,13 @@ const CreeClub = () => {
                                     <h2 className="card-title fw-bold text-black mb-0">Créer un Club</h2>
                                 </div>
                                 <div className="card d-flex justify-content-center p-5 m-5">
-                                    {/* <form className="d-flex flex-column gap-2" onSubmit={submitClub}>
+                                    <form className="d-flex flex-column gap-2" onSubmit={submitClub}>
                                         <span className="p-float-label mb-3">
                                             <input id="value" name="nom_club" onChange={setInfoClub} className="form-control " />
                                             <label htmlFor="input_value">Nom du Club</label>
                                         </span>
                                         <button type="submit" label="Submit" className="btn btn-primary">Creé Club</button>
-                                    </form> */}
+                                    </form>
                                 </div>
                             </div>
                         </div>
