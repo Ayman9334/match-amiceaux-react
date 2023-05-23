@@ -1,102 +1,89 @@
 // import { useStateContext } from "../context/ContextProvider"
 
+import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
+import { Avatar } from "primereact/avatar"
+import { useRef, useState } from "react";
+
 
 const MonClub = (props) => {
+  const [visible, setVisible] = useState(false);
   // const {notification} = useStateContext()
+
+  const link = useRef(null);
+  const code = useRef(null);
+
+  const copyText = (ref) => {
+    const textToCopy = ref.current.innerText;
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        alert('Copied');
+      })
+      .catch((error) => {
+        console.error('Error copying text:', error);
+      });
+  };  
   console.log(props.clubInfos)
   return (
     <div className="container">
-      <br /><br /><br /><br />
-      
-      <h1>{props.title}</h1>
-      <div key={props.clubInfos.id}>
-          <h4>{props.clubInfos.nom_club}</h4>
-          <h2>{props.clubInfos.club_code}</h2>
-          <h2>{props.clubInfos.role}</h2>
-          <h2>{props.clubInfos.membres.map((member) =><p>{member.nom}</p>)}</h2>
-      </div>
-
-      {/* <div className="row d-flex justify-content-center align-items-center">
+      <h1 className="text-center m-4">{props.clubInfos.nom_club}</h1>
+      <div className="row d-flex justify-content-center align-items-center">
         <div className="col-lg-8 d-flex">
           <div className="card w-100">
             <div className="card-body">
               <div className="d-flex justify-content-between">
                 <div>
-                  <h5 className="card-title">Members of the team</h5>
+                  <h5 className="card-title">Membres du Club</h5>
+                  <small className="fw-100 mb-5">Nombres du membres : {props.clubInfos.members_number}</small>
                 </div>
-                <div className="ms-auto">
-                  <button
-                    className="btn waves-effect waves-light btn btn-info hidden-sm-down text-white">Add
-                    Members</button>
+                <div className="card flex justify-content-center">
+                  {/* <button className="btn waves-effect waves-light btn btn-info hidden-sm-down text-white">Ajouter Membres</button> */}
+                    <Button label="Ajouter Membres" icon="pi pi-external-link" onClick={() => setVisible(true)} />
+                    <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} onHide={() => setVisible(false)}
+                        style={{ width: '50vw' }} breakpoints={{ '960px': '75vw', '641px': '100vw' }}>
+                          <ul>
+                            <li ref={link} onClick={()=>copyText(link)}>link</li>
+                            <li ref={code} onClick={()=>copyText(code)}>code</li>
+                          </ul>
+                    </Dialog>
                 </div>
               </div>
               <div className="table-responsive mt-3 no-wrap">
-                <table className="table vm no-th-brd pro-of-month">
+                <table className="table vm no-th-brd pro-of-month mb-0">
                   <thead>
                     <tr>
-                      <th colSpan="2">Player Name</th>
-                      <th>Position</th>
+                      <th colSpan="2" className="text-center">Player Name</th>
+                      <th className="text-start">Role</th>
+                      <th className="text-center">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                    <td><span className="round"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU"
-                        alt="user" width="50" /></span></td>
+                  <tr key={props.clubInfos.id}>
+                    <td><span className="round">
+                          <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
+                        </span></td>
                       <td>
-                        <h6>Thibu Courtoi</h6><small className="text-muted">Team 1</small>
+                        <h6>{props.clubInfos.membres[0].nom}</h6><small className="text-muted">{props.clubInfos.nom_club}</small>
                       </td>
-                      <td>GoalKeeper</td>
+                      <td>{props.clubInfos.role}</td>
                       <td className="d-flex justify-content-around">
                         <a href=""><i className="fa fa-edit"></i></a>
                         <a href=""><i className="fa fa-trash-o"></i></a>
                       </td>
                     </tr>
-                    <tr className="active">
-                      <td><span className="round"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Eder_Militao_2021.jpg/640px-Eder_Militao_2021.jpg"
-                        alt="user" width="50" /></span></td>
+                    {props.clubInfos.membres.slice(1).map((member)=>{return <tr key={props.clubInfos.id}>
+                    <td><span className="round">
+                          <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
+                        </span></td>
                       <td>
-                        <h6>Eder Militao</h6><small className="text-muted">Team 1</small>
+                        <h6 className="align-middle">{member.nom}</h6><small className="text-muted">{props.clubInfos.nom_club}</small>
                       </td>
-                      <td>Defender</td>
+                      <td>{props.clubInfos.role}</td>
                       <td className="d-flex justify-content-around">
                         <a href=""><i className="fa fa-edit"></i></a>
                         <a href=""><i className="fa fa-trash-o"></i></a>
                       </td>
-                    </tr>
-                    <tr>
-                    <td><span className="round"><img src="https://img.a.transfermarkt.technology/portrait/big/369081-1681999815.jpg?lm=1"
-                        alt="user" width="50" /></span></td>
-                      <td>
-                        <h6>Federico Valverde</h6><small className="text-muted">Team 1</small>
-                      </td>
-                      <td>Midfielder</td>
-                      <td className="d-flex justify-content-around">
-                        <a href=""><i className="fa fa-edit"></i></a>
-                        <a href=""><i className="fa fa-trash-o"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td><span className="round"><img src="https://cdn.sofifa.net/players/238/794/23_360.png"
-                        alt="user" width="50" /></span></td>
-                      <td>
-                        <h6>Vinisuis Junior</h6><small className="text-muted">Team 1</small>
-                      </td>
-                      <td>Midfielder</td>
-                      <td className="d-flex justify-content-around"> <a href=""><i className="fa fa-edit"></i></a>
-                        <a href=""><i className="fa fa-trash-o"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                    <td><span className="round"><img src="https://i.pinimg.com/736x/5d/18/b2/5d18b25ff369b7916f4fe85d6c76a563.jpg"
-                        alt="user" width="50" /></span></td>
-                      <td>
-                        <h6>Cristiano Ronaldo</h6><small className="text-muted">Team 1</small>
-                      </td>
-                      <td>Forward</td>
-                      <td className="d-flex justify-content-around"> <a href=""><i className="fa fa-edit"></i></a>
-                        <a href=""><i className="fa fa-trash-o"></i></a>
-                      </td>
-                    </tr>
+                    </tr>})}
                   </tbody>
                 </table>
               </div>
@@ -104,7 +91,7 @@ const MonClub = (props) => {
           </div>
         </div>
       </div>
-      <br /><br /><br /><br /> */}
+      <br /><br /><br /><br />
     </div>
   )
 }

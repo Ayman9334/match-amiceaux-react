@@ -23,7 +23,7 @@ const Club = () => {
 
     return (
         <>{club?
-            <MonClub clubInfos={clubInfos} title="hooooo"/>:<CreeClub />
+            <MonClub clubInfos={clubInfos}/>:<CreeClub />
         }
         </>
     );
