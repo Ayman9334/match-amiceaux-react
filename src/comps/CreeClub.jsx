@@ -2,10 +2,16 @@ import axiosClient from "../api/axios-config";
 import { useState } from "react";
 import React, { useRef } from 'react';
 import { useStateContext } from "../context/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 
 
 const CreeClub = () => {
+    const [code, setCode] = useState()
+    console.log(code)
+    const navigate = useNavigate()
+
+    const { notification } = useStateContext();
     const submitClub = (e) => {
         e.preventDefault();
         axiosClient
@@ -25,27 +31,29 @@ const CreeClub = () => {
             [e.target.name]: e.target.value,
         });
 
-        const submitInvitation = (e) => {
-            e.preventDefault();
-            axiosClient
-                .post(`/club/invitation/${code}`)
-                .then(({ response}) => {
-                    console.log(response);
-                    location.reload();
-                })
-                .catch((err) => { console.log(err)});
+    const submitInvitation = (e) => {
+        e.preventDefault();
+        axiosClient
+            .get(`/club/invitation/${code}`)
+            .then(() => {
+                notification.current.show({severity:'success', summary: 'Success', detail:'demande sent', life: 3000});
+                navigate("/");
+            })
+            .catch(({ response }) => {
+                if (response && response.status == 403) {
+                    notification.current.show({ severity: 'error', summary: response.data.message, life: 3000 });
+                    navigate("/");
+                }
+            });
 
-        };
+    };
 
-        const [code, setCode] = useState()
-        console.log(code)
 
-        const { notification } = useStateContext();
 
-        const showSuccess = () => {
-            notification.current.show({severity:'success', summary: 'Success', detail:'Message Content', life: 3000});
-        }
-    
+    const showSuccess = () => {
+        notification.current.show({ severity: 'success', summary: 'Success', detail: 'Message Content', life: 3000 });
+    }
+
 
     return (
         <>
@@ -80,7 +88,7 @@ const CreeClub = () => {
                                 <div className="row g-2">
                                     <div className="col-auto">
                                         <span className="p-float-label">
-                                            <input id="value" name="club_code" onChange={(e)=>setCode(e.target.value)} className="form-control " />
+                                            <input id="value" name="club_code" onChange={(e) => setCode(e.target.value)} className="form-control " />
                                             <label htmlFor="input_value">Code du Club</label>
                                         </span>
                                     </div>
