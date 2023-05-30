@@ -10,23 +10,18 @@ const Club = () => {
             .get("/club")
             .then(({ data, status }) => {
                 if (status === 204) {
-                    return sethasClub(false)
+                    return sethasClub(<CreeClub />)
                 }
-                sethasClub(true)
-                return setClubInfos(data)
+                setClubInfos(data)
+                return sethasClub(false)
             })
-            .catch(() => (location.href = "/désole")) 
+            .catch(() => (location.href = "/désole"))
     }, []);
 
-    const [club, sethasClub] = useState()
+    const [club, sethasClub] = useState(true)
     const [clubInfos, setClubInfos] = useState([])
 
-    return (
-        <>{club?
-            <MonClub clubInfos={clubInfos}/>:<CreeClub />
-        }
-        </>
-    );
+    return <div style={{minHeight:'600px'}}>{club?club:<MonClub clubInfos={clubInfos} />}</div>;
 };
 
 export default Club;

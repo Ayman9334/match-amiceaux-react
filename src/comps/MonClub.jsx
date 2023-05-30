@@ -66,7 +66,15 @@ axiosClient
       .catch(() => (location.href = "/oOpsssssssssssss")) 
 };
 
-
+// { const clubinfos = props.clubinfos
+//   if(clubinfos.role == 'proprietere'){
+//     clubinfos.membres.map(x=> (x.club_member.member_id == clubinfos.member_id)?<>ana hada</>:<>li n9der n editi</>)
+//   }else if(clubinfos.role == 'coproprietere'){
+//     clubinfos.membres.map(x=> (x.club_member.member_id == clubinfos.member_id)?<>ana hada</>:(x.club_member.member_role == 'membre')?<>li n9der n editi</>:<>chaf</>)
+//   }else{
+//     clubinfos.membres.map(x=> (x.club_member.member_id == clubinfos.member_id)?<>ana hada</>:<>lakhrin</>)
+//   }
+// }
 const deleteInvitation = (id) => {
   axiosClient
       .get(`/club/exclure/${id}`)
