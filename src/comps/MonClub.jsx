@@ -6,6 +6,7 @@ import { Avatar } from "primereact/avatar"
 import { useEffect, useRef, useState } from "react";
 import axiosClient from '../api/axios-config';
 import { Badge } from 'primereact/badge';
+import { useStateContext } from "../context/ContextProvider";
 
 const MonClub = (props) => {
 
@@ -51,8 +52,31 @@ useEffect(() => {
 }, []);
 
 const [users, setUser] = useState([])
+const { notification } = useStateContext();
 
-console.log(users)
+//-----------Accept & delete Invitation------------------
+const AcceptInvitation = (idInvite) => {
+console.log(idInvite)
+axiosClient
+      .post("/club/invitation", idInvite)
+      .then(() => {
+        notification.current.show({severity:'success', summary: 'Success', detail:'Accepted', life: 3000});
+        location.reload();
+      })
+      .catch(() => (location.href = "/oOpsssssssssssss")) 
+};
+
+
+const deleteInvitation = (id) => {
+  axiosClient
+      .get(`/club/exclure/${id}`)
+      .then(() => {
+          notification.current.show({severity:'success', summary: 'Success', detail:'La demande a été supprimé', life: 3000});
+          location.reload();
+        })
+      .catch(() => (location.href = "/oOpsssssssssssss delete")) 
+};
+
 return (
     <div className="container">
       <h1 className="text-center m-4">{props.clubInfos.nom_club}</h1>
@@ -87,29 +111,16 @@ return (
                     </tr>
                   </thead>
                   <tbody>
-                  <tr key={props.clubInfos.id}>
-                    <td><span className="round">
-                          <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
-                        </span></td>
-                      <td>
-                        <h6>{props.clubInfos.membres[0].nom}</h6><small className="text-muted">{props.clubInfos.nom_club}</small>
-                      </td>
-                      <td>{props.clubInfos.role}</td>
-                      <td className="d-flex justify-content-center">
-                        <a href=""><Button icon="fa fa-edit" rounded severity="help" title="Editer" aria-label="Update" /></a>
-                        <a href=""><Button icon="fa fa-times" rounded severity="danger" title="Supprimer" aria-label="Cancel" /></a>
-                      </td>
-                    </tr>
-                    {props.clubInfos.membres.slice(1).map((member)=>{return <tr key={props.clubInfos.id}>
+                    {props.clubInfos.membres.map((member)=>{return <tr key={member.id}>
                     <td><span className="round">
                           <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
                         </span></td>
                       <td>
                         <h6 className="align-middle">{member.nom}</h6><small className="text-muted">{props.clubInfos.nom_club}</small>
                       </td>
-                      <td>{props.clubInfos.role}</td>
-                      <td className="d-flex justify-content-around">
-                        <a href=""><i className="fa fa-edit"></i></a>
+                      <td>{member.club_member.role}</td>
+                      <td className="d-flex justify-content-center">
+                        <a href=""><Button icon="fa fa-edit" rounded severity="help" title="Editer" aria-label="Update" /></a>
                         <a href=""><Button icon="fa fa-times" rounded severity="danger" title="Réfuser" aria-label="Cancel" /></a>
                       </td>
                     </tr>})}
@@ -126,16 +137,16 @@ return (
                     <h2 className="card-title mb-0 align-self-center">Les Demandes</h2>
                 </div>
                 {invitation? 
-                    invitationInfos.map((invite)=>{return <div className="row mb-2 border-rounded rounded-pill" key={invitationInfos.id}>
+                    invitationInfos.map(invite=> <div className="row mb-2 border-rounded rounded-pill" key={invite.id}>
                       <div className="col-8 d-flex">
                       <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
-                        <h5 className="d-flex align-items-center mx-3">{users.filter((user) => user.id === invite.utilisateur_id).map(user=>{return user.nom})}</h5>
+                        <h5 className="d-flex align-items-center mx-3">{users.filter((user) => user.id === invite.utilisateur_id).map(user=> user.nom)}</h5>
                       </div>
                       <div className="col-4 d-flex justify-content-end">
-                        <Button icon="fa fa-check" rounded text raised severity="success" title="Accepter" aria-label="Check" />
-                        <Button icon="fa fa-times" rounded text raised severity="danger" title="Réfuser" aria-label="Cancel" />
+                        <Button onClick={()=>{AcceptInvitation(invite.id)}} icon="fa fa-check" rounded text raised severity="success" title="Accepter" aria-label="Check" />
+                        <Button onClick={()=>{deleteInvitation(invite.id)}} icon="fa fa-times" rounded text raised severity="danger" title="Réfuser" aria-label="Cancel" />
                       </div>
-                    </div>}) : <div className="text-center ">There is no request</div>}
+                    </div>) : <div className="text-center">Il n'y a aucune demande</div>}
                 </div>
           </div>
         </div>

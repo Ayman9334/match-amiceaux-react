@@ -8,16 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 const CreeClub = () => {
     const [code, setCode] = useState()
-    console.log(code)
     const navigate = useNavigate()
-
     const { notification } = useStateContext();
+
     const submitClub = (e) => {
         e.preventDefault();
         axiosClient
             .post("/club", nomclub)
-            .then(({ data }) => {
-                console.log(data);
+            .then(() => {
                 location.reload();
                 showSuccess()
             })
@@ -36,7 +34,7 @@ const CreeClub = () => {
         axiosClient
             .get(`/club/invitation/${code}`)
             .then(() => {
-                notification.current.show({severity:'success', summary: 'Success', detail:'demande sent', life: 3000});
+                notification.current.show({severity:'success', summary: 'Success', detail:'La demande a été envoyée avec succès', life: 3000});
                 navigate("/");
             })
             .catch(({ response }) => {
@@ -51,7 +49,7 @@ const CreeClub = () => {
 
 
     const showSuccess = () => {
-        notification.current.show({ severity: 'success', summary: 'Success', detail: 'Message Content', life: 3000 });
+        notification.current.show({ severity: 'success', summary: 'Le club a été ajouté avec succès', life: 3000 });
     }
 
 
@@ -82,7 +80,7 @@ const CreeClub = () => {
                     <div className="card">
                         <div className="card-body">
                             <div className="d-flex mb-4 no-block">
-                                <h2 className="card-title mb-0 align-self-center">Join un Club</h2>
+                                <h2 className="card-title mb-0 align-self-center">Rejoindre un club</h2>
                             </div>
                             <form onSubmit={submitInvitation}>
                                 <div className="row g-2">
@@ -93,7 +91,7 @@ const CreeClub = () => {
                                         </span>
                                     </div>
                                     <div className="col-auto">
-                                        <button type="submit" className="btn btn-success">Join Club</button>
+                                        <button type="submit" className="btn btn-success">Envoyer</button>
                                     </div>
                                 </div>
                             </form>
