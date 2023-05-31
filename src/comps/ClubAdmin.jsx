@@ -10,7 +10,7 @@ import { useStateContext } from "../context/ContextProvider";
 const ClubAdmin = (props) => {
   const { notification } = useStateContext();
   const [visible, setVisible] = useState(false);
-  const [invitation, sethasInvitation] = useState()
+  const [invitation, sethasInvitation] = useState(false)
   const [invitationInfos, setInvitationInfos] = useState([])
   const link = useRef(null);
   const code = useRef(null);
@@ -111,19 +111,19 @@ return (
                     </tr>
                   </thead>
                   <tbody>
-                    {props.clubinfos.membres.map((member)=>{return <tr key={member.club_member.member_id}>
+                    {props.clubinfos.membres.map((member)=>{return <tr key={member.member_id}>
                     <td><span className="round">
                           <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
                         </span></td>
                       <td>
-                      {member.club_member.member_id === props.clubinfos.member_id ?<h6 className="align-middle text-danger fw-bold">Moi</h6>:<h6 className="align-middle">{member.nom}</h6>}
+                      {member.member_id === props.clubinfos.member_id ?<h6 className="align-middle text-danger fw-bold">Moi</h6>:<h6 className="align-middle">{member.nom}</h6>}
                         <small className="text-muted">{props.clubinfos.nom_club}</small>
                       </td>
-                      <td>{member.club_member.member_role}</td>
-                      {member.club_member.member_id === props.clubinfos.member_id ? null :
+                      <td>{member.member_role}</td>
+                      {member.member_id === props.clubinfos.member_id ? null :
                       <td className="d-flex justify-content-center">
                         <Button icon="fa fa-edit" rounded severity="help" title="Editer" aria-label="Update" />
-                        <Button icon="fa fa-times" onClick={()=>{deleteMembre(member.club_member.member_id)}} rounded severity="danger" title="Réfuser" aria-label="Cancel" />
+                        <Button icon="fa fa-times" onClick={()=>{deleteMembre(member.member_id)}} rounded severity="danger" title="Réfuser" aria-label="Cancel" />
                       </td>}
                     </tr>})}
                   </tbody>
@@ -138,7 +138,7 @@ return (
                 <div className="d-flex mb-4 no-block">
                     <h2 className="card-title mb-0 align-self-center">Les Demandes</h2>
                 </div>
-                {!invitation? 
+                {invitationInfos.length? 
                     invitationInfos.map(invite=> <div className="row mb-2 border-rounded rounded-pill" key={invite.id}>
                       <div className="col-8 d-flex">
                       <Avatar className="shadow" image={invite.logo} size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
