@@ -1,0 +1,30 @@
+/* .dialog{
+    width: 50vw;
+} */
+
+
+@media (max-width: 961px) {
+    .dialog {
+      width: 75vw;
+    }
+  }
+  
+  @media (max-width: 641px) {
+    .dialog {
+      width: 100vw;
+    }
+  }
+  
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loader-spinner {
+    width: 50px;
+    height: 50px;
+  }
+  

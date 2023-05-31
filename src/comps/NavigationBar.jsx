@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import LoginPopup from "./LoginPopup";
 import { useStateContext } from "../context/ContextProvider";
 import { useState } from "react";
-import Utilisateurmenu from "./utilisateurmenu";
+import Utilisateurmenu from "./UtilisateurMenu";
 
 const NavigationBar = () => {
     const { token } = useStateContext()
@@ -98,7 +98,9 @@ const NavigationBar = () => {
                         <div className="col-md-6">
                             <div className="searchbar text-right">
                                 {auth ? <Utilisateurmenu /> : <>
-                                    <Link className="m-3 ">créer un compte</Link>
+                                <Link to={"/inscription"} onClick={() => exitpopup.current.click()}>
+                                    <u className="m-2">Créer un compte</u>
+                                </Link>
                                     <a
                                         href="#"
                                         data-toggle="modal"

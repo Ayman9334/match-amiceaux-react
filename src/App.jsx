@@ -8,12 +8,24 @@ import CreeMatch from "./pages/CreeMatch";
 import { useStateContext } from "./context/ContextProvider";
 import { Toast } from 'primereact/toast';
 import Club from "./pages/Club";
+import React, { useState, useEffect } from 'react';
+import Loading from './Loading';
+
 
 function App() {
 
     const { token, notification } = useStateContext();
-
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        // Simulate data loading or any asynchronous operation
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }, []);
+    
     return (
+        <div className="app-container">
+        {loading ? <Loading /> : 
         <BrowserRouter>
             <Toast ref={notification} />
             <Routes>
@@ -29,7 +41,8 @@ function App() {
                     <Route path="*" element={<Nopage />} />
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </BrowserRouter>}
+        </div>
     );
 }
 

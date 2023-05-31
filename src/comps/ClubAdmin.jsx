@@ -6,8 +6,11 @@ import { useEffect, useRef, useState } from "react";
 import axiosClient from '../api/axios-config';
 import { Badge } from 'primereact/badge';
 import { useStateContext } from "../context/ContextProvider";
+import { useClickOutside } from 'primereact/hooks';
+import "../css/index.css";
 
-const ClubAdmin = (props) => {
+
+const ClubAdmin = ({clubinfos}) => {
   const { notification } = useStateContext();
   const [visible, setVisible] = useState(false);
   const [invitation, sethasInvitation] = useState(false)
@@ -75,11 +78,14 @@ const deleteMembre = (id) => {
         .catch(() => (location.href = "/erreur de suppression")) 
   };
   
+  const overlayRef = useRef(null);
 
+  useClickOutside(overlayRef, () => {
+    setVisible(false);});
 
 return (
     <div className="container">
-      <h1 className="text-center m-4">{props.clubinfos.nom_club}</h1>
+      <h1 className="text-center m-4">{clubinfos.nom_club}</h1>
       <div className="row d-flex justify-content-center">
         <div className="col-lg-8 d-flex">
           <div className="card w-100">
@@ -87,12 +93,12 @@ return (
               <div className="d-flex justify-content-between">
                 <div className="d-flex">
                   <h5 className="card-title mr-2">Membres du Club</h5>
-                  <Badge value={props.clubinfos.members_number}></Badge>
+                  <Badge value={clubinfos.members_number}></Badge>
                 </div>
-                <div className="card flex justify-content-center">
+                <div className="flex justify-content-center">
                     <Button label="Ajouter Membres" icon="pi pi-external-link" onClick={() => setVisible(true)} />
-                    <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} onHide={() => setVisible(false)}
-                        style={{ width: '50vw' }} breakpoints={{ '960px': '75vw', '641px': '100vw' }}>
+                    <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} ref={overlayRef} onHide={() => setVisible(false)}
+                         breakpoints={{ '960px': '75vw', '641px': '100vw' }} className="dialog">
                           <p className="text-muted">juste cliquer pour copier</p>
                           <ul className="list-inline ">
                             <li ref={link} onClick={()=>copyText(link)}>Lien</li>
@@ -105,25 +111,26 @@ return (
                 <table className="table vm no-th-brd pro-of-month mb-0">
                   <thead>
                     <tr>
-                      <th colSpan="2" className="text-center">Nom du joueur</th>
+                      <th></th>
+                      <th className="text-start">Nom du joueur</th>
                       <th className="text-start">Role</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {props.clubinfos.membres.map((member)=>{return <tr key={member.member_id}>
+                    {clubinfos.membres.map((member)=>{return <tr key={member.member_id}>
                     <td><span className="round">
                           <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
                         </span></td>
                       <td>
-                      {member.member_id === props.clubinfos.member_id ?<h6 className="align-middle text-danger fw-bold">Moi</h6>:<h6 className="align-middle">{member.nom}</h6>}
-                        <small className="text-muted">{props.clubinfos.nom_club}</small>
+                      {member.member_id === clubinfos.member_id ?<h6 className="text-start text-danger fw-bold">Moi</h6>:<h6 className="align-middle">{member.nom}</h6>}
+                        {/* <small className="text-muted">{clubinfos.nom_club}</small> */}
                       </td>
                       <td>{member.member_role}</td>
-                      {member.member_id === props.clubinfos.member_id ? null :
+                      {member.member_id === clubinfos.member_id ? null :
                       <td className="d-flex justify-content-center">
-                        <Button icon="fa fa-edit" rounded severity="help" title="Editer" aria-label="Update" />
-                        <Button icon="fa fa-times" onClick={()=>{deleteMembre(member.member_id)}} rounded severity="danger" title="Réfuser" aria-label="Cancel" />
+                        <Button icon="fa fa-edit" rounded text raised severity="help" title="Editer" aria-label="Update" />
+                        <Button icon="fa fa-times" onClick={()=>{deleteMembre(member.member_id)}} rounded text raised severity="danger" title="Réfuser" aria-label="Cancel" />
                       </td>}
                     </tr>})}
                   </tbody>
@@ -136,7 +143,8 @@ return (
           <div className="card">
             <div className="card-body">
                 <div className="d-flex mb-4 no-block">
-                    <h2 className="card-title mb-0 align-self-center">Les Demandes</h2>
+                    <h4 className="card-title mb-0 align-self-center mr-2">Les Demandes</h4>
+                    <Badge value={invitationInfos.length} severity="danger"></Badge>
                 </div>
                 {invitationInfos.length? 
                     invitationInfos.map(invite=> <div className="row mb-2 border-rounded rounded-pill" key={invite.id}>

@@ -34,7 +34,7 @@ return(
                   </span></td>
                 <td>
                     {member.club_member.member_id === props.clubinfos.member_id ?<h6 className="align-middle text-danger fw-bold">Moi</h6>:<h6 className="align-middle">{member.nom}</h6>}
-                    <small className="text-muted">{props.clubinfos.nom_club}</small>
+                    {/* <small className="text-muted">{props.clubinfos.nom_club}</small> */}
                 </td>
                 <td>{member.club_member.member_role}</td>
                 <td className="d-flex justify-content-center">??</td>
