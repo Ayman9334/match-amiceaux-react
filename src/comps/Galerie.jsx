@@ -1,6 +1,6 @@
 const Galerie = () => {
     return (
-        <section className="gallery-area">
+        <section className="gallery-area overflow-hidden">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 col-md-12">

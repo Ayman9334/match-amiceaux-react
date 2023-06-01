@@ -1,7 +1,7 @@
 const PiedPage = () => {
     return (
         <>
-            <footer className="footer-area">
+            <footer className="footer-area overflow-hidden">
                 <footer className="footer">
                     <div className="container">
                         <div className="row">

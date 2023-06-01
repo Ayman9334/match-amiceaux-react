@@ -82,8 +82,8 @@ const NavigationBar = () => {
             {/* Logo Area */}
             <section className="logo-area d-flex align-items-center">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
+                    <div className="sub-logo-area">
+                        <div>
                             <div className="logo">
                                 <Link to="/">
                                     <img
@@ -95,17 +95,17 @@ const NavigationBar = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        <div>
                             <div className="searchbar text-right">
                                 {auth ? <Utilisateurmenu /> : <>
-                                <Link to={"/inscription"} onClick={() => exitpopup.current.click()}>
-                                    <u className="m-2">Créer un compte</u>
-                                </Link>
+                                    <Link to={"/inscription"} onClick={() => exitpopup.current.click()}>
+                                        <u className="m-2">Créer un compte</u>
+                                    </Link>
                                     <a
                                         href="#"
                                         data-toggle="modal"
                                         data-target="#loginModal"
-                                        className="btn btn-success"
+                                        className="btn btn-success descktop-btn"
                                     >
                                         <span className="fa fa-user" /> Se Connecter
                                     </a>
@@ -275,7 +275,7 @@ const NavigationBar = () => {
                                             </li>
                                         </ul>
                                     </li>
-                                    <li className="list-inline-item mega-mnu">
+                                    {/* <li className="list-inline-item mega-mnu">
                                         <a>
                                             SPORTS <i className="fa fa-angle-down" />
                                         </a>
@@ -506,7 +506,7 @@ const NavigationBar = () => {
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> */}
                                     <li className="list-inline-item">
                                         <Link
                                             to={"/trouve-match"}
@@ -539,10 +539,27 @@ const NavigationBar = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="mobile-menu">
+
                                 <nav id="dropdown">
-                                    <a href="accueil.html">
-                                        <img src="/view/resources/img/logo-match.png" alt="" />
-                                    </a>
+                                    <div className="logo-area-mobile">
+                                        <Link to="/">
+                                            <img src="/view/resources/img/logo-match.png" alt="" width={150} style={{margin:0}}/>
+                                        </Link>
+                                        <div>
+                                            {!auth && <a
+                                                    href="#"
+                                                    data-toggle="modal"
+                                                    data-target="#loginModal"
+                                                    className="btn btn-success"
+                                                >
+                                                    <span className="fa fa-user" /> Se Connecter
+                                                </a>}
+                                        </div>
+                                    </div>
+
+                                    <div className="searchbar text-right">
+
+                                    </div>
                                     <ul className="list-unstyled">
                                         <li>
                                             <a>Accueil</a>

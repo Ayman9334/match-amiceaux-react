@@ -49,7 +49,7 @@ const Utilisateurmenu = () => {
     ];
     return (
         <div>
-            <Menu model={items} popup ref={menu} popupAlignment="right" style={{ left: '-10px' }} />
+            <Menu model={items} popup ref={menu} popupAlignment="right" />
             <Avatar className="shadow" image="https://sm.ign.com/t/ign_ap/cover/a/avatar-gen/avatar-generations_hugw.300.jpg" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
         </div>
     )
