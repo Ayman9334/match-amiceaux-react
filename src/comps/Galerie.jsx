@@ -15,7 +15,7 @@ const Galerie = () => {
                                 <div className="gallery-slider owl-carousel">
                                     <div className="gallery-item">
                                         <img
-                                            src="view/resources/img/template/gallery-image-1.jpg"
+                                            src="/view/resources/img/template/gallery-image-1.jpg"
                                             alt=""
                                             className="img-fluid"
                                         />
@@ -31,7 +31,7 @@ const Galerie = () => {
                                     </div>
                                     <div className="gallery-item">
                                         <img
-                                            src="view/resources/img/template/gallery-image-2.jpg"
+                                            src="/view/resources/img/template/gallery-image-2.jpg"
                                             alt=""
                                             className="img-fluid"
                                         />
@@ -50,7 +50,7 @@ const Galerie = () => {
                             <div className="image-gallery-list d-flex justify-content-between">
                                 <div className="gallery-list-item">
                                     <img
-                                        src="view/resources/img/template/popular-10.jpg"
+                                        src="/view/resources/img/template/popular-10.jpg"
                                         alt=""
                                         className="gallery-img"
                                     />
@@ -62,36 +62,36 @@ const Galerie = () => {
                                 </div>
                                 <div className="gallery-list-item">
                                     <img
-                                        src="view/resources/img/template/popular-7.jpg"
+                                        src="/view/resources/img/template/popular-7.jpg"
                                         alt=""
                                         className="gallery-img"
                                     />
                                     <div className="fc-icon">
-                                        <a href="view/resources/img/template/popular-7.jpg">
+                                        <a href="/view/resources/img/template/popular-7.jpg">
                                             <i className="fa fa-camera" />
                                         </a>
                                     </div>
                                 </div>
                                 <div className="gallery-list-item">
                                     <img
-                                        src="view/resources/img/template/popular-11.jpg"
+                                        src="/view/resources/img/template/popular-11.jpg"
                                         alt=""
                                         className="gallery-img"
                                     />
                                     <div className="fc-icon">
-                                        <a href="view/resources/img/template/popular-11.jpg">
+                                        <a href="/view/resources/img/template/popular-11.jpg">
                                             <i className="fa fa-camera" />
                                         </a>
                                     </div>
                                 </div>
                                 <div className="gallery-list-item">
                                     <img
-                                        src="view/resources/img/template/popular-5.jpg"
+                                        src="/view/resources/img/template/popular-5.jpg"
                                         alt=""
                                         className="gallery-img"
                                     />
                                     <div className="fc-icon">
-                                        <a href="view/resources/img/template/popular-5.jpg">
+                                        <a href="/view/resources/img/template/popular-5.jpg">
                                             <i className="fa fa-camera" />
                                         </a>
                                     </div>
@@ -122,7 +122,7 @@ const Galerie = () => {
                             <div className="video-list">
                                 <div className="video-list-item d-flex">
                                     <div className="vid-img">
-                                        <img src="view/resources/img/template/lt-sm-9.jpg" alt="" />
+                                        <img src="/view/resources/img/template/lt-sm-9.jpg" alt="" />
                                         <a href="#">
                                             <i className="fa fa-video-camera" />
                                         </a>
@@ -136,7 +136,7 @@ const Galerie = () => {
                                 </div>
                                 <div className="video-list-item d-flex">
                                     <div className="vid-img">
-                                        <img src="view/resources/img/template/lt-sm-11.jpg" alt="" />
+                                        <img src="/view/resources/img/template/lt-sm-11.jpg" alt="" />
                                         <a href="#">
                                             <i className="fa fa-video-camera" />
                                         </a>

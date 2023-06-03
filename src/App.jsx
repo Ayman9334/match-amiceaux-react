@@ -31,9 +31,9 @@ function App() {
             <Routes>
                 <Route path="/" element={<LayoutPrincipal />}>
                     <Route index element={<Acceuil />} />
-                    <Route path="/trouve-match" element={<Trouvmatch />} />
+                    <Route path="/match/trouve-match" element={<Trouvmatch />} />
                     {token ? <>
-                        <Route path="/cree-match" element={<CreeMatch />} />
+                        <Route path="/match/cree-match" element={<CreeMatch />} />
                         <Route path="/club" element={<Club />} />
                     </> : <>
                         <Route path="/inscription" element={<Inscription />} />

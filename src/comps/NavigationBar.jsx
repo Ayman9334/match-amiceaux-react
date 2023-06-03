@@ -3,6 +3,7 @@ import LoginPopup from "./LoginPopup";
 import { useStateContext } from "../context/ContextProvider";
 import { useState } from "react";
 import Utilisateurmenu from "./UtilisateurMenu";
+import { Tooltip } from "primereact/tooltip";
 
 const NavigationBar = () => {
     const { token } = useStateContext()
@@ -271,7 +272,7 @@ const NavigationBar = () => {
                                             </li>
                                         </ul>
                                     </li>
-                                    {/* <li className="list-inline-item mega-mnu">
+                                    <li className="list-inline-item mega-mnu">
                                         <a>
                                             SPORTS <i className="fa fa-angle-down" />
                                         </a>
@@ -502,19 +503,37 @@ const NavigationBar = () => {
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li> */}
-                                    <li className="list-inline-item">
-                                        <Link
-                                            to={"/trouve-match"}
-                                        >
-                                            <span className="fa fa-search" />{" "}
-                                            RECHERCHER UN MATCH
-                                        </Link>
                                     </li>
-
+                                    <li className="list-inline-item">
+                                        <a>
+                                            MATCH <i className="fa fa-angle-down" />
+                                        </a>
+                                        <ul className="dropdown list-unstyled">
+                                            {auth ? <li>
+                                                <Link to={"/match/mes-match"}>
+                                                    Mes Matchs
+                                                </Link>
+                                            </li> : <li>
+                                                <Tooltip target=".disabled-match-lien" />
+                                                <a
+                                                    className="disabled-match-lien"
+                                                    style={{ color: 'grey' }}
+                                                    data-pr-tooltip="connectez-vous pour utiliser cette fonctionnalité"
+                                                    data-pr-position="top"
+                                                >
+                                                    Mes Matchs
+                                                </a>
+                                            </li>}
+                                            <li>
+                                                <Link to={"/match/trouve-match"}>
+                                                    Trouve Match
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     {auth && <>
                                         <li className="list-inline-item">
-                                            <Link to="/cree-match">CRÉER UN MATCH</Link>
+                                            <Link to="/match/cree-match">CRÉER UN MATCH</Link>
                                         </li>
                                     </>}
                                 </ul>
@@ -534,17 +553,17 @@ const NavigationBar = () => {
                                 <nav id="dropdown">
                                     <div className="logo-area-mobile">
                                         <Link to="/">
-                                            <img src="/view/resources/img/logo-match.png" alt="" width={150} style={{margin:0}}/>
+                                            <img src="/view/resources/img/logo-match.png" alt="" width={150} style={{ margin: 0 }} />
                                         </Link>
                                         <div>
                                             {!auth && <a
-                                                    href="#"
-                                                    data-toggle="modal"
-                                                    data-target="#loginModal"
-                                                    className="btn btn-success"
-                                                >
-                                                    <span className="fa fa-user" /> Se Connecter
-                                                </a>}
+                                                href="#"
+                                                data-toggle="modal"
+                                                data-target="#loginModal"
+                                                className="btn btn-success"
+                                            >
+                                                <span className="fa fa-user" /> Se Connecter
+                                            </a>}
                                         </div>
                                     </div>
 
@@ -556,7 +575,7 @@ const NavigationBar = () => {
                                             <Link to='/'>Accueil</Link>
                                         </li>
                                         <li>
-                                            <Link to='/cree-match'>Creer un Match</Link>
+                                            <Link to='/match/cree-match'>Creer un Match</Link>
                                         </li>
                                         <li>
                                             <a>Fonctionnement</a>
