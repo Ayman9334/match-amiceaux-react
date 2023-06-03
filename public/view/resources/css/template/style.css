@@ -932,17 +932,6 @@ html {
   .mobile-menu-area {
     display: none;
   }
-  
-  @media (max-width: 767px) {
-    .logo-area,
-    .logo-area .logo,
-    .descktop-btn,
-    .menu-area,
-    .top-bar,
-    .top-news {
-      display: none;
-    }
-  }
 
   @media (max-width: 767px) {
     .searchbar .p-avatar{
@@ -950,6 +939,14 @@ html {
       z-index: 999;
       top : 25px;
       right: 10px;
+    }
+    .logo-area,
+    .logo-area .logo,
+    .descktop-btn,
+    .menu-area,
+    .top-bar,
+    .top-news {
+      display: none;
     }
   }
   .mean-container .logo-area-mobile{

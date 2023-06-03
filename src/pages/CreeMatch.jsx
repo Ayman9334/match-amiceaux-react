@@ -4,8 +4,10 @@ import axiosClient from "../api/axios-config";
 import Select from "react-select";
 import { FileUploader } from "react-drag-drop-files";
 import "../css/creematch.css";
+import { useStateContext } from "../context/ContextProvider";
 
 const CreeMatch = () => {
+    const { notification } = useStateContext()
     useEffect(() => {
         window.effectCommands();
         axiosClient
@@ -39,6 +41,13 @@ const CreeMatch = () => {
 
     const [errmessages, setErrMessages] = useState([]);
 
+    const setErrChamps = (errChamps) => {
+        errChamps.forEach(errChamp => {
+            const element = document.querySelector(`[name="${errChamp}"]`);
+            element?.classList.add('is-invalid')
+        });
+    }
+
     const setInpMatch = (e) =>
         setFormMatch({
             ...formMatch,
@@ -62,24 +71,34 @@ const CreeMatch = () => {
     const setFilesMatch = (objnewfiles) => {
         const newfiles = Object.values(objnewfiles)
         if ((files.length + newfiles.length) > 4) {
-            alertelment.current.scrollIntoView({ behavior: "smooth" });
-            setErrMessages([['vous ne pouvez ajouter que 4 images']])
+            notification.current.show({ severity: 'error', summary: 'vous ne pouvez ajouter que 4 images', life: 3000 });
         }
-        setFiles([...files, ...Object.values(newfiles)].slice(0, 4));
+        setFiles([...files, ...newfiles].slice(0, 4));
     };
 
     const submitMatch = (e) => {
         e.preventDefault();
+
+        setErrMessages([]);
+        const invalidChamps = document.querySelectorAll('.is-invalid');
+        invalidChamps.forEach(element => element.classList.remove('is-invalid'));
+
+        const matchrequst = { ...formMatch, images: files }
         axiosClient
-            .post("match/store", formMatch)
-            .then(({ data }) => {
-                console.log(data);
+            .post("match/store", matchrequst, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            })
+            .then(() => {
                 location.href = "/";
             })
             .catch((err) => {
                 const response = err.response;
                 if (response && response.status === 422) {
-                    setErrMessages(Object.values(response.data.errors));
+                    const errors = response.data.errors
+                    setErrChamps(Object.keys(errors));
+                    setErrMessages(Object.values(errors));
                     alertelment.current.scrollIntoView({ behavior: "smooth" });
                 }
             });
@@ -195,10 +214,9 @@ const CreeMatch = () => {
                                     multiple
                                 />
                                 {(files.length > 0) &&
-                                    <div className='images-affichage col-12 row'>
-
+                                    <div className='images-affichage col-12 row m-auto'>
                                         {files.map(
-                                            (x, index) => <div key={index} className={(index === 0) ? 'col-12 premierimg imgctn' : 'col-4 dernierimgs imgctn'}>
+                                            (x, index) => <div key={index} className={(index === 0) ? 'col-12 premierimg imgctn' : 'col-sm-4 col-12 dernierimgs imgctn'}>
                                                 <div className='bg-dark rounded m-1'>
                                                     <img src={URL.createObjectURL(x)} />
                                                 </div>
@@ -230,7 +248,7 @@ const CreeMatch = () => {
                                 />
                             </div>
                             <div className="form-group group col-lg-6 col-12">
-                                <label htmlFor="categories">Categories :</label>
+                                <label>Categories :</label>
                                 <Select
                                     name="categorie"
                                     id="categories"
@@ -242,7 +260,7 @@ const CreeMatch = () => {
                                 />
                             </div>
                             <div className="form-group group col-lg-6 col-12">
-                                <label htmlFor="niveaus">Niveau :</label>
+                                <label>Niveau :</label>
                                 <Select
                                     name="niveau"
                                     id="niveaus"
@@ -254,7 +272,7 @@ const CreeMatch = () => {
                                 />
                             </div>
                             <div className="form-group group col-lg-6 col-12">
-                                <label htmlFor="ligue">League :</label>
+                                <label>League :</label>
                                 <Select
                                     name="ligue"
                                     id="ligue"
