@@ -338,14 +338,15 @@ html {
   /* =======================================
   04. Logo Area
   ======================================= */
-  .logo-area {
-    height: 100px;
+  .logo-area,  .logo-area .container{
+    height: 120px;
   }
   
   .logo-area .logo {
-    margin-top: 20px;
+    height: 100%;
   }
   .logo-area .sub-logo-area{
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -934,6 +935,7 @@ html {
   
   @media (max-width: 767px) {
     .logo-area,
+    .logo-area .logo,
     .descktop-btn,
     .menu-area,
     .top-bar,

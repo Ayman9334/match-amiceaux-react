@@ -83,17 +83,13 @@ const NavigationBar = () => {
             <section className="logo-area d-flex align-items-center">
                 <div className="container">
                     <div className="sub-logo-area">
-                        <div>
-                            <div className="logo">
-                                <Link to="/">
-                                    <img
-                                        src="/view/resources/img/logo-match.png"
-                                        style={{ width: 242, marginTop: "-36px" }}
-                                        alt=""
-                                        className="img-fluid"
-                                    />
-                                </Link>
-                            </div>
+                        <div className="logo">
+                            <Link to="/">
+                                <img
+                                    src="/view/resources/img/logo-match.png"
+                                    className="h-100 p-2"
+                                />
+                            </Link>
                         </div>
                         <div>
                             <div className="searchbar text-right">
@@ -524,11 +520,6 @@ const NavigationBar = () => {
                                 </ul>
                             </div>
                         </div>
-                        {/* <div className="col-md-3">
-                            <div className="clock text-right">
-                                <span id="dg-clock" />
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </section>
@@ -562,7 +553,10 @@ const NavigationBar = () => {
                                     </div>
                                     <ul className="list-unstyled">
                                         <li>
-                                            <a>Accueil</a>
+                                            <Link to='/'>Accueil</Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/cree-match'>Creer un Match</Link>
                                         </li>
                                         <li>
                                             <a>Fonctionnement</a>
