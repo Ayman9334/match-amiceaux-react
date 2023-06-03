@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosClient from "../api/axios-config";
+import axiosClient from "../configs/api/axios-config";
 import Select from "react-select";
 import { FileUploader } from "react-drag-drop-files";
 import "../css/creematch.css";
-import { useStateContext } from "../context/ContextProvider";
+import { useStateContext } from "../configs/context/ContextProvider";
 
 const CreeMatch = () => {
     const { notification } = useStateContext()
@@ -247,6 +247,7 @@ const CreeMatch = () => {
                                     required
                                 />
                             </div>
+                            <hr className="col-10 mx-auto" />
                             <div className="form-group group col-lg-6 col-12">
                                 <label>Categories :</label>
                                 <Select

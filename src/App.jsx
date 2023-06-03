@@ -5,7 +5,7 @@ import Inscription from "./pages/Inscription";
 import Trouvmatch from "./pages/Trouvmatch";
 import Nopage from "./pages/Nopage";
 import CreeMatch from "./pages/CreeMatch";
-import { useStateContext } from "./context/ContextProvider";
+import { useStateContext } from "./configs/context/ContextProvider";
 import { Toast } from 'primereact/toast';
 import Club from "./pages/Club";
 import React, { useState, useEffect } from 'react';

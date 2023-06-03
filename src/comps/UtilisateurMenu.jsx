@@ -2,8 +2,8 @@ import { Avatar } from "primereact/avatar"
 import { Menu } from "primereact/menu"
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosClient from "../api/axios-config";
-import { useStateContext } from "../context/ContextProvider";
+import axiosClient from "../configs/api/axios-config";
+import { useStateContext } from "../configs/context/ContextProvider";
 
 
 const Utilisateurmenu = () => {

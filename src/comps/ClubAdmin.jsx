@@ -3,9 +3,9 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { Avatar } from "primereact/avatar"
 import { useEffect, useRef, useState } from "react";
-import axiosClient from '../api/axios-config';
+import axiosClient from '../configs/api/axios-config';
 import { Badge } from 'primereact/badge';
-import { useStateContext } from "../context/ContextProvider";
+import { useStateContext } from "../configs/context/ContextProvider";
 import { useClickOutside } from 'primereact/hooks';
 import "../css/index.css";
 

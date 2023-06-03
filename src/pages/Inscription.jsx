@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosClient from "../api/axios-config";
+import axiosClient from "../configs/api/axios-config";
 import Select from "react-select";
-import { useStateContext } from "../context/ContextProvider";
+import { useStateContext } from "../configs/context/ContextProvider";
 
 const Inscription = () => {
     const { setUser, setToken } = useStateContext();

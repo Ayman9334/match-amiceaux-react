@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosClient from "../api/axios-config";
-import { useStateContext } from "../context/ContextProvider";
+import axiosClient from "../configs/api/axios-config";
+import { useStateContext } from "../configs/context/ContextProvider";
 
 const LoginPopup = () => {
     const { setUser, setToken } = useStateContext();

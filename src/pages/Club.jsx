@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MonClub from "../comps/MonClub";
 import CreeClub from "../comps/CreeClub";
-import axiosClient from "../api/axios-config";
+import axiosClient from "../configs/api/axios-config";
 
 const Club = () => {
     useEffect(() => {

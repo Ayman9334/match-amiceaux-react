@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axiosClient from "../api/axios-config";
+import axiosClient from "../configs/api/axios-config";
 
 const MatchsTable = () => {
     const [matchsdata, setMatchsdata] = useState([]);
