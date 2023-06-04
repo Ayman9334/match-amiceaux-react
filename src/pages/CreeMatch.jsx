@@ -5,6 +5,7 @@ import Select from "react-select";
 import { FileUploader } from "react-drag-drop-files";
 import "../css/creematch.css";
 import { useStateContext } from "../configs/context/ContextProvider";
+import GeoMap from "../comps/GeoMap";
 
 const CreeMatch = () => {
     const { notification } = useStateContext()
@@ -247,6 +248,7 @@ const CreeMatch = () => {
                                     required
                                 />
                             </div>
+                            <GeoMap />
                             <hr className="col-10 mx-auto" />
                             <div className="form-group group col-lg-6 col-12">
                                 <label>Categories :</label>
