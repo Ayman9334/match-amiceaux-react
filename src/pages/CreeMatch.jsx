@@ -6,8 +6,11 @@ import { FileUploader } from "react-drag-drop-files";
 import "../css/creematch.css";
 import { useStateContext } from "../configs/context/ContextProvider";
 import GeoMap from "../comps/GeoMap";
+import { Message } from 'primereact/message';
+import axios from "axios";
 
 const CreeMatch = () => {
+
     const { notification } = useStateContext()
     useEffect(() => {
         window.effectCommands();
@@ -20,6 +23,14 @@ const CreeMatch = () => {
     const alertelment = useRef();
     const date = useRef();
     const temp = useRef();
+    const [position, setPosition] = useState(null);
+    const [calendarDate] = useState(() => {
+        const currentDate = new Date(); //today date
+        const oneWeekLater = new Date(currentDate.getTime());
+        oneWeekLater.setDate(oneWeekLater.getDate() + 5); //today + 5 days
+        const formattedDate = oneWeekLater.toISOString().split('T')[0]; //today + 5 days
+        return formattedDate
+    });
 
     const [enums, setEnums] = useState({
         categories: [],
@@ -28,12 +39,12 @@ const CreeMatch = () => {
         leagues: [],
     });
 
-    const [files, setFiles] = useState([]);
+    const [images, setImages] = useState([]);
 
     const [formMatch, setFormMatch] = useState({
         match_date: "",
         nembre_joueur: "",
-        lieu: "",
+        lieu2: "",
         niveau: "",
         categorie: "",
         ligue: "",
@@ -71,38 +82,60 @@ const CreeMatch = () => {
 
     const setFilesMatch = (objnewfiles) => {
         const newfiles = Object.values(objnewfiles)
-        if ((files.length + newfiles.length) > 4) {
+        if ((images.length + newfiles.length) > 4) {
             notification.current.show({ severity: 'error', summary: 'vous ne pouvez ajouter que 4 images', life: 3000 });
         }
-        setFiles([...files, ...newfiles].slice(0, 4));
+        setImages([...images, ...newfiles].slice(0, 4));
     };
 
     const submitMatch = (e) => {
         e.preventDefault();
-
+        if (!position) return notification.current.show({ severity: 'error', summary: 'vous devez choisir le lieu de match sur la map', life: 3000 });
+        //reset errors
         setErrMessages([]);
         const invalidChamps = document.querySelectorAll('.is-invalid');
         invalidChamps.forEach(element => element.classList.remove('is-invalid'));
 
-        const matchrequst = { ...formMatch, images: files }
-        axiosClient
-            .post("match/store", matchrequst, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
+        //check position
+        const { lat, lng } = position
+        let formattedAddr
+
+        axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
+            .then(({ data }) => {
+                const { address } = data;
+                if (address.country !== "France") return notification.current.show({ severity: 'error', summary: 'nous ne prenons en charge que les emplacements en france', life: 3000 });
+
+                formattedAddr = [address.road, address.city, address.town];
+                formattedAddr = formattedAddr.filter(x => x != undefined).join(", ");
+
+                postData(formattedAddr)
             })
-            .then(() => {
-                location.href = "/";
-            })
-            .catch((err) => {
-                const response = err.response;
-                if (response && response.status === 422) {
-                    const errors = response.data.errors
-                    setErrChamps(Object.keys(errors));
-                    setErrMessages(Object.values(errors));
-                    alertelment.current.scrollIntoView({ behavior: "smooth" });
-                }
+            .catch(() => {
+                return notification.current.show({ severity: 'error', summary: 'en a un probleme, essayer plus tard', life: 3000 });
             });
+
+        const postData = (formattedAddr) => {
+            const matchrequst = { ...formMatch, images, latitude: lat, longitude: lng, lieu: formattedAddr } //make post data
+            axiosClient
+                .post("match/store", matchrequst, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                })
+                .then(() => {
+                    location.href = "/";
+                })
+                .catch((err) => {
+                    const response = err.response;
+                    if (response && response.status === 422) {
+                        const errors = response.data.errors
+                        setErrChamps(Object.keys(errors));
+                        setErrMessages(Object.values(errors));
+                        alertelment.current.scrollIntoView({ behavior: "smooth" });
+                    }
+                });
+        }
+
     };
 
     return (
@@ -183,6 +216,7 @@ const CreeMatch = () => {
                                     className="form-control"
                                     name="match_date"
                                     onChange={makeDate}
+                                    min={calendarDate}
                                     required
                                 />
                             </div>
@@ -197,7 +231,7 @@ const CreeMatch = () => {
                                     className="form-control"
                                     name="nembre_joueur"
                                     placeholder="Entrer un nembre entre (5-12)"
-                                    min={3}
+                                    min={5}
                                     max={12}
                                     onChange={setInpMatch}
                                     required
@@ -214,9 +248,9 @@ const CreeMatch = () => {
                                     types={["JPG", "JPEG", "PNG"]}
                                     multiple
                                 />
-                                {(files.length > 0) &&
+                                {(images.length > 0) &&
                                     <div className='images-affichage col-12 row m-auto'>
-                                        {files.map(
+                                        {images.map(
                                             (x, index) => <div key={index} className={(index === 0) ? 'col-12 premierimg imgctn' : 'col-sm-4 col-12 dernierimgs imgctn'}>
                                                 <div className='bg-dark rounded m-1'>
                                                     <img src={URL.createObjectURL(x)} />
@@ -224,7 +258,7 @@ const CreeMatch = () => {
                                             </div>
                                         )}
                                         <div className="col-12 d-flex justify-content-center py-2">
-                                            <div className="btn btn-danger" onClick={() => setFiles([])}>
+                                            <div className="btn btn-danger" onClick={() => setImages([])}>
                                                 <span className="fa fa-trash" /> suprimer les image
                                             </div>
                                         </div>
@@ -234,21 +268,25 @@ const CreeMatch = () => {
 
                             </div>
                             <hr className="col-10 mx-auto" />
+
                             <div className="form-group group col-12">
-                                <label htmlFor="lieu">
+                                <label htmlFor="lieu2">
                                     Addresse :{" "}
                                     <span style={{ color: "orange" }}>*</span>
                                 </label>
+
+                                <GeoMap position={position} setPosition={setPosition} />
+                                <Message text="cliquez pour changer la position du pointeur" className="my-2 py-2" />
+
                                 <textarea
-                                    className="form-control"
-                                    name="lieu"
-                                    id="lieu"
-                                    placeholder="lieu"
+                                    className="form-control mt-3"
+                                    name="lieu2"
+                                    id="lieu2"
+                                    placeholder="(facultatif) si vous souhaitez d'ajouter des informations spécifiques comme le nom du terrain ect"
                                     onChange={setInpMatch}
-                                    required
                                 />
+
                             </div>
-                            <GeoMap />
                             <hr className="col-10 mx-auto" />
                             <div className="form-group group col-lg-6 col-12">
                                 <label>Categories :</label>

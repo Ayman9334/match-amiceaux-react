@@ -3,8 +3,7 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import Control from "react-leaflet-custom-control";
 import "leaflet/dist/leaflet.css";
 
-const GeoMap = () => {
-    const [position, setPosition] = useState(null);
+const GeoMap = ({ position, setPosition }) => {
     const mapRef = useRef();
 
     const utilisatuerLocation = () => {
@@ -18,10 +17,9 @@ const GeoMap = () => {
         setPosition(e.latlng);
     };
 
-
     const PositionClique = () => {
         useMapEvents({
-            click: gererClickMap,
+            click: gererClickMap
         });
         return null;
     };
