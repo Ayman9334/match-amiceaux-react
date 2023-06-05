@@ -31,6 +31,7 @@ const ClubAdmin = ({clubinfos}) => {
       });
   };  
 
+  console.log(clubinfos)
   useEffect(() => {
     window.effectCommands();
     axiosClient
@@ -128,6 +129,21 @@ const items = [
   }
 ];
 
+// regenerer le code
+const RegenererCode=() => {
+  axiosClient
+      .get("/club/regenerercode")
+      .then(response => {
+        const newCode = response.data.club_code;
+        const CodeCurr = document.getElementById('code');
+        if (CodeCurr) {
+          CodeCurr.innerHTML = newCode;
+        }
+        notification.current.show({ severity: 'success', summary: 'Nouveau code', detail: 'Code régénéré ;)' });
+      })
+      .catch(() => (location.href = "/désole")) 
+};
+
 
 return (
     <div className="container">
@@ -151,10 +167,10 @@ return (
                       <Button icon="fa fa-copy" className="m-1" onClick={()=>copyText(link)} rounded raised severity="info" label="Copier"/>
                     </div>
                     <div className="d-flex justify-content-end">
-                    <Button icon="fa fa-refresh" className="m-1" rounded raised label="Regenerate"/>
+                    <Button icon="fa fa-refresh" className="m-1" onClick={()=>RegenererCode()} rounded raised label="Regenerate"/>
                     </div>
                     <div className="d-flex justify-content-between align-items-center rounded w-75-sm">
-                      <span ref={code} className="text-end">{clubinfos.code}</span>
+                      <span ref={code} className="text-end" id="code">{clubinfos.code}</span>
                       <Button icon="fa fa-copy" className="m-1" onClick={()=>copyText(code)} rounded raised severity="info" label="Copier"/>
                     </div>
                   </Dialog>
