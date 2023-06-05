@@ -7,14 +7,37 @@
     .dialog {
       width: 75vw;
     }
+    .w-75-sm{
+      width: 50%;
+    }
+
   }
   
   @media (max-width: 641px) {
     .dialog {
       width: 100vw;
     }
+    .w-75-sm{
+      width: 75%;
+    }
   }
   
+  @media (min-width: 961px) {
+    .w-75-sm{
+      width: 50%;
+    }
+
+  }
+  @media (max-width: 466px) {
+    .split{
+      display: inline-block !important;
+    }
+    .splitbutton{
+      margin-left: auto !important;
+    }
+  }
+
+
 
   .loading-container {
     display: flex;

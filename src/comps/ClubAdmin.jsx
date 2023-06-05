@@ -8,12 +8,14 @@ import { Badge } from 'primereact/badge';
 import { useStateContext } from "../configs/context/ContextProvider";
 import { useClickOutside } from 'primereact/hooks';
 import "../css/index.css";
+import { Toast } from 'primereact/toast';
+import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
+import { SplitButton } from 'primereact/splitbutton';
 
 
 const ClubAdmin = ({clubinfos}) => {
   const { notification } = useStateContext();
   const [visible, setVisible] = useState(false);
-  const [invitation, sethasInvitation] = useState(false)
   const [invitationInfos, setInvitationInfos] = useState([])
   const link = useRef(null);
   const code = useRef(null);
@@ -22,7 +24,7 @@ const ClubAdmin = ({clubinfos}) => {
     const textToCopy = ref.current.innerText;
     navigator.clipboard.writeText(textToCopy)
       .then(() => {
-        alert('Copied');
+        notification.current.show({severity:'success', icon:'fa fa-paste', summary: 'Success', detail:'Copied', life: 3000});
       })
       .catch((error) => {
         console.error('Error copying text:', error);
@@ -33,11 +35,7 @@ const ClubAdmin = ({clubinfos}) => {
     window.effectCommands();
     axiosClient
         .get("/club/invitation")
-        .then(({ data, status }) => {
-            if (status === 204) {
-                return sethasInvitation(false)
-            }
-            sethasInvitation(true)
+        .then(({ data }) => {
             return setInvitationInfos(data)
         })
         .catch(() => (location.href = "/désole")) 
@@ -72,16 +70,64 @@ const deleteMembre = (id) => {
     axiosClient
           .delete(`/club/exclure/${id}`)
           .then(() => {
-            notification.current.show({severity:'success', summary: 'Success', detail:'Le membre a été supprimé', life: 3000});
             location.reload();
           })
         .catch(() => (location.href = "/erreur de suppression")) 
   };
   
   const overlayRef = useRef(null);
-
   useClickOutside(overlayRef, () => {
     setVisible(false);});
+
+
+  const accept = (id) => {
+    deleteMembre(id);
+    notification.current.show({severity:'success', summary: 'Success', detail:`Le membre ${id} a été supprimé`, life: 3000});
+  };
+
+  const reject = () => {};
+  const confirm1 = (event, id) => {
+    confirmPopup({
+        target: event.currentTarget,
+        message: 'Do you want to delete this member?',
+        icon: 'fa fa-info-circle',
+        acceptClassName: 'p-button-danger',
+        accept: () => accept(id),
+        reject
+    });
+};
+
+const items = [
+  {
+      label: 'Ajouter',
+      icon: 'fa fa-pencil',
+      command: () => {
+          notification.current.show({ severity: 'info', summary: 'Ajouter', detail: 'Data Added' });
+      }
+  },
+  {
+      label: 'Modifier le club',
+      icon: 'fa fa-refresh',
+      command: () => {
+          notification.current.show({ severity: 'success', summary: 'Modifier le club', detail: 'Le club a été modifié' });
+      }
+  },
+  {
+      label: 'Supprimer le club',
+      icon: 'fa fa-trash',
+      command: () => {
+          notification.current.show({ severity: 'error', summary: 'Supprimer le club', detail: 'Le club a été suppeimé' });
+      }
+  },
+  {
+      label: 'React Website',
+      icon: 'fa fa-external-link',
+      command: () => {
+          window.location.href = 'https://facebook.github.io/react/';
+      }
+  }
+];
+
 
 return (
     <div className="container">
@@ -90,21 +136,28 @@ return (
         <div className="col-lg-8 d-flex">
           <div className="card w-100">
             <div className="card-body">
-              <div className="d-flex justify-content-between">
+              <div className="d-flex split justify-content-between">
                 <div className="d-flex">
                   <h5 className="card-title mr-2">Membres du Club</h5>
                   <Badge value={clubinfos.members_number}></Badge>
                 </div>
-                <div className="flex justify-content-center">
-                    <Button label="Ajouter Membres" icon="pi pi-external-link" onClick={() => setVisible(true)} />
-                    <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} ref={overlayRef} onHide={() => setVisible(false)}
-                         breakpoints={{ '960px': '75vw', '641px': '100vw' }} className="dialog">
-                          <p className="text-muted">juste cliquer pour copier</p>
-                          <ul className="list-inline ">
-                            <li ref={link} onClick={()=>copyText(link)}>Lien</li>
-                            <li ref={code} onClick={()=>copyText(code)}>Code</li>
-                          </ul>
-                    </Dialog>
+                <div className="d-flex justify-content-center">
+                  <Toast ref={notification} />
+                  <SplitButton className="splitbutton" label="Ajouter Membres" icon="fa fa-plus" onClick={()=>setVisible(true)} model={items} severity="success" rounded />
+                  <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} ref={overlayRef} onHide={() => setVisible(false)} className="dialog">
+                    <p className="text-muted text-center mb-4 mt-0">juste cliquer pour copier</p>
+                    <div className="d-flex justify-content-between align-items-center rounded w-75-sm">
+                      <span ref={link} className="text-end">Lien</span>
+                      <Button icon="fa fa-copy" className="m-1" onClick={()=>copyText(link)} rounded raised severity="info" label="Copier"/>
+                    </div>
+                    <div className="d-flex justify-content-end">
+                    <Button icon="fa fa-refresh" className="m-1" rounded raised label="Regenerate"/>
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center rounded w-75-sm">
+                      <span ref={code} className="text-end">{clubinfos.code}</span>
+                      <Button icon="fa fa-copy" className="m-1" onClick={()=>copyText(code)} rounded raised severity="info" label="Copier"/>
+                    </div>
+                  </Dialog>
                 </div>
               </div>
               <div className="table-responsive mt-3 no-wrap">
@@ -126,11 +179,15 @@ return (
                       {member.member_id === clubinfos.member_id ?<h6 className="text-start text-danger fw-bold">Moi</h6>:<h6 className="align-middle">{member.nom}</h6>}
                         {/* <small className="text-muted">{clubinfos.nom_club}</small> */}
                       </td>
-                      <td>{member.member_role}</td>
+                      <td className="d-flex align-self-center">{member.member_role}</td>
                       {member.member_id === clubinfos.member_id ? null :
-                      <td className="d-flex justify-content-center">
-                        <Button icon="fa fa-edit" rounded text raised severity="help" title="Editer" aria-label="Update" />
-                        <Button icon="fa fa-times" onClick={()=>{deleteMembre(member.member_id)}} rounded text raised severity="danger" title="Réfuser" aria-label="Cancel" />
+                      <td>
+                        <Toast ref={notification} />
+                        <ConfirmPopup />
+                        <div className="d-flex justify-content-end">
+                          <Button icon="fa fa-edit" className="m-1" rounded text raised severity="help" label="Editer" aria-label="Update" />
+                          <Button icon="fa fa-times" className="m-1" onClick={(event) => confirm1(event, member.member_id)} label="Supprimer" rounded text raised severity="danger" title="Réfuser" aria-label="Cancel" />
+                        </div>
                       </td>}
                     </tr>})}
                   </tbody>

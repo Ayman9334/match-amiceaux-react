@@ -1,6 +1,6 @@
 import axiosClient from "../configs/api/axios-config";
 import { useState } from "react";
-import React, { useRef } from 'react';
+import React from 'react';
 import { useStateContext } from "../configs/context/ContextProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,6 @@ const CreeClub = () => {
                     navigate("/");
                 }
             });
-
     };
 
 
