@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { useRef } from "react";
+import { MapContainer, TileLayer, Marker, useMapEvents, Circle } from "react-leaflet";
 import Control from "react-leaflet-custom-control";
 import "leaflet/dist/leaflet.css";
 
-const GeoMap = ({ position, setPosition }) => {
+
+const GeoMap = ({ position, setPosition, range = null }) => {
     const mapRef = useRef();
 
     const utilisatuerLocation = () => {
@@ -29,8 +30,20 @@ const GeoMap = ({ position, setPosition }) => {
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {position && <Marker position={position} />}
+
+            {position && <>
+                <Marker position={position} />
+                {range && <Circle
+                    center={position}
+                    pathOptions={{ fillColor: 'blue' }}
+                    radius={range * 1000}
+                    stroke={false}
+                />}
+            </>}
+
+
             <PositionClique />
+
             <Control position='bottomleft'>
                 <button type="button" className="leaflet-bar leaflet-control-button" onClick={utilisatuerLocation}>
                     <i className="fa fa-location-arrow" />

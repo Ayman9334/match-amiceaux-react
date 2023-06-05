@@ -35,7 +35,6 @@ const CreeMatch = () => {
     const [enums, setEnums] = useState({
         categories: [],
         niveaus: [],
-        regions: [],
         leagues: [],
     });
 
@@ -275,7 +274,10 @@ const CreeMatch = () => {
                                     <span style={{ color: "orange" }}>*</span>
                                 </label>
 
-                                <GeoMap position={position} setPosition={setPosition} />
+                                <div style={{ height: '400px' }}>
+                                    <GeoMap position={position} setPosition={setPosition} />
+                                </div>
+                                
                                 <Message text="cliquez pour changer la position du pointeur" className="my-2 py-2" />
 
                                 <textarea
