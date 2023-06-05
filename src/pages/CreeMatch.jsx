@@ -116,7 +116,7 @@ const CreeMatch = () => {
         const postData = (formattedAddr) => {
             const matchrequst = { ...formMatch, images, latitude: lat, longitude: lng, lieu: formattedAddr } //make post data
             axiosClient
-                .post("match/store", matchrequst, {
+                .post("match", matchrequst, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     }
