@@ -36,7 +36,7 @@ const MatchRecherche = () => {
     });
 
     const [chercheForm, setChercheForm] = useState({
-        niveaus: [],
+        niveaux: [],
         categories: [],
         ligues: [],
         latitude: 48.8566,
@@ -53,6 +53,7 @@ const MatchRecherche = () => {
     };
 
     const getLocation = () => {
+        if (!position) return notification.current.show({ severity: 'error', summary: 'vous devez choisir le lieu de match sur la map', life: 3000 });
         const { lat, lng } = position;
         let formattedAddr;
 
@@ -95,8 +96,8 @@ const MatchRecherche = () => {
                 <div className="col-12 col-md-6">
                     <Select
                         className="mb-2"
-                        name="niveaus"
-                        id="niveaus"
+                        name="niveaux"
+                        id="niveaux"
                         options={enums.niveaus}
                         placeholder="Niveaus"
                         onChange={setSelectMatch}
