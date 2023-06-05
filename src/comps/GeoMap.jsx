@@ -33,7 +33,7 @@ const GeoMap = ({ position, setPosition }) => {
             <PositionClique />
             <Control position='bottomleft'>
                 <button type="button" className="leaflet-bar leaflet-control-button" onClick={utilisatuerLocation}>
-                    <i className="fa fa-map-marker" /> mon location
+                    <i className="fa fa-location-arrow" />
                 </button>
             </Control>
         </MapContainer>

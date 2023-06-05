@@ -289,7 +289,7 @@ const CreeMatch = () => {
                             </div>
                             <hr className="col-10 mx-auto" />
                             <div className="form-group group col-lg-6 col-12">
-                                <label>Categories :</label>
+                                <label>Categories : <span style={{ color: "orange" }}>*</span></label>
                                 <Select
                                     name="categorie"
                                     id="categories"
@@ -301,7 +301,7 @@ const CreeMatch = () => {
                                 />
                             </div>
                             <div className="form-group group col-lg-6 col-12">
-                                <label>Niveau :</label>
+                                <label>Niveau : <span style={{ color: "orange" }}>*</span></label>
                                 <Select
                                     name="niveau"
                                     id="niveaus"
@@ -313,7 +313,7 @@ const CreeMatch = () => {
                                 />
                             </div>
                             <div className="form-group group col-lg-6 col-12">
-                                <label>League :</label>
+                                <label>League : <span style={{ color: "orange" }}>*</span></label>
                                 <Select
                                     name="ligue"
                                     id="ligue"
