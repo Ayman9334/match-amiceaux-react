@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MatchsTable from "../comps/matchsTable";
+import MatchsTable from "../comps/MatchsTable";
 import Galerie from "../comps/Galerie";
 import MatchRecherche from "../comps/MatchRecherche";
 
@@ -12,7 +12,7 @@ const Trouvmatch = () => {
     return (
         <div>
             <MatchRecherche />
-            {/* <MatchsTable /> */}
+            <MatchsTable />
             <Galerie />
         </div>
     );
