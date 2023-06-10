@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axiosClient from "../configs/api/axios-config";
 import Select from "react-select";
 import { FileUploader } from "react-drag-drop-files";
-import "../css/creematch.css";
+import "../css/match.css";
 import { useStateContext } from "../configs/context/ContextProvider";
 import GeoMap from "../comps/GeoMap";
 import { Message } from 'primereact/message';

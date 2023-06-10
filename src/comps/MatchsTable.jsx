@@ -1,170 +1,83 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import axiosClient from "../configs/api/axios-config";
+import { Avatar } from "primereact/avatar";
+import { Divider } from "primereact/divider";
 
-const matchdata = ['', '', '', '', '', '']
-const MatchsTable = () => {
-    const [matchsdata, setMatchsdata] = useState([]);
-    const [err, seterr] = useState(false)
-    useEffect(() => {
-        axiosClient.get('/match')
-            .then(res => setMatchsdata(res.data))
-            .catch(() => seterr(true))
-    }, []);
-    return (<>
-        <div className="container">
-            <div className="row">
-                <div className="row" style={{ marginTop: 30 }}>
-                    <form
-                        id="registr-form"
-                        className="registr-form"
-                        style={{ width: "100%" }}
-                    >
-                        <div className="inner" style={{ width: "100%" }}>
-                            <table className="table" style={{ width: "100%" }}>
-                                <thead>
-                                    <tr>
-                                        <th style={{ width: 150 }} scope="col">
-                                            Date{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th scope="col">
-                                            Description{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th style={{ width: 150 }} scope="col">
-                                            Niveau{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th style={{ width: 120 }} scope="col">
-                                            Catégories{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th scope="col">
-                                            Club{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th scope="col">
-                                            Ville{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th style={{ width: 150 }} scope="col">
-                                            Résultat{" "}
-                                            <span className="toggles">
-                                                <i className="fa fa-caret-up" />
-                                                <i className="fa fa-caret-down" />
-                                            </span>
-                                        </th>
-                                        <th style={{ width: 140 }} />
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {matchsdata.map(match => <tr key={match.id}>
-                                        <td>{match.match_date}</td>
-                                        <td>{match.description}</td>
-                                        <td>{match.niveau}</td>
-                                        <td>{match.categorie}</td>
-                                        <td>not for now</td>
-                                        <td>{match.lieu}</td>
-                                        <td>x-x</td>
-                                    </tr>)}
-                                    {err && <tr>
-                                        <td colSpan={8}>nous avons un problème, veuillez réessayer plus tard</td>
-                                    </tr>}
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-                <hr />
-                <div className="row" style={{ textAlign: "center" }} id="pager">
-                    <nav aria-label="Page navigation">
-                        <ul className="pagination">
-                            <li>
-                                <span style={{ color: "gray" }} aria-hidden="true">
-                                    «
-                                </span>
-                            </li>
-                            <li>&nbsp;&nbsp; Page 1 / 0 &nbsp;&nbsp;</li>
-                            <li>
-                                <span style={{ color: "gray" }} aria-hidden="true">
-                                    »
-                                </span>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+const stockageLien = import.meta.env.VITE_API_BASE_URL + "storage/";
 
-        <div className="container match-cartes">
-            <div className="row">
-                {
-                    matchdata.map(x =>
-                        <div className="col-lg-4 col-md-6 mb-2-6 mb-3" key={Math.random()}>
+const MatchsTable = ({ chercheForm, matchsdata }) => {
+    
+
+    const ChangerDate = ({ dateString }) => {
+        const date = new Date(dateString);
+        const jour = date.getDate();
+        const mois = date.toLocaleString("default", { month: "short" });
+        return (
+            <>
+                <span>{jour}</span>
+                {mois}
+            </>
+        );
+    };
+
+    return (
+        <>
+            <div className="container match-cartes">
+                <div className="row">
+                    {matchsdata.map((x) => (
+                        <div className="col-lg-4 col-md-6 mb-4" key={Math.random()}>
                             <article className="card card-style2">
-                                <div className="card-img">
+                                <div className="card-img bg-dark">
                                     <img
                                         className="rounded-top"
-                                        src="https://www.bootdey.com/image/350x280/6A5ACD/000000"
-                                        alt="..."
+                                        src={(x.media !== null)?stockageLien + x.media:"/view/resources/img/pas-d-image.png"}
                                     />
                                     <div className="date">
-                                        <span>15</span>Sep
+                                        <ChangerDate dateString={x.match_date} />
                                     </div>
                                 </div>
-                                <div className="card-body">
-                                    <h3 className="h5">
-                                        <a href="#!">Loft therapy taking care of your home</a>
-                                    </h3>
-                                    <p className="display-30">
-                                        Loft therapy will be a thing of the past and here's why.
-                                    </p>
-                                    <a href="#!" className="read-more">
-                                        read more
-                                    </a>
+                                <div className="card-body py-3">
+                                    <div className="d-flex align-items-center">
+                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                        <span className="font-weight-bold">{x.organisateur_nom}</span>
+                                    </div>
+                                    <Divider />
+                                    <div className="border py-2 px-3 rounded bg-light">
+                                        <p>
+                                            <strong>Numbre de joueur :</strong> {x.nembre_joueur * 2}
+                                        </p>
+                                        <p>
+                                            <strong>Place valable :</strong> 4
+                                        </p>
+                                        <p>
+                                            <strong>Temps :</strong> {x.match_date.slice(11, 16)}
+                                        </p>
+                                        <p>
+                                            <strong>Niveau :</strong> {x.niveau}
+                                        </p>
+                                        <p>
+                                            <strong>Categorie :</strong> {x.categorie}
+                                        </p>
+                                        <p>
+                                            <strong>Ligue :</strong> {x.ligue}
+                                        </p>
+                                        <p>
+                                            <strong>Distance :</strong> {x.distance}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="card-footer">
-                                    <ul>
-                                        <li>
-                                            <a href="#!">
-                                                <i className="fas fa-user" />
-                                                Brittany Hucks
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">
-                                                <i className="far fa-comment-dots" />
-                                                <span>26</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <span className="fa fa-map-marker" /> {x.lieu} {
+                                        (x.lieu2!==null)&&<>({x.lieu2})</>
+                                    }
                                 </div>
                             </article>
                         </div>
-                    )
-                }
+                    ))}
+                </div>
             </div>
-        </div>
-    </>
-    )
-}
+        </>
+    );
+};
 
-export default MatchsTable
+export default MatchsTable;

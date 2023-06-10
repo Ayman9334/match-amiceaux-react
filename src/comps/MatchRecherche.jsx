@@ -14,7 +14,7 @@ const kmenum = [
     { value: 16, label: "16 km" },
 ];
 
-const MatchRecherche = () => {
+const MatchRecherche = ({ chercheForm, setChercheForm, setMatchsdata }) => {
     const { notification } = useStateContext();
 
     const [mapVisible, setMapVisible] = useState(false);
@@ -35,16 +35,6 @@ const MatchRecherche = () => {
         leagues: [],
     });
 
-    const [chercheForm, setChercheForm] = useState({
-        niveaux: [],
-        categories: [],
-        ligues: [],
-        latitude: 48.8566,
-        longitude: 2.3522,
-        lieu: "Paris",
-        range: 4,
-    });
-
     const setSelectMatch = (e, choices) => {
         setChercheForm({
             ...chercheForm,
@@ -53,7 +43,12 @@ const MatchRecherche = () => {
     };
 
     const getLocation = () => {
-        if (!position) return notification.current.show({ severity: 'error', summary: 'vous devez choisir le lieu de match sur la map', life: 3000 });
+        if (!position)
+            return notification.current.show({
+                severity: "error",
+                summary: "vous devez choisir le lieu de match sur la map",
+                life: 3000,
+            });
         const { lat, lng } = position;
         let formattedAddr;
 
@@ -89,8 +84,15 @@ const MatchRecherche = () => {
             });
     };
 
+    const getnouveauFiltre = () =>{
+        axiosClient
+            .post("/match/filtre-recherche", chercheForm)
+            .then(({data}) => setMatchsdata(data))
+            .catch(() => (window.location = "/nous-somme-desole"));
+    } 
+
     return (
-        <div className="container my-4" style={{ minHeight: "500px" }}>
+        <div className="container my-4">
             <h5 className="mr-4">Filtrer avec : </h5>
             <div className="bg-light border row py-3 mt-2 px-3 rounded mx-1">
                 <div className="col-12 col-md-6">
@@ -137,7 +139,7 @@ const MatchRecherche = () => {
                 </div>
 
                 <div className="col-12 col-md-6 d-flex align-items-center justify-content-end">
-                    <button className="btn btn-primary mr-2" onClick={() => {}}>
+                    <button className="btn btn-primary mr-2" onClick={getnouveauFiltre}>
                         <span className="fa fa-search" />
                     </button>
                 </div>
