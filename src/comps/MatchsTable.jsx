@@ -6,8 +6,6 @@ import { Divider } from "primereact/divider";
 const stockageLien = import.meta.env.VITE_API_BASE_URL + "storage/";
 
 const MatchsTable = ({ chercheForm, matchsdata }) => {
-    
-
     const ChangerDate = ({ dateString }) => {
         const date = new Date(dateString);
         const jour = date.getDate();
@@ -25,12 +23,16 @@ const MatchsTable = ({ chercheForm, matchsdata }) => {
             <div className="container match-cartes">
                 <div className="row">
                     {matchsdata.map((x) => (
-                        <div className="col-lg-4 col-md-6 mb-4" key={Math.random()}>
+                        <div className="col-lg-4 col-md-6 mb-4" key={x.id + 'match-cart'}>
                             <article className="card card-style2">
-                                <div className="card-img bg-dark">
+                                <div className="card-img border-bottom bg-light">
                                     <img
                                         className="rounded-top"
-                                        src={(x.media !== null)?stockageLien + x.media:"/view/resources/img/pas-d-image.png"}
+                                        src={
+                                            x.media !== null
+                                                ? stockageLien + x.media
+                                                : "/view/resources/img/pas-d-image.png"
+                                        }
                                     />
                                     <div className="date">
                                         <ChangerDate dateString={x.match_date} />
@@ -67,9 +69,8 @@ const MatchsTable = ({ chercheForm, matchsdata }) => {
                                     </div>
                                 </div>
                                 <div className="card-footer">
-                                    <span className="fa fa-map-marker" /> {x.lieu} {
-                                        (x.lieu2!==null)&&<>({x.lieu2})</>
-                                    }
+                                    <span className="fa fa-map-marker" /> {x.lieu}{" "}
+                                    {x.lieu2 !== null && <>({x.lieu2})</>}
                                 </div>
                             </article>
                         </div>

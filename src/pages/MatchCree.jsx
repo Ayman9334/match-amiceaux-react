@@ -9,7 +9,7 @@ import GeoMap from "../comps/GeoMap";
 import { Message } from 'primereact/message';
 import axios from "axios";
 
-const CreeMatch = () => {
+const MatchCree = () => {
 
     const { notification } = useStateContext()
     useEffect(() => {
@@ -354,4 +354,4 @@ const CreeMatch = () => {
     );
 };
 
-export default CreeMatch;
+export default MatchCree;

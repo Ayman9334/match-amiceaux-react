@@ -4,12 +4,13 @@ import Acceuil from "./pages/Acceuil";
 import Inscription from "./pages/Inscription";
 import Trouvmatch from "./pages/Trouvmatch";
 import Nopage from "./pages/Nopage";
-import CreeMatch from "./pages/CreeMatch";
 import { useStateContext } from "./configs/context/ContextProvider";
 import { Toast } from 'primereact/toast';
 import Club from "./pages/Club";
 import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
+import MatchCree from "./pages/MatchCree";
+import MatchAffiche from "./pages/MatchAffiche";
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
                 <Route path="/" element={<LayoutPrincipal />}>
                     <Route index element={<Acceuil />} />
                     <Route path="/match/trouve-match" element={<Trouvmatch />} />
+                    <Route path="/match/affiche-match/:matchId" element={<MatchAffiche />} />
                     {token ? <>
-                        <Route path="/match/cree-match" element={<CreeMatch />} />
+                        <Route path="/match/cree-match" element={<MatchCree />} />
                         <Route path="/club" element={<Club />} />
                     </> : <>
                         <Route path="/inscription" element={<Inscription />} />
