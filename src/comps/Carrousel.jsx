@@ -56,7 +56,7 @@ const Carrousel = () => {
                         <div className="owl-carousel owl-slider">
                             <div className="slider-content">
                                 <img
-                                    src="view/resources/img/template/gallerie/football-stadium-2.jpg"
+                                    src="/view/resources/img/template/gallerie/football-stadium-2.jpg"
                                     alt=""
                                     className="img-fluid"
                                 />
@@ -76,7 +76,7 @@ const Carrousel = () => {
                             </div>
                             <div className="slider-content">
                                 <img
-                                    src="view/resources/img/template/gallerie/basketball-2.jpg"
+                                    src="/view/resources/img/template/gallerie/basketball-2.jpg"
                                     alt=""
                                     className="img-fluid"
                                 />
@@ -96,7 +96,7 @@ const Carrousel = () => {
                             </div>
                             <div className="slider-content">
                                 <img
-                                    src="view/resources/img/template/gallerie/rugby-1.jpg"
+                                    src="/view/resources/img/template/gallerie/rugby-1.jpg"
                                     alt=""
                                     className="img-fluid"
                                 />
@@ -119,7 +119,7 @@ const Carrousel = () => {
                     <div className="col-lg-4 col-md-12 slider-fix">
                         <div className="slider-sidebar sidebar-o">
                             <img
-                                src="view/resources/img/template/gallerie/soccer-3.jpg"
+                                src="/view/resources/img/template/gallerie/soccer-3.jpg"
                                 alt=""
                                 className="img-fluid"
                             />
@@ -138,7 +138,7 @@ const Carrousel = () => {
                         </div>
                         <div className="slider-sidebar">
                             <img
-                                src="view/resources/img/template/gallerie/football-1.jpg"
+                                src="/view/resources/img/template/gallerie/football-1.jpg"
                                 alt=""
                                 className="img-fluid"
                             />
