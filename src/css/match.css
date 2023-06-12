@@ -185,3 +185,11 @@
     letter-spacing: 0.03rem;
     margin-bottom: 10px;
 }
+
+.affiche-match .slider-content .img-container{
+    height : 340px;
+    width : 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -2,144 +2,153 @@ import React, { useEffect, useState } from "react";
 import "../css/match.css";
 import axiosClient from "../configs/api/axios-config";
 import { Avatar } from "primereact/avatar";
-import { Divider } from "primereact/divider";
+import { useParams } from "react-router-dom";
+
+const stockageLien = import.meta.env.VITE_API_BASE_URL + "storage/";
 
 const MatchAffiche = () => {
+    const [matchData, setMatchData] = useState();
+    const { matchId } = useParams();
+
     useEffect(() => {
-        window.effectCommands();
+        axiosClient.get(`/match/affiche-match/${matchId}`).then(({ data }) => {
+            setMatchData(data);
+        });
     }, []);
 
-    const [matchData, setMatchData] = useState();
+    useEffect(() => {
+        if (matchData) window.effectCommands();
+    }, [matchData]);
 
     return (
-        <div className="container affiche-match py-4">
-            <div className="row">
-                <div className="col-md-7">
-                    <div className="slider-area affiche-match-slide w-100 h-auto py-0 rounded overflow-hidden border">
-                        <div className="owl-carousel owl-slider">
-                            <div className="slider-content">
-                                <img
-                                    src="/view/resources/img/template/gallerie/football-stadium-2.jpg"
-                                    alt=""
-                                    className="img-fluid"
-                                />
+        matchData && (
+            <div className="container affiche-match py-4">
+                <div className="row">
+                    <div className="col-md-7">
+                        <div className="slider-area w-100 h-auto p-0">
+                            <div className="owl-carousel owl-slider border rounded overflow-hidden">
+                                {matchData.medias.length ? (
+                                    matchData.medias.map((media, index) => (
+                                        <div className="slider-content" key={index + "media"}>
+                                            <div className="img-container bg-light">
+                                                <img
+                                                    src={stockageLien + media}
+                                                    alt=""
+                                                    className="mh-100 mw-100 w-auto h-auto"
+                                                />
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="slider-content">
+                                        <div className="img-container bg-light">
+                                            <img
+                                                src="/view/resources/img/pas-d-image.png"
+                                                alt=""
+                                                className="mh-100 mw-100 w-auto h-auto"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                            <div className="slider-content">
-                                <img
-                                    src="/view/resources/img/template/gallerie/basketball-2.jpg"
-                                    alt=""
-                                    className="img-fluid"
-                                />
-                            </div>
-                            <div className="slider-content">
-                                <img
-                                    src="/view/resources/img/template/gallerie/rugby-1.jpg"
-                                    alt=""
-                                    className="img-fluid"
-                                />
+                        </div>
+
+                        <div className="project-info-box border rouded  bg-light">
+                            <h5 className="pb-3">Candidats de match :</h5>
+                            <div className="row">
+                                <div className="col-lg-6 d-flex flex-column">
+                                    <div className="py-3">
+                                        <strong>Club A:</strong>
+                                    </div>
+                                    <div className="flex-fill">
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <b> Rejoindre :</b>
+                                    </div>
+                                    <div className="mt-2 mb-3 d-flex align-items-center">
+                                        <button className="btn btn-success p-1 mr-4">Individuel</button>
+                                        <button className="btn btn-success p-1">Comme club</button>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 d-flex flex-column">
+                                    <div className="py-3">
+                                        <strong>Club B:</strong>
+                                    </div>
+                                    <div className="flex-fill">
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                        <div className="mb-2 d-flex align-items-center">
+                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <span>Ayman El mimouni</span>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <b> Rejoindre :</b>
+                                    </div>
+                                    <div className="mt-2 mb-3 d-flex align-items-center">
+                                        <button className="btn btn-success p-1 mr-4">Individuel</button>
+                                        <button className="btn btn-success p-1">Comme club</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div className="project-info-box border rouded  bg-light">
-                        <h5 className="pb-3">Candidats de match :</h5>
-                        <div className="row">
-                            <div className="col-lg-6 d-flex flex-column">
-                                <div className="py-3">
-                                    <strong>Club A:</strong>
-                                </div>
-                                <div className="flex-fill">
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <b> Rejoindre :</b>
-                                </div>
-                                <div className="mt-2 mb-3 d-flex align-items-center">
-                                    <button className="btn btn-success p-1 mr-4">Individuel</button>
-                                    <button className="btn btn-success p-1">Comme club</button>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 d-flex flex-column">
-                                <div className="py-3">
-                                    <strong>Club A:</strong>
-                                </div>
-                                <div className="flex-fill">
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                    <div className="mb-2 d-flex align-items-center">
-                                        <Avatar label="AE" className="mr-2" size="large" shape="circle" />
-                                        <span>Ayman El mimouni</span>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <b> Rejoindre :</b>
-                                </div>
-                                <div className="mt-2 mb-3 d-flex align-items-center">
-                                    <button className="btn btn-success p-1 mr-4">Individuel</button>
-                                    <button className="btn btn-success p-1">Comme club</button>
-                                </div>
-                            </div>
+                    <div className="col-md-5">
+                        <div className="project-info-box mt-0 border rouded  bg-light">
+                            <h5>DESCRIPTION :</h5>
+                            <p className="mt-2">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, illo. Similique dolor
+                                impedit, fuga temporibus, consectetur mollitia eos doloribus non suscipit odio itaque
+                                aut voluptatibus ea nisi explicabo obcaecati ut? Neque, enim reiciendis? Quasi, dolores
+                                modi sint voluptate neque repudiandae unde asperiores autem? Dolor eveniet consequuntur,
+                                similique consequatur esse consectetur quae totam explicabo ab non, quasi aliquam.
+                                Perspiciatis, ut eius.
+                            </p>
                         </div>
-                    </div>
-                </div>
-                <div className="col-md-5">
-                    <div className="project-info-box mt-0 border rouded  bg-light">
-                        <h5>DESCRIPTION :</h5>
-                        <p className="mt-2">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, illo. Similique dolor
-                            impedit, fuga temporibus, consectetur mollitia eos doloribus non suscipit odio itaque aut
-                            voluptatibus ea nisi explicabo obcaecati ut? Neque, enim reiciendis? Quasi, dolores modi
-                            sint voluptate neque repudiandae unde asperiores autem? Dolor eveniet consequuntur,
-                            similique consequatur esse consectetur quae totam explicabo ab non, quasi aliquam.
-                            Perspiciatis, ut eius.
-                        </p>
-                    </div>
-                    {/* / project-info-box */}
-                    <div className="project-info-box border rouded bg-light">
-                        <p>
-                            <strong>Date :</strong> {matchData?.match_date.slice(0, 10)}
-                        </p>
-                        <p>
-                            <strong>Temps :</strong> {matchData?.match_date.slice(11, 16)}
-                        </p>
-                        <p>
-                            <strong>Niveau :</strong> {matchData?.niveau}
-                        </p>
-                        <p>
-                            <strong>Categorie :</strong> {matchData?.categorie}
-                        </p>
-                        <p>
-                            <strong>Ligue :</strong> {matchData?.ligue}
-                        </p>
-                        <p>
-                            <strong>Distance :</strong> {matchData?.distance}
-                        </p>
-                    </div>
+                        {/* / project-info-box */}
+                        <div className="project-info-box border rouded bg-light">
+                            <p>
+                                <strong>Date :</strong> {matchData.match_date?.slice(0, 10) ?? null}
+                            </p>
+                            <p>
+                                <strong>Temps :</strong> {matchData.match_date?.slice(11, 16) ?? null}
+                            </p>
+                            <p>
+                                <strong>Niveau :</strong> {matchData.niveau ?? null}
+                            </p>
+                            <p>
+                                <strong>Categorie :</strong> {matchData.categorie ?? null}
+                            </p>
+                            <p>
+                                <strong>Ligue :</strong> {matchData.ligue ?? null}
+                            </p>
+                        </div>
 
-                    {/* <div className="project-info-box mt-0 mb-0">
+                        {/* <div className="project-info-box mt-0 mb-0">
                         <p className="mb-0">
                             <span className="fw-bold mr-10 va-middle hide-mobile">Share:</span>
                             <a href="#x" className="btn btn-xs btn-facebook btn-circle btn-icon mr-5 mb-0">
@@ -156,10 +165,11 @@ const MatchAffiche = () => {
                             </a>
                         </p>
                     </div> */}
+                    </div>
+                    {/* / column */}
                 </div>
-                {/* / column */}
             </div>
-        </div>
+        )
     );
 };
 

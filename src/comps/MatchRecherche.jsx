@@ -86,7 +86,7 @@ const MatchRecherche = ({ chercheForm, setChercheForm, setMatchsdata }) => {
 
     const getnouveauFiltre = () =>{
         axiosClient
-            .post("/match/filtre-recherche", chercheForm)
+            .post("/match/affiche-matchs", chercheForm)
             .then(({data}) => setMatchsdata(data))
             .catch(() => (window.location = "/nous-somme-desole"));
     } 
