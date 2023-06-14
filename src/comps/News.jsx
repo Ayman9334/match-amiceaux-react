@@ -1,127 +1,42 @@
-import '../css/acceuil.css';
-import Carrousel from './Carrousel';
 const News = () => {
 
 
-return (
-<>
-  
-  {/* News Area */}
-<section className="news-area">
-  <div className="container">
-    <div className="row">
-    <div className="col-lg-3 d-none d-lg-block">
-        <div className="row">
-        <div class="col-sm-12 card rounded-5 mb-5">
-          <div class="card-body">
-            <u class="card-title">Inscription des clubs</u>
-            <form className="mt-4">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email"/>
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password"/>
-              </div>
-              <button type="submit" class="btn btn-light">OK</button>
-            </form>
-            <div class="mt-2">
-              <a href="#">*Mot de passe oublié </a>
-              <br />
-              <a href="#"> *S'inscrire</a>
-            </div>
-          </div>
-        </div>
-          <div className="col-sm-12 card rounded-5 mb-5">
-            <u className="card-title text-underline">1ére visite</u>
-            <div className="card-content p-3">
-            <img src="view/resources/img/template/add1.jpg" className="img-fluid" alt="" />
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae accusantium, ducimus, quibusdam velit,</p>
-            </div>
-          </div>
-          <div className="col-sm-12 ">
-          <div className="card rounded-5 mb-5">
-          <div className="bg-light text-center round-top pb-5">
-            <u>Boutique en ligne</u>
-          </div>
-          <div className="pop-news">
-                <div className="owl-carousel popular-slider">
-                  <div className="popular-item">
-                    <img src="view/resources/img/template/tshirt1.jpg" className="d-block w-100" alt="T-Shirt 1"/>
-                      <div className="card-body">
-                        <h5 className="card-title">T-Shirt Portugal</h5>
-                        <p className="card-text">Description of the t-shirt.</p>
+  return (
+    <>
+      
+      {/* News Area */}
+      <section className="news-area">
+        <div className="container">
+          <div className="row">
+          <div className="col-lg-8 col-md-12">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="latest-news">
+                    <div className="tab-box d-flex justify-content-between">
+                      <div className="sec-title">
+                        <h5>Dernières nouvelles</h5>
                       </div>
-                  </div>
-                  <div className="popular-item">
-                    <img src="view/resources/img/template/tshirt2.jpeg" className="d-block w-100" alt="T-Shirt 2"/>
-                      <div className="card-body">
-                        <h5 className="card-title">England Shirts</h5>
-                        <p className="card-text">Description of the t-shirt.</p>
-                      </div>
-                  </div>
-                  <div className="popular-item">
-                    <img src="view/resources/img/template/tshirt3.jpg" className="d-block w-100" alt="T-Shirt 3"/>
-                      <div className="card-body">
-                        <h5 className="card-title">T-Shirt PSG</h5>
-                        <p className="card-text">Description of the t-shirt.</p>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-secondary text-white round-bottom p-2">
-                <p>Match amicaux</p>
-                <h5 className="text-right">Boutique</h5>
-              </div>
-          </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="col-lg-9 col-md-12">
-        <div className="row">
-          <div className="col-md-12 mb-3">
-          <div class="container position-relative">
-          <img src="/view/resources/img/template/gallerie/football-stadium-2.jpg" alt="Image" class="img-fluid card-img"/>
-          <div className='position-absolute translate-middle card-img-overlay d-flex justify-content-center align-items-center'>
-            <div class="row ">
-              <div class="col-3">
-                <a href="#" class="card-clickable text-center">
-                  <img src="/view/resources/img/template/popular-9.jpg" class="card-img-top" alt="Card Image 1"/>
-                  <p class="card-title text-white"><small>infos sports</small></p>
-                </a>
-              </div>
-              <div class="col-3">
-                <a href="#" class="card-clickable text-center">
-                  <img src="/view/resources/img/template/popular-7.jpg" class="card-img-top" alt="Card Image 1"/>
-                  <p class="card-title text-white"><small>Rencontres amicales</small></p>
-                </a>
-              </div>
-              <div class="col-3">
-                <a href="#" class="card-clickable text-center">
-                  <img src="/view/resources/img/template/popular-4.jpg" class="card-img-top" alt="Card Image 1"/>
-                  <p class="card-title text-white"><small>Galeries</small></p>
-                </a>
-              </div>
-              <div class="col-3">
-                <a href="#" class="card-clickable text-center">
-                  <img src="/view/resources/img/template/gallerie/football-stadium-2.jpg" class="card-img-top" alt="Card Image 1"/>
-                  <p class="card-title text-white"><small>inscription</small></p>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="image-footer">
-              <h2>Image Title</h2>
-              <p>Image description or additional information.</p>
-            </div>
-        </div>
-          </div>
-          <div className="col-md-12 mb-4">
-            <div className="row">
-              <div className="col-md-8">
-                <div class="card shadow rounded-5 mb-3">
+                      {/* Nav tabs */}
+                      <ul className="nav nav-tabs" role="tablist">
+                        <li className="nav-item">
+                          <a className="nav-link active" data-toggle="tab" href="#tech">
+                            Technology
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" data-toggle="tab" href="#busi">
+                            Business
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" data-toggle="tab" href="#spor">
+                            Sports
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    {/* Tab panes */}
+                    <div class="card shadow rounded-5 mb-3">
               <div class="bg-success round-top p-3">
                 <h5 class="card-title text-white">Rencontre amicale</h5>
               </div>
@@ -176,302 +91,767 @@ return (
                 </div>
               </div>
                 </div>
-                <div class="card shadow rounded-5 mb-3">
-                  <div class="card bg-success round-top p-3">
-                    <h5 class="card-title text-white">News</h5>
                   </div>
-                  <div class="card-body">
-                    <div id="newsCarousel" class="carousel slide" data-ride="carousel">
-                      <div class="carousel-inner">
-                        <div class="carousel-item active">
-                          <div class="row">
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h6>20/09/2023</h6>
-                                  <img src="view/resources/img/template/popular-10.jpg" alt="Image 3" class="img-fluid"/>
-                                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="pop-news">
+                    <div className="sec-title">
+                      <h5>Les plus populaires</h5>
+                    </div>
+                    <div className="owl-carousel popular-slider">
+                      <div className="popular-item">
+                        <div className="row">
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-1.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
                               </div>
-                            </div>
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h6>20/09/2023</h6>
-                                  <img src="view/resources/img/template/more-7.jpg" alt="Image 3" class="img-fluid"/>
-                                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h6>20/09/2023</h6>
-                                  <img src="view/resources/img/template/popular-9.jpg" alt="Image 3" class="img-fluid"/>
-                                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="row">
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h6>20/09/2023</h6>
-                                  <img src="view/resources/img/template/more-2.jpg" alt="Image 3" class="img-fluid"/>
-                                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-2.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
                               </div>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h6>20/09/2023</h6>
-                                  <img src="view/resources/img/template/popular-11.jpg" alt="Image 3" class="img-fluid"/>
-                                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-3.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
                               </div>
                             </div>
-                            <div class="col-sm-4">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h6>20/09/2023</h6>
-                                  <img src="view/resources/img/template/more-2.jpg" alt="Image 3" class="img-fluid"/>
-                                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-4.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-5.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-6.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <a class="carousel-control-prev" href="#newsCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="carousel-control-next" href="#newsCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                      </a>
+                      <div className="popular-item">
+                        <div className="row">
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-7.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-8.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-9.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-10.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-11.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="pop-box">
+                              <div className="pop-img">
+                                <a href="#">
+                                  <img
+                                    src="view/resources/img/template/popular-12.jpg"
+                                    alt=""
+                                    className="img-fluid"
+                                  />
+                                </a>
+                              </div>
+                              <div className="img-content">
+                                <p>
+                                  <a href="#">
+                                    These sentences are selected from various online
+                                    news....
+                                  </a>
+                                </p>
+                                <ul className="list-unstyled list-inline">
+                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">
+                                    September 24, 2017
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="card round-top mb-4">
-                      <div class="card round-top bg-secondary text-white p-2">
-                        <h6 class="card-title">GALERIE PHOTOS  <i className="fa fa-caret-right" /></h6>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 1" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="view/resources/img/template/more-2.jpg" class="img-fluid" alt="Photo 2" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card mb-4 round-top">
-                      <div class="card round-top bg-secondary text-white p-2">
-                        <h6 class="card-title">GALERIE VIDEOS  <i className="fa fa-caret-right" /></h6>
-                      </div>
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="path/to/video1-thumbnail.jpg" class="img-fluid" alt="Video 1" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="path/to/video2-thumbnail.jpg" class="img-fluid" alt="Video 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="path/to/video2-thumbnail.jpg" class="img-fluid" alt="Video 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="path/to/video2-thumbnail.jpg" class="img-fluid" alt="Video 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="path/to/video2-thumbnail.jpg" class="img-fluid" alt="Video 2" />
-                            </a>
-                          </div>
-                          <div class="col-4 p-0">
-                            <a href="#">
-                              <img src="path/to/video2-thumbnail.jpg" class="img-fluid" alt="Video 2" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div class="card rounded-5 mb-5">
-                  <div class="round-top p-2 bg-light d-flex justify-content-between align-items-center">
-                    <h5 class="card-title">Flux RSS</h5>
-                    <i class="fa fa-wifi"></i>
-                  </div>
-                  <div class="card-body">
-                    <div class="d-flex align-items-center p-2">
-                      <div class="mr-2">12/09</div>
-                      <div class="mr-2">|</div>
-                      <div>Lorem ipsum dolor sit amet.</div>
-                    </div>     
-                    <div class="d-flex align-items-center p-2">
-                      <div class="mr-2">12/09</div>
-                      <div class="mr-2">|</div>
-                      <div>Lorem ipsum dolor sit amet.</div>
-                    </div> 
-                    <div class="d-flex align-items-center p-2">
-                      <div class="mr-2">12/09</div>
-                      <div class="mr-2">|</div>
-                      <div>Lorem ipsum dolor sit amet.</div>
-                    </div>                
-                  </div>                    
-                </div>
-                <div class="">
-                  <a href="#">
-                    <img src="view/resources/img/template/pub1.jpg" alt="Publicité" className="card rounded-5 mb-5 img-fluid"/>
-                  </a>
-                </div>
-                <div class="">
-                  <a href="#">
-                    <img src="view/resources/img/template/pub2.jpg" alt="Publicité" className="card rounded-5 mb-5 img-fluid"/>
-                  </a>
-                </div>
-            <div className="d-lg-none">
-                <div className="col-sm-12 mb-5">
-                  <div class="col-sm-12 card rounded-5 mb-5">
-                    <div class="card-body">
-                      <u class="card-title">Inscription des clubs</u>
-                      <form className="mt-4">
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" class="form-control" id="email" placeholder="Enter your email"/>
-                        </div>
-                        <div class="form-group">
-                          <label for="password">Password</label>
-                          <input type="password" class="form-control" id="password" placeholder="Enter your password"/>
-                        </div>
-                        <button type="submit" class="btn btn-light">OK</button>
-                      </form>
-                      <div class="mt-2">
-                        <a href="#">*Mot de passe oublié </a>
-                        <br />
-                        <a href="#"> *S'inscrire</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-12 card rounded-5 mb-5">
-                  <u className="card-title text-underline">1ére visite</u>
-                  <div className="card-content p-3">
-                  <img src="view/resources/img/template/add1.jpg" className="img-fluid" alt="" />
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae accusantium, ducimus, quibusdam velit, cum provident nam dolor laborum optio culpa id fugit nemo laboriosam. Tempora quia nostrum est sequi aut.</p>
-                  </div>
-                </div>
-            <div className="col-sm-12 ">
-              <div className="card rounded-5 mb-5">
-                <div className="bg-light text-center round-top pb-5">
-                  <u>Boutique en ligne</u>
-                </div>
-              <div className="pop-news">
-                <div className="owl-carousel popular-slider">
-                  <div className="popular-item">
-                    <img src="view/resources/img/template/tshirt1.jpg" className="d-block w-100" alt="T-Shirt 1"/>
-                      <div className="card-body">
-                        <h5 className="card-title">T-Shirt Portugal</h5>
-                        <p className="card-text">Description of the t-shirt.</p>
-                      </div>
-                  </div>
-                  <div className="popular-item">
-                    <img src="view/resources/img/template/tshirt2.jpeg" className="d-block w-100" alt="T-Shirt 2"/>
-                      <div className="card-body">
-                        <h5 className="card-title">England Shirts</h5>
-                        <p className="card-text">Description of the t-shirt.</p>
-                      </div>
-                  </div>
-                  <div className="popular-item">
-                    <img src="view/resources/img/template/tshirt3.jpg" className="d-block w-100" alt="T-Shirt 3"/>
-                      <div className="card-body">
-                        <h5 className="card-title">T-Shirt PSG</h5>
-                        <p className="card-text">Description of the t-shirt.</p>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-secondary text-white round-bottom p-2">
-                <p>Match amicaux</p>
-                <h5 className="text-right">Boutique</h5>
-              </div>
-          </div>
-          </div>
                 </div>
               </div>
             </div>
+
+          <div className="col-lg-4 col-md-12">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="follow-widget">
+                    <div className="sec-title">
+                      <h5>Rejoignez nous</h5>
+                    </div>
+                    <ul className="list-unstyled clearfix">
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-facebook" />
+                          <p>44,410</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-twitter" />
+                          <p>31,219</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-rss" />
+                          <p>11,209</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-linkedin" />
+                          <p>19,323</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-google-plus" />
+                          <p>29,559</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-youtube" />
+                          <p>56,717</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="add-widget">
+                    <img
+                      src="view/resources/img/template/add1.jpg"
+                      alt=""
+                      className="img-fluid"
+                    />
+                    <div className="add-layer text-center">
+                      <p>Best Template For Your Online News</p>
+                      <a href="#">Buy Now</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="tab-widget">
+                    <ul className="nav nav-tabs" role="tablist">
+                      <li className="nav-item">
+                        <a
+                          className="nav-link active"
+                          data-toggle="tab"
+                          href="#recent"
+                        >
+                          Recent
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" data-toggle="tab" href="#popular">
+                          Popular
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" data-toggle="tab" href="#comment">
+                          Comment
+                        </a>
+                      </li>
+                    </ul>
+                    {/* Tab panes */}
+                    <div className="tab-content">
+                      <div
+                        className="tab-pane fade show active"
+                        id="recent"
+                        role="tabpanel"
+                      >
+                        <div className="rec-item d-flex">
+                          <div className="rec-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-6.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <span>20 Seconds ago</span>
+                          </div>
+                        </div>
+                        <div className="rec-item d-flex">
+                          <div className="rec-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-11.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <span>4 minutes ago</span>
+                          </div>
+                        </div>
+                        <div className="rec-item d-flex">
+                          <div className="rec-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-7.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <span>47 minutes ago</span>
+                          </div>
+                        </div>
+                        <div className="rec-item d-flex">
+                          <div className="rec-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-4.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <span>1 Hours ago</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="tab-pane fade" id="popular" role="tabpanel">
+                        <div className="pop-item d-flex">
+                          <div className="pop-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-3.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <ul className="list-unstyled list-inline">
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="pop-item d-flex">
+                          <div className="pop-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-8.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <ul className="list-unstyled list-inline">
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="pop-item d-flex">
+                          <div className="pop-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-9.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <ul className="list-unstyled list-inline">
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="pop-item d-flex">
+                          <div className="pop-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/lt-sm-12.jpg"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                These sentences are selected from various online
+                                news.
+                              </a>
+                            </p>
+                            <ul className="list-unstyled list-inline">
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                              <li className="list-inline-item">
+                                <i className="fa fa-star" />
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="tab-pane fade" id="comment" role="tabpanel">
+                        <div className="com-item d-flex">
+                          <div className="com-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/com-1.png"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                <span>James</span>: Nesciunt quaerat ipsam fugiat
+                                impedit dignissimos unde...
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                        <div className="com-item d-flex">
+                          <div className="com-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/com-2.png"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                <span>Mary</span>: Nesciunt quaerat ipsam fugiat
+                                impedit dignissimos unde...
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                        <div className="com-item d-flex">
+                          <div className="com-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/com-1.png"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                <span>John</span>: Nesciunt quaerat ipsam fugiat
+                                impedit dignissimos unde...
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                        <div className="com-item d-flex">
+                          <div className="com-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/com-2.png"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                <span>Anna</span>: Nesciunt quaerat ipsam fugiat
+                                impedit dignissimos unde...
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                        <div className="com-item d-flex">
+                          <div className="com-img">
+                            <a href="#">
+                              <img
+                                src="view/resources/img/template/com-1.png"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div className="img-content">
+                            <p>
+                              <a href="#">
+                                <span>Maxx</span>: Nesciunt quaerat ipsam fugiat
+                                impedit dignissimos unde...
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-  {/* End News Area */}
-</>
+      </section>
+      {/* End News Area */}
+    </>
 
 
-)
+  )
 }
 
 export default News
