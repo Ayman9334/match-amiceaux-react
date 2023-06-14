@@ -7,7 +7,7 @@ const Galerie = () => {
                         <div className="image-gallery">
                             <div className="sec-title">
                                 <h5>
-                                    Gallerie photosR
+                                    Gallerie photos
                                     <i className="fa fa-caret-right" />
                                 </h5>
                             </div>

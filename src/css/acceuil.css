@@ -1,0 +1,43 @@
+.rounded-5{
+    border-radius: 15px;
+}
+
+.round-top{
+    border-radius: 15px 15px 0 0;
+}
+.round-bottom{
+    border-radius: 0 0 15px 15px;
+}
+
+.img-fluid {
+    position: relative;
+    display: inline-block;
+  }
+
+  .card-clickable {
+    /* position: absolute; */
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
+    width: 200px;
+  }
+
+  .card-clickable:hover {
+    display: inline;
+    transform: translate(-130%, -90%) scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .image-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #efebeb;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .image-footer h2,
+  .image-footer p {
+    margin: 0;
+    padding: 0;
+  }
