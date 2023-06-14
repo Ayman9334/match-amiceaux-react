@@ -8,7 +8,7 @@ const News = () => {
       <section className="news-area">
         <div className="container">
           <div className="row">
-            <div className="col-lg-8 col-md-12">
+          <div className="col-lg-8 col-md-12">
               <div className="row">
                 <div className="col-md-12">
                   <div className="latest-news">
@@ -36,339 +36,61 @@ const News = () => {
                       </ul>
                     </div>
                     {/* Tab panes */}
-                    <div className="tab-content">
-                      <div
-                        className="tab-pane fade show active"
-                        id="tech"
-                        role="tabpanel"
-                      >
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="lt-item-bg">
-                              <img
-                                src="view/resources/img/template/lt-bg-1.jpg"
-                                alt=""
-                                className="img-fluid"
-                              />
-                              <h6>
-                                <a href="#">
-                                  These sentences are selected from various online
-                                  news.
-                                </a>
-                              </h6>
-                              <ul className="list-unstyled list-inline">
-                                <li className="list-inline-item">Technology</li>
-                                <li className="list-inline-item">
-                                  February 11, 2019
-                                </li>
-                              </ul>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Itaque labore, quam voluptatibus ipsum. Exde
-                                tenetur, quasi, provident animi magni voluptas fugit
-                                Itaque labore quae ad........
-                              </p>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-1.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-2.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-3.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-4.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                    <div class="card shadow rounded-5 mb-3">
+              <div class="bg-success round-top p-3">
+                <h5 class="card-title text-white">Rencontre amicale</h5>
+              </div>
+              <div class="card-body">
+                <div class="row mb-3 mt-0">
+                  <div class="col">
+                    <button class="btn btn-light">Proposer un match</button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-light">Dernière minute</button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-light">Rechercher un match</button>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-md-7 ">
+                    <div className="row d-flex justify-content-center align-items-center">
+                      <div className='col'>
+                        <img src="view/resources/img/template/Real_Madrid.png" class="img-fluid w-75 h-auto" alt="Club A"/>
+                        <h5 class="card-title text-center">Club A</h5>
                       </div>
-                      <div className="tab-pane fade" id="busi" role="tabpanel">
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="lt-item-bg">
-                              <img
-                                src="view/resources/img/template/lt-bg-2.jpg"
-                                alt=""
-                                className="img-fluid"
-                              />
-                              <h6>
-                                <a href="#">
-                                  These sentences are selected from various online
-                                  news.
-                                </a>
-                              </h6>
-                              <ul className="list-unstyled list-inline">
-                                <li className="list-inline-item">Business</li>
-                                <li className="list-inline-item">
-                                  February 11, 2019
-                                </li>
-                              </ul>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Itaque labore, quam voluptatibus ipsum. Exde
-                                tenetur, quasi, provident animi magni voluptas fugit
-                                Itaque labore quae ad........
-                              </p>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-5.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-6.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-7.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-8.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="col">
+                        <h1 className='text-green text-center'>VS</h1>
                       </div>
-                      <div className="tab-pane fade" id="spor" role="tabpanel">
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="lt-item-bg">
-                              <img
-                                src="view/resources/img/template/lt-bg-3.jpg"
-                                alt=""
-                                className="img-fluid"
-                              />
-                              <h6>
-                                <a href="#">
-                                  These sentences are selected from various online
-                                  news.
-                                </a>
-                              </h6>
-                              <ul className="list-unstyled list-inline">
-                                <li className="list-inline-item">Sports</li>
-                                <li className="list-inline-item">
-                                  February 11, 2019
-                                </li>
-                              </ul>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Itaque labore, quam voluptatibus ipsum. Exde
-                                tenetur, quasi, provident animi magni voluptas fugit
-                                Itaque labore quae ad........
-                              </p>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-9.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-10.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-11.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                            <div className="lt-item-sm d-flex">
-                              <div className="lt-img">
-                                <a href="#">
-                                  <img
-                                    src="view/resources/img/template/lt-sm-12.jpg"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <div className="img-content">
-                                <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news.
-                                  </a>
-                                </p>
-                                <span>February 11, 2019</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div className='col'>
+                        <img src="view/resources/img/template/FC_Barcelona.png" class="img-fluid w-75 h-auto" alt="Club B"/>
+                        <h5 class="card-title text-center">Club C</h5>
                       </div>
                     </div>
+                    <hr />
+                    <div className='text-center'>2023-05-25</div>
+                  </div>
+                  <div class="col-md-5">
+                    <table>
+                        <tr>
+                          <td className='m-2'>2023-05-25 </td>
+                          <td>Club A VS Club C</td>
+                        </tr>
+                        <hr />
+                        <tr>
+                          <td className='m-2'>2023-05-25 </td>
+                          <td>Club A VS Club C</td>
+                        </tr>
+                        <hr />
+                        <tr>
+                          <td className='m-2'>2023-05-25 </td>
+                          <td>Club A VS Club C</td>
+                        </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+                </div>
                   </div>
                 </div>
                 <div className="col-md-12">
@@ -714,7 +436,8 @@ const News = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-12">
+
+          <div className="col-lg-4 col-md-12">
               <div className="row">
                 <div className="col-md-12">
                   <div className="follow-widget">
@@ -1120,6 +843,7 @@ const News = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
