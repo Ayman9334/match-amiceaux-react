@@ -120,14 +120,7 @@ const MatchAffiche = () => {
                     <div className="col-md-5">
                         <div className="project-info-box mt-0 border rouded  bg-light">
                             <h5>DESCRIPTION :</h5>
-                            <p className="mt-2">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, illo. Similique dolor
-                                impedit, fuga temporibus, consectetur mollitia eos doloribus non suscipit odio itaque
-                                aut voluptatibus ea nisi explicabo obcaecati ut? Neque, enim reiciendis? Quasi, dolores
-                                modi sint voluptate neque repudiandae unde asperiores autem? Dolor eveniet consequuntur,
-                                similique consequatur esse consectetur quae totam explicabo ab non, quasi aliquam.
-                                Perspiciatis, ut eius.
-                            </p>
+                            <p className="mt-2">{matchData.description ?? null}</p>
                         </div>
                         {/* / project-info-box */}
                         <div className="project-info-box border rouded bg-light">
