@@ -1,14 +1,17 @@
+import { Link } from 'react-router-dom';
+import '../css/acceuil.css';
+import { Divider } from 'primereact/divider';
+
 const News = () => {
 
 
   return (
     <>
-      
       {/* News Area */}
       <section className="news-area">
         <div className="container">
           <div className="row">
-          <div className="col-lg-8 col-md-12">
+            <div className="col-lg-8 col-md-12">
               <div className="row">
                 <div className="col-md-12">
                   <div className="latest-news">
@@ -20,77 +23,81 @@ const News = () => {
                       <ul className="nav nav-tabs" role="tablist">
                         <li className="nav-item">
                           <a className="nav-link active" data-toggle="tab" href="#tech">
-                            Technology
+                            Football
                           </a>
                         </li>
                         <li className="nav-item">
                           <a className="nav-link" data-toggle="tab" href="#busi">
-                            Business
+                            Rugby
                           </a>
                         </li>
                         <li className="nav-item">
                           <a className="nav-link" data-toggle="tab" href="#spor">
-                            Sports
+                            Basketball
                           </a>
                         </li>
                       </ul>
                     </div>
                     {/* Tab panes */}
-                    <div class="card shadow rounded-5 mb-3">
-              <div class="bg-success round-top p-3">
-                <h5 class="card-title text-white">Rencontre amicale</h5>
-              </div>
-              <div class="card-body">
-                <div class="row mb-3 mt-0">
-                  <div class="col">
-                    <button class="btn btn-light">Proposer un match</button>
-                  </div>
-                  <div class="col">
-                    <button class="btn btn-light">Dernière minute</button>
-                  </div>
-                  <div class="col">
-                    <button class="btn btn-light">Rechercher un match</button>
-                  </div>
-                </div>
-                <div class="row align-items-center">
-                  <div class="col-md-7 ">
-                    <div className="row d-flex justify-content-center align-items-center">
-                      <div className='col'>
-                        <img src="view/resources/img/template/Real_Madrid.png" class="img-fluid w-75 h-auto" alt="Club A"/>
-                        <h5 class="card-title text-center">Club A</h5>
+                    <div className="card shadow rounded-5 mb-3">
+                      <div className="bg-success round-top p-3">
+                        <h5 className="card-title text-white">Rencontre amicale</h5>
                       </div>
-                      <div className="col">
-                        <h1 className='text-green text-center'>VS</h1>
-                      </div>
-                      <div className='col'>
-                        <img src="view/resources/img/template/FC_Barcelona.png" class="img-fluid w-75 h-auto" alt="Club B"/>
-                        <h5 class="card-title text-center">Club C</h5>
+                      <div className="card-body">
+                        <div className="row mb-3 mt-0">
+                          <div className="col">
+                            <button className="btn btn-light"><Link to="/match/cree-match">Proposer un match</Link></button>
+                          </div>
+                          <div className="col">
+                            <button className="btn btn-light">Dernière minute</button>
+                          </div>
+                          <div className="col">
+                            <button className="btn btn-light"><Link to={"/match/trouve-match"}>Rechercher un match</Link></button>
+                          </div>
+                        </div>
+                        <div className="row align-items-center">
+                          <div className="col-md-7 ">
+                            <div className="row d-flex justify-content-center align-items-center">
+                              <div className='col'>
+                                <img src="view/resources/img/template/Real_Madrid.png" className="img-fluid w-75 h-auto" alt="Club A" />
+                                <h5 className="card-title text-center">Club A</h5>
+                              </div>
+                              <div className="col">
+                                <h1 className='text-green text-center'>VS</h1>
+                              </div>
+                              <div className='col'>
+                                <img src="view/resources/img/template/FC_Barcelona.png" className="img-fluid w-75 h-auto" alt="Club B" />
+                                <h5 className="card-title text-center">Club C</h5>
+                              </div>
+                            </div>
+                            <Divider/>
+                            <div className='text-center'>2023-05-25</div>
+                          </div>
+                          <div className="col-md-5">
+                            <table>
+                              <thead></thead>
+                              <tbody>
+                              <tr>
+                                <td className='m-2'>2023-05-25 </td>
+                                <td>Club A VS Club C</td>
+                              </tr>
+                              <Divider type="dashed"/>
+                              <tr>
+                                <td className='m-2'>2023-05-25 </td>
+                                <td>Club A VS Club C</td>
+                              </tr>
+                              <Divider type="dashed"/>
+                              <tr>
+                                <td className='m-2'>2023-05-25 </td>
+                                <td>Club A VS Club C</td>
+                              </tr>
+                              </tbody>
+                              <tfoot></tfoot>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <hr />
-                    <div className='text-center'>2023-05-25</div>
-                  </div>
-                  <div class="col-md-5">
-                    <table>
-                        <tr>
-                          <td className='m-2'>2023-05-25 </td>
-                          <td>Club A VS Club C</td>
-                        </tr>
-                        <hr />
-                        <tr>
-                          <td className='m-2'>2023-05-25 </td>
-                          <td>Club A VS Club C</td>
-                        </tr>
-                        <hr />
-                        <tr>
-                          <td className='m-2'>2023-05-25 </td>
-                          <td>Club A VS Club C</td>
-                        </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>
-                </div>
                   </div>
                 </div>
                 <div className="col-md-12">
@@ -106,23 +113,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-1.jpg"
+                                    src="view/resources/img/template/popular1.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">PSG</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  La rupture de Mbappé avec le P.S.G. s'aggrave et devient une guerre des mots
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -133,23 +138,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-2.jpg"
+                                    src="view/resources/img/template/popular2.webp"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">TRANSFERS</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Indifférence' à Madrid, 'tristesse' à Dortmund - comment est perçue la signature de Bellingham
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -160,23 +163,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-3.jpg"
+                                    src="view/resources/img/template/popular3.webp"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">PREMIER LEAGUE</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Jour de la révélation du calendrier de la Premier League et autres dates clés de la saison 2023/24 dévoilées
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -187,23 +188,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-4.jpg"
+                                    src="view/resources/img/template/popular4.webp"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">LA LIGA</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  "Un joueur de top" - Kroos accueille l'arrivée de Bellingham au Real Madrid.
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -214,23 +213,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-5.jpg"
+                                    src="view/resources/img/template/popular5.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu Angleterre</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Manchester City : au sommet de l'Europe, Guardiola a déjà programmé son départ
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -241,23 +238,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-6.jpg"
+                                    src="view/resources/img/template/popular6.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu Transferts</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Manchester United : le Qatar en passe de racheter les Red Devils !
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -272,23 +267,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-7.jpg"
+                                    src="view/resources/img/template/popular7.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu Transferts</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Mercato : le Real change ses plans pour Mbappé !
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -299,23 +292,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-8.jpg"
+                                    src="view/resources/img/template/popular8.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu italie</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Roma : Mourinho a pris sa décision
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -326,23 +317,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-9.jpg"
+                                    src="view/resources/img/template/popular9.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu Transferts</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Mercato : Al-Hilal sort le grand jeu pour Neymar !
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -353,23 +342,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-10.jpg"
+                                    src="view/resources/img/template/popular10.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu Champion's League</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Bougés, les Citizens arrachent leur première Ligue des Champions ! - Débrief et NOTES des joueurs (Man City 1-0 Inter)
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -380,23 +367,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-11.jpg"
+                                    src="view/resources/img/template/popular11.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Journal Des Transferts</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  Journal des Transferts : accord Thuram-Liverpool, la nouvelle piste de l'OM, surprise à Toulouse, Traoré quitte Rennes...
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -407,23 +392,21 @@ const News = () => {
                               <div className="pop-img">
                                 <a href="#">
                                   <img
-                                    src="view/resources/img/template/popular-12.jpg"
+                                    src="view/resources/img/template/popular12.jpg"
                                     alt=""
                                     className="img-fluid"
                                   />
                                 </a>
                               </div>
                               <div className="img-content">
+                                <p className="text-muted">Actu Ligue 1</p>
                                 <p>
-                                  <a href="#">
-                                    These sentences are selected from various online
-                                    news....
-                                  </a>
+                                  PSG : la nouvelle révolution, Messi... Les petites piques de Leonardo
                                 </p>
                                 <ul className="list-unstyled list-inline">
-                                  <li className="list-inline-item">FOOD</li>
+                                  <li className="list-inline-item">Football</li>
                                   <li className="list-inline-item">
-                                    September 24, 2017
+                                    12 Juin 2023
                                   </li>
                                 </ul>
                               </div>
@@ -437,7 +420,7 @@ const News = () => {
               </div>
             </div>
 
-          <div className="col-lg-4 col-md-12">
+            <div className="col-lg-4 col-md-12">
               <div className="row">
                 <div className="col-md-12">
                   <div className="follow-widget">
