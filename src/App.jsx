@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
 import MatchCree from "./pages/MatchCree";
 import MatchAffiche from "./pages/MatchAffiche";
+import Dashboard from "./comps/Dashboard";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
                     {token ? <>
                         <Route path="/match/cree-match" element={<MatchCree />} />
                         <Route path="/club" element={<Club />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                     </> : <>
                         <Route path="/inscription" element={<Inscription />} />
                     </>}
