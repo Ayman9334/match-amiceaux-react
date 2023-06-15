@@ -510,7 +510,7 @@ const NavigationBar = () => {
                                         </a>
                                         <ul className="dropdown list-unstyled">
                                             {auth ? <li>
-                                                <Link to={"/match/mes-match"}>
+                                                <Link to={"/match/mes-matchs"}>
                                                     Mes Matchs
                                                 </Link>
                                             </li> : <li>
