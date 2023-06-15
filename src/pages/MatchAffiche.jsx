@@ -20,6 +20,12 @@ const MatchAffiche = () => {
         if (matchData) window.effectCommands();
     }, [matchData]);
 
+    const FrDate = () => {
+        if (!matchData?.match_date) return null;
+        const date = new Date(matchData.match_date.slice(0, 10));
+        return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    };
+
     return (
         matchData && (
             <div className="container affiche-match py-4">
@@ -125,7 +131,7 @@ const MatchAffiche = () => {
                         {/* / project-info-box */}
                         <div className="project-info-box border rouded bg-light">
                             <p>
-                                <strong>Date :</strong> {matchData.match_date?.slice(0, 10) ?? null}
+                                <strong>Date :</strong> {<FrDate />}
                             </p>
                             <p>
                                 <strong>Temps :</strong> {matchData.match_date?.slice(11, 16) ?? null}
