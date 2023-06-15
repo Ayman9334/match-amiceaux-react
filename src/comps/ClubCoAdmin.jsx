@@ -13,8 +13,7 @@ import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
 import { SplitButton } from 'primereact/splitbutton';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from "primereact/inputtext";
-import { Messages } from 'primereact/messages';
-import { useNavigate } from "react-router-dom";
+
 
 const ClubAdmin = ({ clubinfos }) => {
 
@@ -48,48 +47,22 @@ const ClubAdmin = ({ clubinfos }) => {
   }, []);
 
 
-  // Delete Club----------------------------------------------------------
-  const deleteClub = (id) => {
-    axiosClient
-      .delete(`/club/suprimer/${id}`)
-      .then(() => {
-        location.reload();
-      })
-      .catch(() => (location.href = "/erreur de suppression"))
-  };
-
-  const acceptClub = (id) => {
-    deleteClub(id);
-    notification.current.show({ severity: 'success', summary: 'Success', detail: `Le club a été supprimé`, life: 3000 });
-  };
-
-  const rejectClub = () => { };
-  const confirm2 = (id) => {
-    confirmPopup({
-      message: 'Do you want to delete this club?',
-      icon: 'fa fa-info-circle',
-      acceptClassName: 'p-button-danger',
-      accept: () => acceptClub(id),
-      reject: () => rejectClub()
-    });
-  };
-  // End Delete Club-------------------------------------------------------
 
   // Update Club-------------------------------------------
   const [showDialog, setShowDialog] = useState(false);
   const [newClubName, setNewClubName] = useState('');
 
   const handleUpdateClubName = (id, nom) => {
-    const send = { 'id': id, 'nom_club': nom }
-
+    const newclub = { 'id': id, 'nom_club': nom }
+    console.log(newclub)
     axiosClient
-      .put(`/club/modifier/${id}`, send)
+      .put(`/club/modifier/${id}`, newclub)
       .then(() => {
         notification.current.show({ severity: 'success', summary: 'Success', detail: 'Nom du club a été modifié avec succées', life: 3000 });
         location.reload();
       })
       .catch(() => (location.href = "/erreur de Modification"))
-    setShowDialog(false);
+      setShowDialog(false);
   };
 
   // End Update Club---------------------------------------
@@ -104,14 +77,8 @@ const ClubAdmin = ({ clubinfos }) => {
         notification.current.show({ severity: 'success', summary: 'Success', detail: 'La demande a été accepté avec succées', life: 3000 });
         location.reload();
       })
-      .catch(({ response }) => {
-        if (response && response.status == 403) {
-            notification.current.show({ severity: 'error', summary: response.data.message, life: 3000 });
-        }else if (response && response.status == 405){
-          notification.current.show({ severity: 'warn', summary: response.data.message, life: 3000 });
-        }
-    });
-};
+      .catch(() => (location.href = "/Ooops"))
+  };
 
   const deleteInvitation = (id) => {
     const refuse = { 'acceptation': false, 'demandeId': id }
@@ -159,6 +126,28 @@ const ClubAdmin = ({ clubinfos }) => {
     });
   };
 
+// Quitter le Club-------------------------
+const toast = useRef(null);
+const buttonEl = useRef(null);
+const [visibleQ, setVisibleQ] = useState(false);
+
+
+const QuitterClub = () => {
+    axiosClient
+          .delete("/club/exit")
+          .then(() => {
+            location.reload();
+            notification.current.show({severity:'success', summary: 'Success', detail:'Vous avez quitté le club avec succées', life: 3000});
+          })
+        .catch(() => (location.href = "/erreur")) 
+  };
+
+  const acceptQuit = () => {
+    QuitterClub()
+  };
+
+  const rejectQuit = () => {};
+// End Quitter le Club-------------------------
 
   // Settings of the club----------------
   const items = [
@@ -166,51 +155,17 @@ const ClubAdmin = ({ clubinfos }) => {
       label: 'Modifier le club',
       icon: 'fa fa-refresh',
       command: () => setShowDialog(true)
-      // command: () => {
-      //   notification.current.show({ severity: 'success', summary: 'Modifier le club', detail: 'Le club a été modifié' });
-      // }
     },
     {
-      label: 'Supprimer le club',
-      icon: 'fa fa-trash',
-
-      command: () => {
-        confirm2(clubinfos.id)
-      }
+      separator: true,
     },
-    {separator: true},
     {
       label: 'Quitter le Club',
       icon: 'fa fa-sign-out',
-      command: () => {
-        // addMessages()
-        QuitterClub()      
+      command: () => setVisibleQ(true)
       }
-    }
-  ];
-
-  // Quitter Club---------------------
-  const QuitterClub = () => {
-    axiosClient
-          .delete("/club/exit")
-          .then(() => {
-            location.reload();
-            notification.current.show({severity:'success', summary: 'Success', detail:'Vous avez quitté le club avec succées', life: 3000});
-          })
-          .catch(({ response }) => {
-            if (response && response.status == 405) {
-                notification.current.show({ severity: 'warn',sticky: true, summary: response.data.message, life: 5000 });
-            }
-        });
-};
-
-//   // Message error /Quitter Club
-//   const msgs = useRef(null);
-//   const addMessages = () => {
-//     msgs.current.show([
-//         { severity: 'warn', summary: 'Warning', detail: '', sticky: true, closable: true },
-//     ]);
-// };
+    ];
+    items.ref = buttonEl;
 
   // regenerer le code-----------------------------
   const RegenererCode = () => {
@@ -227,47 +182,11 @@ const ClubAdmin = ({ clubinfos }) => {
       .catch(() => (location.href = "/désole"))
   };
 
-  // Change Role---------------------------------------------------------
-  const [selectedRole, setSelectedRole] = useState('');
-  const roleOptions = [
-    { label: 'Proprietaire', value: 'proprietaire' },
-    { label: 'Coproprietaire', value: 'coproprietaire' },
-    { label: 'Membre', value: 'membre' },
-  ];
-  const [editingMember, setEditingMember] = useState('');
-
-  const editRole = (memberId) => {
-    setEditingMember(memberId);
-    setSelectedRole('');
-  };
-
-  const saveRole = (memberId) => {
-    const newRole = selectedRole;
-    ChangeRole(memberId, newRole);
-    setEditingMember('');
-  };
-
-  const cancelEdit = () => {
-    setEditingMember('');
-  };
-
-  const ChangeRole = (id, role) => {
-    const send = { 'changeurId': id, 'nouveauRole': role }
-    axiosClient
-      .post("/club/changeroles", send)
-      .then(() => {
-        notification.current.show({ severity: 'success', summary: 'Success', detail: 'Le Role a été changé', life: 3000 });
-        location.reload();
-      })
-      .catch(() => (location.href = "/Erreur!!"))
-  };
-  // End change role--------------------------------------
 
 
   return (
     <div className="container">
       <h1 className="text-center m-4">{clubinfos.nom_club}</h1>
-      {/* <Messages ref={msgs} /> */}
       <div className="row d-flex justify-content-center">
         <div className="col-lg-8 d-flex">
           <div className="card w-100">
@@ -308,6 +227,10 @@ const ClubAdmin = ({ clubinfos }) => {
                     </div>
                   </Dialog>
                 </div>
+                <Toast ref={toast} />
+                    <ConfirmPopup target={buttonEl.current} visible={visibleQ} onHide={() => setVisibleQ(false)} 
+                        message="Êtes-vous sûr(e) de vouloir quitter le club ?" acceptClassName='p-button-danger' icon="fa fa-exclamation-triangle" accept={acceptQuit} reject={rejectQuit} />
+
               </div>
               <div className="table-responsive mt-3 no-wrap">
                 <table className="table vm no-th-brd pro-of-month mb-0">
@@ -332,20 +255,11 @@ const ClubAdmin = ({ clubinfos }) => {
                         <td className="d-flex align-self-center">{member.member_role}</td>
                         {member.member_id === clubinfos.member_id ? null :
                           <td>
-                            {editingMember === member.member_id ? (
-                              <div className="d-flex justify-content-end">
-                                <Dropdown options={roleOptions} value={selectedRole} onChange={(e) => setSelectedRole(e.value)} placeholder="Select Role" className="m-1" />
-                                <Button icon="fa fa-check" className="m-1" onClick={() => saveRole(member.member_id)} label="Save" rounded text raised severity="success" title="Save" aria-label="Save" />
-                                <Button icon="fa fa-times" className="m-1" onClick={() => cancelEdit()} label="Cancel" rounded text raised severity="warning" title="Cancel" aria-label="Cancel" />
-                              </div>
-                            ) : (
                               <div className="d-flex justify-content-end">
                                 <Toast ref={notification} />
                                 <ConfirmPopup />
-                                <Button icon="fa fa-edit" className="m-1" onClick={() => editRole(member.member_id)} label="Edit" rounded text raised severity="help" title="Edit" aria-label="Edit" />
                                 <Button icon="fa fa-times" className="m-1" onClick={(event) => confirm1(event, member.member_id)} label="Supprimer" rounded text raised severity="danger" title="Réfuser" aria-label="Cancel" />
                               </div>
-                            )}
                           </td>
                         }
                       </tr>
