@@ -1,12 +1,25 @@
+import { useState } from 'react';
 import '../css/acceuil.css';
+import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
 
+export default function Home(props) {
+    const [showDialog, setShowDialog] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
+    const handleShowDialog = (user) => {
+        setSelectedUser(user);
+        setShowDialog(true);
+    };
 
-export default function Home({ users }) {
+    const handleHideDialog = () => {
+        setShowDialog(false);
+    };
+
     return (
         <div className="row">
-            {/* <div className="col-xl-4">
-            <div className="card-box">
+            <div className="col-md-4 col-sm-12">
+                {/* <div className="card-box">
                 <h4 className="header-title mt-0">Personal Information</h4>
                 <div className="panel-body">
                     <p className="text-muted font-13">Hye, I’m Johnathan Doe residing in this beautiful world. I create websites and mobile apps with great UX and UI design. I have done work with big companies like Nokia, Google and Yahoo. Meet me or Contact me for any queries. One Extra line for filling space. Fill as many you want.</p>
@@ -25,90 +38,32 @@ export default function Home({ users }) {
                         <li className="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" className="tooltips" href="" data-original-title="Skype"><i className="fa fa-skype"></i></a></li>
                     </ul>
                 </div>
-            </div>
-            <div className="card-box ribbon-box">
-                <div className="ribbon ribbon-primary">Messages</div>
-                <div className="clearfix"></div>
-                <div className="inbox-widget">
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Tomaslau</p>
-                            <p className="inbox-item-text">I've finished it! See you so...</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Stillnotdavid</p>
-                            <p className="inbox-item-text">This theme is awesome!</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar4.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Kurafire</p>
-                            <p className="inbox-item-text">Nice to meet you</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar5.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Shahedk</p>
-                            <p className="inbox-item-text">Hey! there I'm available...</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Adhamdannaway</p>
-                            <p className="inbox-item-text">This theme is awesome!</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Tomaslau</p>
-                            <p className="inbox-item-text">I've finished it! See you so...</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div className="inbox-item">
-                            <div className="inbox-item-img"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" className="rounded-circle" alt=""/></div>
-                            <p className="inbox-item-author">Stillnotdavid</p>
-                            <p className="inbox-item-text">This theme is awesome!</p>
-                            <p className="inbox-item-date">
-                                <button type="button" className="btn btn-icon btn-sm waves-effect waves-light btn-success">Reply</button>
-                            </p>
-                        </div>
-                    </a>
+            </div> */}
+
+                <div className="card-box ribbon-box">
+                    <div className="ribbon ribbon-primary">Members</div>
+                    <div className="clearfix"></div>
+                    <div className="inbox-widget">
+                        {props.users.map((user) => (
+                            <div className="inbox-item" key={user.id}>
+                                <div className="inbox-item-img">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" className="rounded-circle" alt="" />
+                                </div>
+                                <p className="inbox-item-author">{user.nom}</p>
+                                <div className="inbox-item-date">
+                                    <Button label="Voir plus" severity="success" rounded onClick={() => handleShowDialog(user)}/>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div> */}
-            <div className="col-xl-8">
+            <div className="col-md-8 col-sm-12">
                 <div className="row d-flex align-items-center justify-content-center m-1">
                     <div className="col-sm-4">
                         <div className="card-box tilebox-one card shadow rounded-5"><i className="icon-layers float-right text-muted"></i>
                             <h6 className="text-muted text-uppercase text-center mt-0">Membres</h6>
-                            <h2 className="text-center" data-plugin="counterup">{users.length}</h2>
+                            <h2 className="text-center" data-plugin="counterup">{props.users.length}</h2>
                             {/* <span className="badge badge-custom">+11% </span><span className="text-muted">From previous period</span> */}
                         </div>
                     </div>
@@ -122,91 +77,86 @@ export default function Home({ users }) {
                     <div className="col-sm-4">
                         <div className="card-box tilebox-one card shadow rounded-5"><i className="icon-rocket float-right text-muted"></i>
                             <h6 className="text-muted text-uppercase text-center mt-0">Clubs</h6>
-                            <h2 className="text-center" data-plugin="counterup">8</h2>
+                            <h2 className="text-center" data-plugin="counterup">{props.clubs.length}</h2>
                             {/* <span className="badge badge-custom">+89% </span><span className="text-muted">Last year</span> */}
                         </div>
                     </div>
                 </div>
                 {/* <div className="card-box">
-                <h4 className="header-title mt-0 mb-3">Experience</h4>
-                <div className="">
-                    <div className="">
-                        <h5 className="text-custom">Lead designer / Developer</h5>
-                        <p className="mb-0">websitename.com</p>
-                        <p><b>2010-2015</b></p>
-                        <p className="text-muted font-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <h4 className="header-title mb-3">Matchs</h4>
+                    <div className="table-responsive">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Project Name</th>
+                                    <th>Start Date</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Assign</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Adminox Admin</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span className="label label-info">Work in Progress</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Adminox Frontend</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span className="label label-success">Pending</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Adminox Admin</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span className="label label-pink">Done</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Adminox Frontend</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span className="label label-purple">Work in Progress</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Adminox Admin</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span className="label label-warning">Coming soon</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <hr/>
-                    <div className="">
-                        <h5 className="text-custom">Senior Graphic Designer</h5>
-                        <p className="mb-0">coderthemes.com</p>
-                        <p><b>2007-2009</b></p>
-                        <p className="text-muted font-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    </div>
-                </div>
+                </div> */}
             </div>
-            <div className="card-box">
-                <h4 className="header-title mb-3">My Projects</h4>
-                <div className="table-responsive">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Project Name</th>
-                                <th>Start Date</th>
-                                <th>Due Date</th>
-                                <th>Status</th>
-                                <th>Assign</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Adminox Admin</td>
-                                <td>01/01/2015</td>
-                                <td>07/05/2015</td>
-                                <td><span className="label label-info">Work in Progress</span></td>
-                                <td>Coderthemes</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Adminox Frontend</td>
-                                <td>01/01/2015</td>
-                                <td>07/05/2015</td>
-                                <td><span className="label label-success">Pending</span></td>
-                                <td>Coderthemes</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Adminox Admin</td>
-                                <td>01/01/2015</td>
-                                <td>07/05/2015</td>
-                                <td><span className="label label-pink">Done</span></td>
-                                <td>Coderthemes</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Adminox Frontend</td>
-                                <td>01/01/2015</td>
-                                <td>07/05/2015</td>
-                                <td><span className="label label-purple">Work in Progress</span></td>
-                                <td>Coderthemes</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Adminox Admin</td>
-                                <td>01/01/2015</td>
-                                <td>07/05/2015</td>
-                                <td><span className="label label-warning">Coming soon</span></td>
-                                <td>Coderthemes</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> */}
-            </div>
+            <Dialog visible={showDialog} onHide={handleHideDialog} header="Informations supplémentaires" modal className="additional-info-dialog" footer={<Button label="Close" className="p-button-text" onClick={handleHideDialog} />} dismissableMask>
+                {selectedUser && (
+                    <>
+                        <p>Nom : {selectedUser.nom}</p>
+                        <p>Tel : {selectedUser.n_telephone}</p>
+                        <p>Email : {selectedUser.email}</p>
+                        <p>Adresse : {selectedUser.adresse}</p>
+                        <p>Ville : {selectedUser.ville}</p>
+                        <p>Région : {selectedUser.region}</p>
+                        <p>Catégorie : {selectedUser.categorie}</p>
+                        <p>Niveau : {selectedUser.niveau}</p>
+                        <p>League : {selectedUser.league}</p>
+                    </>
+                )}
+            </Dialog>
         </div>
-
-    )
+    );
 }
-
