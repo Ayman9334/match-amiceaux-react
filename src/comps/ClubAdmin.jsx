@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import axiosClient from '../configs/api/axios-config';
 import { Badge } from 'primereact/badge';
 import { useStateContext } from "../configs/context/ContextProvider";
-import { useClickOutside } from 'primereact/hooks';
 import "../css/index.css";
 import { Toast } from 'primereact/toast';
 import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
@@ -14,7 +13,6 @@ import { SplitButton } from 'primereact/splitbutton';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from "primereact/inputtext";
 import { Messages } from 'primereact/messages';
-import { useNavigate } from "react-router-dom";
 
 const ClubAdmin = ({ clubinfos }) => {
 
@@ -133,13 +131,6 @@ const ClubAdmin = ({ clubinfos }) => {
       })
       .catch(() => (location.href = "/erreur de suppression"))
   };
-
-  // // click outside 
-  // const overlayRef = useRef(null);
-  // useClickOutside(overlayRef, () => {
-  //   setVisible(false);
-  // });
-
 
   // comfirmPopup Of Deleting Member
   const accept = (id) => {
@@ -280,7 +271,7 @@ const ClubAdmin = ({ clubinfos }) => {
                 <div className="d-flex justify-content-center">
                   <Toast ref={notification} />
                   <SplitButton className="splitbutton" label="Ajouter Membres" icon="fa fa-plus" onClick={() => setVisible(true)} model={items} severity="success" rounded />
-                  <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} onHide={() => setVisible(false)} className="dialog">
+                  <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} onHide={() => setVisible(false)} className="dialog" dismissableMask>
                     <p className="text-muted text-center mb-4 mt-0">juste cliquer pour copier</p>
                     <div className="d-flex justify-content-between align-items-center rounded w-75-sm">
                       <span ref={link} className="text-end">Lien</span>
@@ -295,7 +286,7 @@ const ClubAdmin = ({ clubinfos }) => {
                     </div>
                   </Dialog>
 
-                  <Dialog header="Modifier le club" visible={showDialog} onHide={() => setShowDialog(false)} className="dialog">
+                  <Dialog header="Modifier le club" visible={showDialog} onHide={() => setShowDialog(false)} className="dialog" dismissableMask>
                     <div className="p-fluid">
                       <div className="p-field p-float-label">
                         <InputText id="newClubName" type="text" value={newClubName} onChange={(e) => setNewClubName(e.target.value)} />
@@ -366,7 +357,7 @@ const ClubAdmin = ({ clubinfos }) => {
               {invitationInfos.length ?
                 invitationInfos.map(invite => <div className="row mb-2 border-rounded rounded-pill" key={invite.id}>
                   <div className="col-8 d-flex">
-                    <Avatar className="shadow" image={invite.logo} size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
+                    <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
                     <h5 className="d-flex align-items-center mx-3">{invite.nom}</h5>
                   </div>
                   <div className="col-4 d-flex justify-content-end">
