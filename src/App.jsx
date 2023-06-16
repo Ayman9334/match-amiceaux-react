@@ -12,6 +12,7 @@ import Loading from './Loading';
 import MatchCree from "./pages/MatchCree";
 import MatchAffiche from "./pages/MatchAffiche";
 import Dashboard from "./comps/Dashboard";
+import UtilisateurMatch from "./pages/UtilisateurMatch";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/match/affiche-match/:matchId" element={<MatchAffiche />} />
                     {token ? <>
                         <Route path="/match/cree-match" element={<MatchCree />} />
+                        <Route path="/match/mes-matchs" element={<UtilisateurMatch />} />
                         <Route path="/club" element={<Club />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                     </> : <>

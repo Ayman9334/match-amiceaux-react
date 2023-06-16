@@ -11,9 +11,13 @@ const MatchAffiche = () => {
     const { matchId } = useParams();
 
     useEffect(() => {
-        axiosClient.get(`/match/affiche-match/${matchId}`).then(({ data }) => {
-            setMatchData(data);
-        });
+        axiosClient
+            .get(`/match/affiche-match/${matchId}`)
+            .then(({ data }) => {
+                console.log(data)
+                setMatchData(data);
+            })
+            .catch((err) => console.log(err));
     }, []);
 
     useEffect(() => {
