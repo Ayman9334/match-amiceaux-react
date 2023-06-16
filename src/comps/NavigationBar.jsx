@@ -6,10 +6,8 @@ import Utilisateurmenu from "./UtilisateurMenu";
 import { Tooltip } from "primereact/tooltip";
 
 const NavigationBar = () => {
-    const { token } = useStateContext()
-    const [auth] = useState(token ? true : false)
-
-
+    const { token } = useStateContext();
+    const [auth] = useState(token ? true : false);
 
     return (
         <>
@@ -86,27 +84,28 @@ const NavigationBar = () => {
                     <div className="sub-logo-area">
                         <div className="logo">
                             <Link to="/">
-                                <img
-                                    src="/view/resources/img/logo-match.png"
-                                    className="h-100 p-2"
-                                />
+                                <img src="/view/resources/img/logo-match.png" className="h-100 p-2" />
                             </Link>
                         </div>
                         <div>
                             <div className="searchbar text-right">
-                                {auth ? <Utilisateurmenu /> : <>
-                                    <Link to={"/inscription"} onClick={() => exitpopup.current.click()}>
-                                        <u className="m-2">Créer un compte</u>
-                                    </Link>
-                                    <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#loginModal"
-                                        className="btn btn-success descktop-btn"
-                                    >
-                                        <span className="fa fa-user" /> Se Connecter
-                                    </a>
-                                </>}
+                                {auth ? (
+                                    <Utilisateurmenu />
+                                ) : (
+                                    <>
+                                        <Link to={"/inscription"} onClick={() => exitpopup.current.click()}>
+                                            <u className="m-2">Créer un compte</u>
+                                        </Link>
+                                        <a
+                                            href="#"
+                                            data-toggle="modal"
+                                            data-target="#loginModal"
+                                            className="btn btn-success descktop-btn"
+                                        >
+                                            <span className="fa fa-user" /> Se Connecter
+                                        </a>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -116,10 +115,7 @@ const NavigationBar = () => {
 
             {!auth && <LoginPopup />}
 
-
-
             <section className="menu-area">
-
                 {/* /.modal */}
                 <div className="container">
                     <div className="row">
@@ -509,33 +505,43 @@ const NavigationBar = () => {
                                             MATCH <i className="fa fa-angle-down" />
                                         </a>
                                         <ul className="dropdown list-unstyled">
-                                            {auth ? <li>
-                                                <Link to={"/match/mes-matchs"}>
-                                                    Mes Matchs
-                                                </Link>
-                                            </li> : <li>
-                                                <Tooltip target=".disabled-match-lien" />
-                                                <a
-                                                    className="disabled-match-lien"
-                                                    style={{ color: 'grey' }}
-                                                    data-pr-tooltip="connectez-vous pour utiliser cette fonctionnalité"
-                                                    data-pr-position="top"
-                                                >
-                                                    Mes Matchs
-                                                </a>
-                                            </li>}
                                             <li>
-                                                <Link to={"/match/trouve-match"}>
-                                                    Trouve Match
-                                                </Link>
+                                                <Link to={"/match/trouve-match"}>Trouve Match</Link>
                                             </li>
+                                            {auth ? (
+                                                <>
+                                                    <li>
+                                                        <Link to={"/match/mes-matchs"}>Mes Matchs</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/match/cree-match">Créer Match</Link>
+                                                    </li>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <li>
+                                                        <Tooltip target=".disabled-match-lien" />
+                                                        <a
+                                                            className="disabled-match-lien"
+                                                            style={{ color: "grey" }}
+                                                            data-pr-tooltip="connectez-vous pour cree des match"
+                                                        >
+                                                            Mes Matchs
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            className="disabled-match-lien"
+                                                            style={{ color: "grey" }}
+                                                            data-pr-tooltip="connectez-vous pour cree des match"
+                                                        >
+                                                            Créer Match
+                                                        </a>
+                                                    </li>
+                                                </>
+                                            )}
                                         </ul>
                                     </li>
-                                    {auth && <>
-                                        <li className="list-inline-item">
-                                            <Link to="/match/cree-match">CRÉER UN MATCH</Link>
-                                        </li>
-                                    </>}
                                 </ul>
                             </div>
                         </div>
@@ -549,33 +555,37 @@ const NavigationBar = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="mobile-menu">
-
                                 <nav id="dropdown">
                                     <div className="logo-area-mobile">
                                         <Link to="/">
-                                            <img src="/view/resources/img/logo-match.png" alt="" width={150} style={{ margin: 0 }} />
+                                            <img
+                                                src="/view/resources/img/logo-match.png"
+                                                alt=""
+                                                width={150}
+                                                style={{ margin: 0 }}
+                                            />
                                         </Link>
                                         <div>
-                                            {!auth && <a
-                                                href="#"
-                                                data-toggle="modal"
-                                                data-target="#loginModal"
-                                                className="btn btn-success"
-                                            >
-                                                <span className="fa fa-user" /> Se Connecter
-                                            </a>}
+                                            {!auth && (
+                                                <a
+                                                    href="#"
+                                                    data-toggle="modal"
+                                                    data-target="#loginModal"
+                                                    className="btn btn-success"
+                                                >
+                                                    <span className="fa fa-user" /> Se Connecter
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
 
-                                    <div className="searchbar text-right">
-
-                                    </div>
+                                    <div className="searchbar text-right"></div>
                                     <ul className="list-unstyled">
                                         <li>
-                                            <Link to='/'>Accueil</Link>
+                                            <Link to="/">Accueil</Link>
                                         </li>
                                         <li>
-                                            <Link to='/match/cree-match'>Creer un Match</Link>
+                                            <Link to="/match/cree-match">Creer un Match</Link>
                                         </li>
                                         <li>
                                             <a>Fonctionnement</a>
@@ -645,8 +655,7 @@ const NavigationBar = () => {
             </section>
             {/* End Mobile Menu */}
         </>
+    );
+};
 
-    )
-}
-
-export default NavigationBar
+export default NavigationBar;
