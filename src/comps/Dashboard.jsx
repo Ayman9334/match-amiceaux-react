@@ -16,7 +16,18 @@ const Dashboard = () => {
             .catch(() => (location.href = "/désole"))
     }, []);
 
+    useEffect(() => {
+        window.effectCommands();
+        axiosClient
+            .get("/clubs")
+            .then((data) => {
+                setClubInfos(data.data)
+            })
+            .catch(() => (location.href = "/désole"))
+    }, []);
+
     const [userInfos, setUserInfos] = useState([])
+    const [clubInfos, setClubInfos] = useState([])
 
   return (
     <div className="content">
@@ -42,7 +53,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="col-sm-12">
-                 <Daw userInfos={userInfos}/> 
+                 <Daw userInfos={userInfos} clubInfos={clubInfos}/> 
             </div>
         </div>
     </div>
