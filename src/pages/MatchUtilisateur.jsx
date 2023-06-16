@@ -5,12 +5,9 @@ import { AvatarGroup } from "primereact/avatargroup";
 import { Badge } from "primereact/badge";
 import { Menu } from "primereact/menu";
 import { Button } from "primereact/button";
-import { Dialog } from "primereact/dialog";
-import { TabView, TabPanel } from "primereact/tabview";
-import { Panel } from "primereact/panel";
 import MatchDemamde from "../comps/MatchDemamde";
 
-const UtilisateurMatch = () => {
+const MatchUtilisateur = () => {
     const [matchData, setmatchData] = useState();
     const [showDlg, setShowDlg] = useState();
 
@@ -104,4 +101,4 @@ const UtilisateurMatch = () => {
     );
 };
 
-export default UtilisateurMatch;
+export default MatchUtilisateur;

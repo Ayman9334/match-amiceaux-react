@@ -5,7 +5,7 @@ import { Avatar } from "primereact/avatar";
 import { useNavigate, useParams } from "react-router-dom";
 import MatchClubRejoindre from "../comps/MatchClubRejoindre";
 import { useStateContext } from "../configs/context/ContextProvider";
-import {Message} from 'primereact/message'
+import { Message } from "primereact/message";
 
 const stockageLien = import.meta.env.VITE_API_BASE_URL + "storage/";
 
@@ -58,6 +58,7 @@ const MatchAffiche = () => {
                 if (response && response.status == 403) {
                     notification.current.show({ severity: "error", summary: response.data.message, life: 5000 });
                 }
+                console.log(response.data.message);
             });
     };
 
@@ -127,7 +128,10 @@ const MatchAffiche = () => {
                                                     matchData.matchMembres.equipeA.map((matchMembre) => (
                                                         <div className="mb-2 d-flex align-items-center">
                                                             <Avatar
-                                                                label={matchMembre.split(" ").slice(0, 2).join("")}
+                                                                label={matchMembre
+                                                                    ?.split(" ")
+                                                                    .map((x) => x.slice(0, 1))
+                                                                    .join("")}
                                                                 className="mr-2"
                                                                 size="large"
                                                                 shape="circle"
@@ -169,7 +173,10 @@ const MatchAffiche = () => {
                                                     matchData.matchMembres.equipeB.map((matchMembre) => (
                                                         <div className="mb-2 d-flex align-items-center">
                                                             <Avatar
-                                                                label={matchMembre.split(" ").slice(0, 2).join("")}
+                                                                label={matchMembre
+                                                                    .split(" ")
+                                                                    .map((x) => x.slice(0, 1))
+                                                                    .join("")}
                                                                 className="mr-2"
                                                                 size="large"
                                                                 shape="circle"

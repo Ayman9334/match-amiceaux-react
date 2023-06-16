@@ -16,16 +16,14 @@ const MatchClubRejoindre = ({ clubMembres, afficheDlg, setAfficheDlg, membresSel
         }
     };
 
-    const EnvData = () => {
-        console.log(checkboxes);
-        clubInv(checkboxes);
-    };
-
     return (
         <Dialog
             header={`Envoyer une club invitation a l'equipe ${membresSelecte?.equipe}`}
             visible={afficheDlg}
-            onHide={() => setAfficheDlg(false)}
+            onHide={() => {
+                setCheckboxes([]);
+                setAfficheDlg(false);
+            }}
         >
             <div>
                 <div>
@@ -50,7 +48,7 @@ const MatchClubRejoindre = ({ clubMembres, afficheDlg, setAfficheDlg, membresSel
                 </div>
 
                 <div className="d-flex mt-4">
-                    <button className="m-auto btn btn-success" onClick={EnvData}>
+                    <button className="m-auto btn btn-success" onClick={() => clubInv(checkboxes)}>
                         Envoyer l'Invitation
                     </button>
                 </div>
