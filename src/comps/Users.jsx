@@ -1,42 +1,45 @@
-
-import React, { useState, useEffect } from 'react';
-import { classNames } from 'primereact/utils';
+import React, { useState, useEffect, useRef } from 'react';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
-import { ProgressBar } from 'primereact/progressbar';
 import { Calendar } from 'primereact/calendar';
-import { Slider } from 'primereact/slider';
 import { Tag } from 'primereact/tag';
-import { TriStateCheckbox } from 'primereact/tristatecheckbox';
 import { Avatar } from 'primereact/avatar';
+import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
+import { useStateContext } from '../configs/context/ContextProvider';
+import axiosClient from '../configs/api/axios-config';
+import { Toast } from 'primereact/toast';
 
 export default function Users({users}) {
     const membres = users;
     const [filters, setFilters] = useState(null);
     const [loading, setLoading] = useState(false);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
-    const [statuses] = useState(['unqualified', 'qualified', 'new', 'negotiation', 'renewal']);
-    const getSeverity = (status) => {
-        switch (status) {
-            case 'unqualified':
+    const [niveaues] = useState(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
+    const [leagues] = useState(['L1','L2','N1','N2','N3','CDF','CDL','TDC',]);
+
+    const getSeverity = (niveau) => {
+        switch (niveau) {
+            case 'A1':
                 return 'danger';
 
-            case 'qualified':
-                return 'success';
-
-            case 'new':
-                return 'info';
-
-            case 'negotiation':
+            case 'A2':
                 return 'warning';
 
-            case 'renewal':
+            case 'B1':
+                return 'info';
+
+            case 'B2':
                 return null;
-        }
+
+            case 'C1':
+                return 'success';
+        
+            case 'C2':
+                return 'success';        }
     };
     useEffect(() => {
             initFilters();
@@ -75,9 +78,8 @@ export default function Users({users}) {
             ville: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
             created_at: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
             n_telephone: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-            // status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-            // activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-            // verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+            niveau: { value: null, matchMode: FilterMatchMode.CONTAINS },
+            league: { value: null, matchMode: FilterMatchMode.CONTAINS },
         });
         setGlobalFilterValue('');
     };
@@ -88,7 +90,7 @@ export default function Users({users}) {
                 <Button type="button" icon="fa fa-ban" label="Clear" outlined onClick={clearFilter} />
                 <span className="p-input-icon-left">
                     <i className="fa fa-search" />
-                    <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Recherche par mot-clé" />
+                    <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Recherche par mot-clé" title='juste nom et ville'/>
                 </span>
             </div>
         );
@@ -97,7 +99,6 @@ export default function Users({users}) {
     const countryBodyTemplate = (rowData) => {
         return (
             <div className="d-flex align-items-center gap-2">
-                {/* <img alt="flag" src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" className={`flag flag-${rowData.country.code}`} style={{ width: '24px' }} /> */}
                 <span>{rowData.ville}</span>
             </div>
         );
@@ -137,59 +138,71 @@ export default function Users({users}) {
         return rowData.n_telephone;
     };
 
-    const statusBodyTemplate = (rowData) => {
-        return <Tag value={rowData.status} severity={getSeverity(rowData.status)} />;
+    const niveauBodyTemplate = (rowData) => {
+        return <Tag value={rowData.niveau} severity={getSeverity(rowData.niveau)} />;
     };
 
-    const statusFilterTemplate = (options) => {
-        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear />;
+    const niveauFilterTemplate = (options) => {
+        return <Dropdown value={options.value} options={niveaues} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={niveauItemTemplate} placeholder="Select One" className="p-column-filter" showClear />;
     };
 
-    const statusItemTemplate = (option) => {
+    const niveauItemTemplate = (option) => {
         return <Tag value={option} severity={getSeverity(option)} />;
     };
 
-    const activityBodyTemplate = (rowData) => {
-        return <ProgressBar value={rowData.activity} showValue={false} style={{ height: '6px' }}></ProgressBar>;
+    const leagueBodyTemplate = (rowData) => {
+        return rowData.league;
     };
 
-    const activityFilterTemplate = (options) => {
-        return (
-            <React.Fragment>
-                <Slider value={options.value} onChange={(e) => options.filterCallback(e.value)} range className="m-3"></Slider>
-                <div className="d-flex align-items-center justify-content-between px-2">
-                    <span>{options.value ? options.value[0] : 0}</span>
-                    <span>{options.value ? options.value[1] : 100}</span>
-                </div>
-            </React.Fragment>
-        );
-    };
-
-    const verifiedBodyTemplate = (rowData) => {
-        return <i className={classNames('fa', { 'text-green-500 fa fa-check-circle': rowData.verified, 'text-red-500 fa fa-times-circle': !rowData.verified })}></i>;
-    };
-
-    const verifiedFilterTemplate = (options) => {
-        return (
-            <div className="d-flex align-items-center gap-2">
-                <label htmlFor="verified-filter" className="font-bold">
-                    Verified
-                </label>
-                <TriStateCheckbox inputId="verified-filter" value={options.value} onChange={(e) => options.filterCallback(e.value)} />
-            </div>
-        );
+    const leagueFilterTemplate = (options) => {
+        return <Dropdown value={options.value} options={leagues} onChange={(e) => options.filterCallback(e.value, options.index)} placeholder="Select One" className="p-column-filter" showClear />;
     };
 
     const actionBodyTemplate = (rowData) => {
         return (
+            <>
+            <Toast ref={toast} />
+            <ConfirmPopup />
           <div className="action-buttons d-flex ">
-            <Button icon="fa fa-trash" className="p-button-danger ml-2" onClick={() => handleDelete(rowData.id)} label="Supprimer" rounded text raised severity="danger"/>
+            <Button icon="fa fa-trash" className="p-button-danger ml-2" onClick={(event) => ClickDelete(event,rowData.id)} label="Supprimer" rounded text raised severity="danger"/>
             <Button icon="fa fa-pencil" className="p-button-primary" onClick={() => handleEdit(rowData.id)}  label="Editer" rounded text raised severity="help"/>
-          </div>
+          </div></>
         );
       };
       
     const header = renderHeader();
+
+
+      // delete members
+      const { notification } = useStateContext();
+      const toast = useRef(null);
+  const deleteMembre = (id) => {
+    axiosClient
+      .delete(`/members/${id}`)
+      .then(() => {
+        location.reload();
+      })
+      .catch(() => (location.href = "/erreur de suppression"))
+  };
+
+  // comfirmPopup Of Deleting Member
+  const accept = (id) => {
+    deleteMembre(id);
+    notification.current.show({ severity: 'success', summary: 'Success', detail: `Le membre ${id} a été supprimé`, life: 3000 });
+  };
+
+  const reject = () => { };
+  const ClickDelete = (event, id) => {
+    console.log(id)
+    confirmPopup({
+      target: event.currentTarget,
+      message: 'Do you want to delete this member?',
+      icon: 'fa fa-info-circle',
+      acceptClassName: 'p-button-danger',
+      accept: () => accept(id),
+      reject
+    });
+  };
 
     return (
         <div className="card">
@@ -202,10 +215,9 @@ export default function Users({users}) {
                     filterApply={filterApplyTemplate} filterFooter={filterFooterTemplate} />
                 <Column header="N° de telephone" filterField="n_telephone" style={{ minWidth: '10rem' }} body={n_telephoneBodyTemplate} filter />
                 <Column header="Date de rejoindre" filterField="created_at" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
-                <Column header="Actions" body={actionBodyTemplate} style={{ width: '10rem', textAlign: 'center' }} />
-                {/* <Column field="status" header="Status" filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
-                <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: '12rem' }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
-                <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '8rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} /> */}
+                <Column field="niveau" header="Niveau" showFilterMatchModes={false} filterMenuStyle={{ width: '5rem' }} style={{ minWidth: '8rem' }} body={niveauBodyTemplate} filter filterElement={niveauFilterTemplate} />
+                <Column field="league" header="league"  showFilterMatchModes={false} style={{ minWidth: '2rem' }} body={leagueBodyTemplate} filter filterElement={leagueFilterTemplate} />
+                <Column header="Actions" body={actionBodyTemplate}  style={{ width: '10rem', textAlign: 'center' }} />
             </DataTable>
         </div>
     );
