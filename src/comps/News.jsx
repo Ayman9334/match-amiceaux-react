@@ -39,8 +39,8 @@ const News = () => {
                       </ul>
                     </div>
                     {/* Tab panes */}
-                    <div className="card shadow rounded-5 mb-3">
-                      <div className="bg-success round-top p-3">
+                    <div className="card mb-3">
+                      <div className="card-header bg-red">
                         <h5 className="card-title text-white">Rencontre amicale</h5>
                       </div>
                       <div className="card-body">
