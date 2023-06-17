@@ -26,8 +26,19 @@ const Dashboard = () => {
             .catch(() => (location.href = "/désole"))
     }, []);
 
+    useEffect(() => {
+        window.effectCommands();
+        axiosClient
+            .get("/matchs")
+            .then((data) => {
+                setmatchInfos(data.data)
+            })
+            .catch(() => (location.href = "/désole"))
+    }, []);
+
     const [userInfos, setUserInfos] = useState([])
     const [clubInfos, setClubInfos] = useState([])
+    const [matchInfos, setmatchInfos] = useState([])
 
   return (
     <div className="content">
@@ -44,16 +55,16 @@ const Dashboard = () => {
                                 <h4 className="mt-1 mb-1 font-18">Admin</h4>
                             </div>
                         </div>
-                        <div className="col-sm-6">
+                        {/* <div className="col-sm-6">
                             <div className="text-right">
                                 <button type="button" className="btn btn-light waves-effect"><i className="mdi mdi-account-settings-variant mr-1"></i> Edit Profile</button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
             <div className="col-sm-12">
-                 <Daw userInfos={userInfos} clubInfos={clubInfos}/> 
+                 <Daw userInfos={userInfos} clubInfos={clubInfos} matchInfos={matchInfos}/> 
             </div>
         </div>
     </div>
