@@ -468,19 +468,6 @@ const News = () => {
                   </div>
                 </div>
                 <div className="col-md-12">
-                  <div className="add-widget">
-                    <img
-                      src="view/resources/img/template/add1.jpg"
-                      alt=""
-                      className="img-fluid"
-                    />
-                    <div className="add-layer text-center">
-                      <p>Best Template For Your Online News</p>
-                      <a href="#">Buy Now</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12">
                   <div className="tab-widget">
                     <ul className="nav nav-tabs" role="tablist">
                       <li className="nav-item">

@@ -1477,35 +1477,6 @@ html {
     margin-bottom: 0;
   }
   
-  .slider-area2 .add-widget {
-    margin-bottom: 40px;
-    position: relative;
-  }
-  
-  .slider-area2 .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .slider-area2 .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .slider-area2 .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
-  }
   
   .slider-area2 .tab-widget {
     margin-bottom: 35px;
@@ -2522,35 +2493,7 @@ html {
     background: #e42c27;
   }
   
-  .news-area .add-widget {
-    margin-bottom: 40px;
-    position: relative;
-  }
-  
-  .news-area .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .news-area .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .news-area .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
-  }
+
   
   .news-area .tab-widget ul.nav {
     border-bottom: none;
@@ -3181,34 +3124,6 @@ html {
     background: #e42c27;
   }
   
-  .news-area2 .add-widget {
-    position: relative;
-  }
-  
-  .news-area2 .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .news-area2 .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .news-area2 .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
-  }
   
   /* =======================================
   14. More News Area
@@ -3422,36 +3337,6 @@ html {
   
   .more-news-area .mv-widget .mv-slider .owl-nav div.owl-prev {
     right: 25px;
-  }
-  
-  .more-news-area .add-widget {
-    margin-bottom: 35px;
-    position: relative;
-  }
-  
-  .more-news-area .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .more-news-area .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .more-news-area .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
   }
   
   .more-news-area .tag-widget .sec-title {
@@ -4143,37 +4028,7 @@ html {
   .int-lif .more-news .more-slider .owl-nav div.owl-prev {
     right: 25px;
   }
-  
-  .int-lif .add-widget {
-    margin-bottom: 35px;
-    position: relative;
-  }
-  
-  .int-lif .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .int-lif .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .int-lif .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
-  }
-  
+
   .int-lif .mv-widget {
     margin-bottom: 35px;
   }
@@ -5031,36 +4886,6 @@ html {
   
   .category1-area .follow-widget ul li:nth-child(6) a {
     background: #e42c27;
-  }
-  
-  .category1-area .add-widget {
-    margin-bottom: 35px;
-    position: relative;
-  }
-  
-  .category1-area .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .category1-area .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .category1-area .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
   }
   
   .category1-area .tab-widget {
@@ -5944,36 +5769,6 @@ html {
   
   .category-details .follow-widget ul li:nth-child(6) a {
     background: #e42c27;
-  }
-  
-  .category-details .add-widget {
-    margin-bottom: 35px;
-    position: relative;
-  }
-  
-  .category-details .add-widget .add-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 50px;
-  }
-  
-  .category-details .add-widget .add-layer p {
-    font-size: 20px;
-    color: #fff;
-    max-width: 230px;
-    margin: auto auto 35px;
-  }
-  
-  .category-details .add-widget .add-layer a {
-    color: #fff;
-    background: #d32f2f;
-    text-transform: uppercase;
-    padding: 10px 15px 8px;
-    border-radius: 2px;
-    font-weight: 500;
   }
   
   .category-details .tab-widget {
