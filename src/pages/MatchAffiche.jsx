@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import MatchClubRejoindre from "../comps/MatchClubRejoindre";
 import { useStateContext } from "../configs/context/ContextProvider";
 import { Message } from "primereact/message";
+import { Divider } from "primereact/divider";
 
 const stockageLien = import.meta.env.VITE_API_BASE_URL + "storage/";
 
@@ -222,6 +223,19 @@ const MatchAffiche = () => {
                     </div>
                     <div className="col-md-5">
                         <div className="project-info-box mt-0 border rouded  bg-light">
+                            <div className="d-flex align-items-center pb-1">
+                                <Avatar
+                                    label={matchData.organisateur
+                                        .split(" ")
+                                        .map((x) => x.slice(0, 1))
+                                        .join("")}
+                                    className="mr-2"
+                                    size="large"
+                                    shape="circle"
+                                />
+                                <span className="font-weight-bold">{matchData.organisateur}</span>
+                            </div>
+                            <Divider />
                             <h5>DESCRIPTION :</h5>
                             <p className="mt-2">{matchData.description ?? null}</p>
                         </div>

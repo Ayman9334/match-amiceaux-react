@@ -48,7 +48,15 @@ const MatchsTable = ({ matchsdata }) => {
                                     </div>
                                     <div className="card-body py-3">
                                         <div className="d-flex align-items-center">
-                                            <Avatar label="AE" className="mr-2" size="large" shape="circle" />
+                                            <Avatar
+                                                label={x.organisateur_nom
+                                                    .split(" ")
+                                                    .map((x) => x.slice(0, 1))
+                                                    .join("")}
+                                                className="mr-2"
+                                                size="large"
+                                                shape="circle"
+                                            />
                                             <span className="font-weight-bold">{x.organisateur_nom}</span>
                                         </div>
                                         <Divider />
@@ -84,7 +92,9 @@ const MatchsTable = ({ matchsdata }) => {
                             </div>
                         ))
                     ) : (
-                        <p className="ml-4 my-4" style={{fontSize:'16px'}}>there is no match with this specific informations</p>
+                        <p className="ml-4 my-4" style={{ fontSize: "16px" }}>
+                            there is no match with this specific informations
+                        </p>
                     )}
                 </div>
             </div>
