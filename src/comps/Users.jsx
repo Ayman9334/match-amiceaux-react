@@ -165,7 +165,6 @@ export default function Users({users}) {
             <ConfirmPopup />
           <div className="action-buttons d-flex ">
             <Button icon="fa fa-trash" className="p-button-danger ml-2" onClick={(event) => ClickDelete(event,rowData.id)} label="Supprimer" rounded text raised severity="danger"/>
-            <Button icon="fa fa-pencil" className="p-button-primary" onClick={() => handleEdit(rowData.id)}  label="Editer" rounded text raised severity="help"/>
           </div></>
         );
       };

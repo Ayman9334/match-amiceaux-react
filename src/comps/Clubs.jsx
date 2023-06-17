@@ -28,7 +28,7 @@ export default function Clubs({clubs}) {
         return (
           <div>
             {rowData.members.map((member) => (
-              <div key={member.utilisateur_id} className="d-flex align-items-center">
+              <div key={member.utilisateur_id} className="d-flex align-items-center p-1">
                 <Avatar className="shadow" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvn-SLuF3gyO6NW2Z_qB4dDyNmihcis4DnDg&usqp=CAU" size="large" onClick={(e) => menu.current.toggle(e)} shape="circle" />
                 <span className="ml-3">{member.nom}</span>
               </div>
@@ -40,7 +40,7 @@ export default function Clubs({clubs}) {
         return (
           <div>
             {rowData.members.map((member) => (
-              <div key={member.utilisateur_id}>
+              <div key={member.utilisateur_id} className="d-flex align-items-center p-3">
                 <span>{member.member_role}</span>
               </div>
             ))}
