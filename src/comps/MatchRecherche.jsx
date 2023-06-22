@@ -121,7 +121,7 @@ const MatchRecherche = ({ chercheForm, setChercheForm, setMatchsdata }) => {
                         name="ligues"
                         id="ligues"
                         options={enums.leagues}
-                        placeholder="Niveaus"
+                        placeholder="ligues"
                         onChange={setSelectMatch}
                         isMulti
                     />

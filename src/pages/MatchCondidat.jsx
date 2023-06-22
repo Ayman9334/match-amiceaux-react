@@ -1,53 +1,30 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/match.css";
-import { Avatar } from "primereact/avatar";
-import { AvatarGroup } from "primereact/avatargroup";
-import { Badge } from "primereact/badge";
-import { Menu } from "primereact/menu";
-import { Button } from "primereact/button";
-import MatchDemamde from "../comps/MatchDemamde";
-import Galerie from "../comps/Galerie";
-import { useEffect } from "react";
-import axiosClient from "../configs/api/axios-config";
 import { useStateContext } from "../configs/context/ContextProvider";
+import axiosClient from "../configs/api/axios-config";
+import { Button } from "primereact/button";
+import { AvatarGroup } from "primereact/avatargroup";
+import { Avatar } from "primereact/avatar";
+import Galerie from "../comps/Galerie";
+import { Badge } from "primereact/badge";
 
 const stockageLien = import.meta.env.VITE_API_BASE_URL + "storage/";
-
-const MatchUtilisateur = () => {
+const MatchCondidat = () => {
     const { notification } = useStateContext();
-    const [showDlg, setShowDlg] = useState();
     const [matchData, setmatchData] = useState([]);
-    const [demandes, setDemandes] = useState([]);
+    const [matchRole, setMatchRole] = useState();
 
     useEffect(() => {
         window.effectCommands();
-        axiosClient.get("/match/affiche-user-matchs").then(({ data }) => {
-            setmatchData(data);
-        });
+        getMatchs();
     }, []);
 
-    const menu = useRef();
-
-    const items = [
-        {
-            label: "Modifier",
-            icon: "fa fa-wrench",
-            command: () => {
-                //
-            },
-        },
-        {
-            label: "Suprimer",
-            icon: "fa fa-trash-o",
-            command: () => {
-                //
-            },
-        },
-    ];
-
-    const FrDate = ({ matchDate }) => {
-        const date = new Date(matchDate);
-        return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    const getMatchs = () => {
+        axiosClient.get("/match/participant").then(({ data }) => {
+            console.log(data);
+            setmatchData(data.matchs);
+            setMatchRole(data.club_role);
+        });
     };
 
     const ExtMembre = ({ matchMbr }) => {
@@ -58,32 +35,21 @@ const MatchUtilisateur = () => {
         }
     };
 
-    const afficheDMs = (Matchdemandes) => {
-        setDemandes(Matchdemandes);
-        setShowDlg(true);
+    const FrDate = ({ matchDate }) => {
+        const date = new Date(matchDate);
+        return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
     };
 
-    const demandeManage = (decision, id) => {
-        axiosClient
-            .get(`/match/accepter-invitation/${decision}/${id}`)
-            .then(() => window.location.reload())
-            .catch(({ response }) => {
-                if (response && response.status == 403) {
-                    notification.current.show({ severity: "error", summary: response.data.message, life: 5000 });
-                }
-            });
+    const exitMatch = (matchId) => {
+        axiosClient.get(`/match/exit/${matchId}`).then(() => {
+            getMatchs();
+            notification.current.show({ severity: "success", detail: "Tu as quitté le match avec succès", life: 5000 });
+        });
     };
 
     return (
         <>
             <div className="container mes-matchs my-3 rounded border">
-                <MatchDemamde
-                    showDlg={showDlg}
-                    setShowDlg={setShowDlg}
-                    demandes={demandes}
-                    setDemandes={setDemandes}
-                    demandeManage={demandeManage}
-                />
                 <div className="mes-matchs-ctn">
                     {matchData.map((match, index) => (
                         <div className="match row" key={"match" + index}>
@@ -130,7 +96,7 @@ const MatchUtilisateur = () => {
                                             <AvatarGroup>
                                                 {match.matchMembres.equipeA.slice(0, 5).map((membre, index) => (
                                                     <Avatar
-                                                        label={membre.nom
+                                                        label={membre
                                                             .split(" ")
                                                             .map((x) => x.slice(0, 1))
                                                             .join("")}
@@ -154,7 +120,7 @@ const MatchUtilisateur = () => {
                                             <AvatarGroup>
                                                 {match.matchMembres.equipeB.slice(0, 5).map((membre, index) => (
                                                     <Avatar
-                                                        label={membre.nom
+                                                        label={membre
                                                             .split(" ")
                                                             .map((x) => x.slice(0, 1))
                                                             .join("")}
@@ -172,15 +138,27 @@ const MatchUtilisateur = () => {
                                 </div>
                             </div>
                             <div className="actions-ctn col-xl-2">
-                                <Menu model={items} popup ref={menu} />
-                                <Button label="Paramètre" icon="fa fa-cog" onClick={(e) => menu.current.toggle(e)} />
-                                <Button label="Demandes" icon="fa fa-users" onClick={() => afficheDMs(match.demandes)}>
-                                    <Badge value={match.demandes.equipeA.length + match.demandes.equipeB.length} />
-                                </Button>
+                                <Button
+                                    label="Allez sur la map"
+                                    icon="fa fa-map-marker"
+                                    onClick={() =>
+                                        window.open(
+                                            `https://www.google.com/maps?q=${match.latitude},${match.longitude}`,
+                                            "_blank"
+                                        )
+                                    }
+                                />
+                                {((matchRole == "proprietaire" && match.avecClub) || !match.avecClub) && (
+                                    <Button
+                                        label="exit le match"
+                                        icon="fa fa-cog"
+                                        onClick={() => exitMatch(match.id)}
+                                    />
+                                )}
                             </div>
                         </div>
                     ))}
-                    {!matchData.length && <p className="my-4">Tu n'est pas du match</p>}
+                    {!matchData.length && <p className="my-4">Tu ne fais pas partie du match</p>}
                 </div>
             </div>
             <Galerie />
@@ -188,4 +166,4 @@ const MatchUtilisateur = () => {
     );
 };
 
-export default MatchUtilisateur;
+export default MatchCondidat;

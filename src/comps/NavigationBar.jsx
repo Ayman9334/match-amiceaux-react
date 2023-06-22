@@ -516,6 +516,9 @@ const NavigationBar = () => {
                                                     <li>
                                                         <Link to="/match/cree-match">Créer Match</Link>
                                                     </li>
+                                                    <li>
+                                                        <Link to="/match/condidat">Rejoindre Match</Link>
+                                                    </li>
                                                 </>
                                             ) : (
                                                 <>
@@ -536,6 +539,15 @@ const NavigationBar = () => {
                                                             data-pr-tooltip="connectez-vous pour cree des match"
                                                         >
                                                             Créer Match
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            className="disabled-match-lien"
+                                                            style={{ color: "grey" }}
+                                                            data-pr-tooltip="connectez-vous pour cree des match"
+                                                        >
+                                                            Rejoindre Match
                                                         </a>
                                                     </li>
                                                 </>
