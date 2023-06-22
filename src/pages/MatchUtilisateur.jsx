@@ -21,12 +21,16 @@ const MatchUtilisateur = () => {
 
     useEffect(() => {
         window.effectCommands();
-        axiosClient.get("/match/affiche-user-matchs").then(({ data }) => {
-            setmatchData(data);
-        });
+        getMatchData();
     }, []);
 
     const menu = useRef();
+
+    const getMatchData = () => {
+        axiosClient.get("/match/affiche-user-matchs").then(({ data }) => {
+            setmatchData(data);
+        });
+    };
 
     const items = [
         {
@@ -66,7 +70,16 @@ const MatchUtilisateur = () => {
     const demandeManage = (decision, id) => {
         axiosClient
             .get(`/match/accepter-invitation/${decision}/${id}`)
-            .then(() => window.location.reload())
+            .then(() => {
+                getMatchData();
+                notification.current.show({
+                    severity: "success",
+                    summary: "L'opération a été effectuée avec succès",
+                    life: 3000,
+                });
+                setDemandes([]);
+                setShowDlg(false);
+            })
             .catch(({ response }) => {
                 if (response && response.status == 403) {
                     notification.current.show({ severity: "error", summary: response.data.message, life: 5000 });

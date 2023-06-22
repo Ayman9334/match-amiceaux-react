@@ -53,7 +53,7 @@ const MatchAffiche = () => {
                     detail: "Vous avez envoyer une invitation a ce match",
                     life: 3000,
                 });
-                navigate("/");
+                navigate("/match/trouve-match");
             })
             .catch(({ response }) => {
                 if (response && response.status == 403) {

@@ -10,10 +10,9 @@ const Trouvmatch = () => {
 
         axiosClient
             .post("/match/affiche-matchs", chercheForm)
-            .then(({data}) => setMatchsdata(data))
-            .catch((err) => {
-                console.log(err)
-                // (window.location = "/nous-somme-desoleeee")
+            .then(({ data }) => setMatchsdata(data))
+            .catch(() => {
+                window.location = "/nous-somme-desole";
             });
     }, []);
 
@@ -28,8 +27,8 @@ const Trouvmatch = () => {
 
     return (
         <div>
-            <MatchRecherche chercheForm={chercheForm} setChercheForm={setChercheForm} setMatchsdata={setMatchsdata}/>
-            <MatchsTable matchsdata={matchsdata}/>
+            <MatchRecherche chercheForm={chercheForm} setChercheForm={setChercheForm} setMatchsdata={setMatchsdata} />
+            <MatchsTable matchsdata={matchsdata} />
             <Galerie />
         </div>
     );

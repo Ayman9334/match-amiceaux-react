@@ -1,50 +1,46 @@
 @media (max-width: 961px) {
-    .p-dialog {
-      width: 75vw;
-    }
-    .w-75-sm{
-      width: 50%;
-    }
+  .p-dialog {
+    width: 75vw;
+  }
+}
 
+@media (max-width: 641px) {
+  .p-dialog {
+    width: 100%;
+  }
+}
+
+@media (min-width: 961px) {
+  .p-dialog {
+    width: 50%;
+  }
+}
+
+@media (max-width: 466px) {
+  .split {
+    display: inline-block !important;
   }
 
-  @media (max-width: 641px) {
-    .p-dialog	{
-      width: 100%;
-    }
-    .w-75-sm{
-      width: 75%;
-    }
+  .splitbutton {
+    margin-left: auto !important;
   }
-  
-  @media (min-width: 961px) {
-    .p-dialog{
-      width: 50%;
-    }
-    .w-75-sm{
-      width: 50%;
-    }
+}
 
-  }
-  @media (max-width: 466px) {
-    .split{
-      display: inline-block !important;
-    }
-    .splitbutton{
-      margin-left: auto !important;
-    }
-  }
-
-/* react-select fix index */
-.css-1nmdiq5-menu{
+/* react-select fix popup z-index */
+.css-1nmdiq5-menu {
   z-index: 1000 !important;
 }
 
+/* loading page */
 .loading-container {
+  position: fixed;
   display: flex;
+  background-color: #ffffff;
+  z-index: 2000;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
 }
 
 .loader-spinner {
@@ -66,4 +62,3 @@
   font-size: 25px;
   padding: 0 11px;
 }
-

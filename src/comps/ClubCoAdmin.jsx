@@ -6,12 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import axiosClient from '../configs/api/axios-config';
 import { Badge } from 'primereact/badge';
 import { useStateContext } from "../configs/context/ContextProvider";
-import { useClickOutside } from 'primereact/hooks';
-import "../css/index.css";
 import { Toast } from 'primereact/toast';
 import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
 import { SplitButton } from 'primereact/splitbutton';
-import { Dropdown } from 'primereact/dropdown';
 import { InputText } from "primereact/inputtext";
 
 
@@ -201,14 +198,14 @@ const QuitterClub = () => {
                   <SplitButton className="splitbutton" label="Ajouter Membres" icon="fa fa-plus" onClick={() => setVisible(true)} model={items} severity="success" rounded />
                   <Dialog header="Il y a deux façons d'ajouter des membres, un code et un lien" visible={visible} onHide={() => setVisible(false)} className="dialog">
                     <p className="text-muted text-center mb-4 mt-0">juste cliquer pour copier</p>
-                    <div className="d-flex justify-content-between align-items-center rounded w-75-sm">
+                    <div className="d-flex justify-content-between align-items-center rounded">
                       <span ref={link} className="text-end">Lien</span>
                       <Button icon="fa fa-copy" className="m-1" onClick={() => copyText(link)} rounded raised severity="info" label="Copier" />
                     </div>
                     <div className="d-flex justify-content-end">
                       <Button icon="fa fa-refresh" className="m-1" onClick={() => RegenererCode()} rounded raised label="Regenerate" />
                     </div>
-                    <div className="d-flex justify-content-between align-items-center rounded w-75-sm">
+                    <div className="d-flex justify-content-between align-items-center rounded">
                       <span ref={code} className="text-end" id="code">{clubinfos.code}</span>
                       <Button icon="fa fa-copy" className="m-1" onClick={() => copyText(code)} rounded raised severity="info" label="Copier" />
                     </div>

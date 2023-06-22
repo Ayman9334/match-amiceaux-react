@@ -7,7 +7,6 @@ const LayoutPrincipal = () => {
   
   return (
     <>
-        {/* <Preloader /> */}
         <NavigationBar />
         <Outlet />
         <PiedPage />

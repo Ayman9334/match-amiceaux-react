@@ -4,8 +4,10 @@ import axiosClient from "../api/axios-config";
 const StateContext = createContext({
     currentUser: null,
     token: null,
+    user: null,
     setUser: () => {},
     setToken: () => {},
+    setLoader: () => {},
 });
 
 export const ContextProvider = ({ children }) => {
@@ -36,6 +38,15 @@ export const ContextProvider = ({ children }) => {
         }
     };
 
+    const setLoader = (bool) => {
+        const loader = document.getElementById("loading-container");
+        if (bool) {
+            loader.classList = "loading-container";
+        } else {
+            loader.classList = "loading-container d-none";
+        }
+    };
+
     return (
         <StateContext.Provider
             value={{
@@ -44,6 +55,7 @@ export const ContextProvider = ({ children }) => {
                 token,
                 setToken,
                 notification,
+                setLoader,
             }}
         >
             {children}

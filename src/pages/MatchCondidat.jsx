@@ -151,7 +151,7 @@ const MatchCondidat = () => {
                                 {((matchRole == "proprietaire" && match.avecClub) || !match.avecClub) && (
                                     <Button
                                         label="exit le match"
-                                        icon="fa fa-cog"
+                                        icon="fa fa-sign-out"
                                         onClick={() => exitMatch(match.id)}
                                     />
                                 )}
