@@ -5,13 +5,17 @@
 }
 
 @media (max-width: 641px) {
-  .p-dialog {
+
+  .p-dialog,
+  .dg-elem {
     width: 100%;
   }
 }
 
 @media (min-width: 961px) {
-  .p-dialog {
+
+  .p-dialog,
+  .dg-elem {
     width: 50%;
   }
 }
